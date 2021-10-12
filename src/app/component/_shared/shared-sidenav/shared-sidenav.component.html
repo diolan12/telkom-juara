@@ -1,0 +1,29 @@
+<mat-nav-list>
+    <div class="profile-card-container">
+        <div class="background">
+            <img src="https://materializecss.com/images/office.jpg" alt="Profile Background">
+        </div>
+        <div>
+            <img class="profile" src="https://materializecss.com/images/yuna.jpg" alt="Profile Picture">
+        </div>
+        <div class="content" *ngIf="jwt">
+            <span>{{jwt.name}}</span>
+            <p>{{jwt.email}}</p>
+        </div>
+    </div>
+
+    <div matSubheader>Main</div>
+    <mat-list-item routerLinkActive="active">
+        <a routerLink="/dashboard/admin/home" matLine>Beranda</a>
+    </mat-list-item>
+    <mat-list-item routerLinkActive="active">
+        <a routerLink="/dashboard/admin/account" matLine>Akun</a>
+    </mat-list-item>
+
+    <mat-divider></mat-divider>
+    <div matSubheader>Tools</div>
+    <mat-list-item routerLinkActive="active">
+        <mat-icon matLinkIcon>settings</mat-icon>
+        <a routerLink="/dashboard/admin/setting" matLine>Setelan</a>
+    </mat-list-item>
+</mat-nav-list>

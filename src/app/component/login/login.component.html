@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+    <mat-card>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-subtitle>Welcome to Telkom Juara</mat-card-subtitle>
+
+        <mat-card-content>
+            <form fxLayout="column" fxLayoutAlign="stretch" [formGroup]="authForm" (ngSubmit)="login()">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>NIK</mat-label>
+                    <input matInput type="number" formControlName="nik">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="togglePassword ? 'password' : 'text'" formControlName="password">
+                    <a mat-icon-button matSuffix (click)="togglePassword = !togglePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="togglePassword">
+                        <mat-icon>{{togglePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </a>
+                </mat-form-field>
+
+                <div fxLayout="row" fxLayoutAlign="end">
+                    <a mat-button fxHide color="accent">Register</a>
+                    <button [ngClass]="{'disabled' : 'loading'}" mat-button type="submit" color="primary" [disabled]="isLoading">Login</button>
+                </div>
+            </form>
+        </mat-card-content>
+        <mat-progress-bar [fxShow]="isLoading" mode="indeterminate"></mat-progress-bar>
+    </mat-card>
+</div>

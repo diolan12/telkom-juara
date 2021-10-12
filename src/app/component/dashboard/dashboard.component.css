@@ -1,0 +1,12 @@
+/* .mat-nav-list .mat-list-item.active {
+    background: white;
+    filter: brightness(90%)
+} */
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-sidenav-content {
+    padding: 24px;
+}

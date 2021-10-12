@@ -1,0 +1,49 @@
+.mat-nav-list {
+    padding-top: 0;
+}
+
+.mat-nav-list .mat-list-item.active {
+    background: white;
+    filter: brightness(90%)
+}
+
+.mat-nav-list .profile-card-container {
+    position: relative;
+    padding: 16px 16px 0;
+    color: #fff;
+    /* shadow */
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+.mat-nav-list .profile-card-container .profile {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.mat-nav-list .profile-card-container .background {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.mat-nav-list .profile-card-container .content {
+    padding-bottom: 16px;
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 16px;
+}
+
+.mat-nav-list .profile-card-container .content span {
+    font-weight: 500;
+}
+
+.mat-nav-list .profile-card-container .content p {
+    font-weight: 350;
+}

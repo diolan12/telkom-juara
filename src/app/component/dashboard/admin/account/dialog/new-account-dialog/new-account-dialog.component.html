@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Buat Akun Baru</h1>
+<mat-dialog-content>
+    <div fxLayout="column">
+        <mat-form-field appearance="outline">
+            <mat-label>NIK</mat-label>
+            <input matInput type="number" [(ngModel)]="data.nik">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Nama</mat-label>
+            <input matInput type="text" [(ngModel)]="data.name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="data.email">
+        </mat-form-field>
+        <div fxLayoutAlign="stretch">
+            <label>Jenis Kelamin</label>
+            <mat-radio-group [(ngModel)]="data.gender" aria-label="Pilih jenis kelamin">
+                <mat-radio-button value="male">Laki-Laki</mat-radio-button>
+                <mat-radio-button value="female">Perempuan</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end">
+    <button mat-button (click)="onNoClick()">Batal</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Buat</button>
+</mat-dialog-actions>
