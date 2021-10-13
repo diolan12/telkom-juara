@@ -4,7 +4,7 @@
             <img src="https://materializecss.com/images/office.jpg" alt="Profile Background">
         </div>
         <div>
-            <img class="profile" src="https://materializecss.com/images/yuna.jpg" alt="Profile Picture">
+            <img *ngIf="jwt" class="profile" src="{{getProfile(jwt.picture)}}" src="https://materializecss.com/images/yuna.jpg" alt="Profile Picture">
         </div>
         <div class="content" *ngIf="jwt">
             <span>{{jwt.name}}</span>
