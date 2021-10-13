@@ -31,7 +31,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-// import { MatLabelModule } from '@angular/material/label';
+import { MatSelectModule } from '@angular/material/select';
 
 // Component
 import { NotFoundComponent } from './error/not-found/not-found.component';
@@ -73,7 +73,8 @@ const materialModules = [
 	MatDialogModule,
 	MatTableModule,
 	MatSortModule,
-	MatPaginatorModule
+	MatPaginatorModule,
+	MatSelectModule
 ]
 
 @NgModule({
@@ -92,7 +93,7 @@ const materialModules = [
 		SharedSidenavComponent,
 		SharedFooterComponent,
 		NewAccountDialogComponent,
-  EditAccountDialogComponent
+		EditAccountDialogComponent
 	],
 	imports: [
 		BrowserModule,
