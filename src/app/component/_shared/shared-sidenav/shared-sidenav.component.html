@@ -1,10 +1,10 @@
 <mat-nav-list>
     <div class="profile-card-container">
         <div class="background">
-            <img src="https://materializecss.com/images/office.jpg" alt="Profile Background">
+            <img src="{{background}}" alt="Profile Background">
         </div>
         <div>
-            <img *ngIf="jwt" class="profile" src="{{getProfile(jwt.picture)}}" src="https://materializecss.com/images/yuna.jpg" alt="Profile Picture">
+            <img *ngIf="jwt" class="profile" src="{{getProfile(jwt.picture)}}" alt="Profile Picture">
         </div>
         <div class="content" *ngIf="jwt">
             <span>{{jwt.name}}</span>
