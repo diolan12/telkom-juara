@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { } from '../../_data/dao/login-dao';
-import { AuthService } from '../../_data/service/auth.service'
+import { LoginDao } from 'src/app/_data/dao/login-dao';
+import { AuthService } from 'src/app/_data/service/auth.service'
 
 @Component({
 	selector: 'app-login',
@@ -26,10 +26,7 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private formBuilder: FormBuilder
 	) {
-		this.authForm = this.formBuilder.group({
-			nik: ['16982818', Validators.required],
-			password: ['', Validators.required]
-		})
+		this.authForm = this.formBuilder.group(LoginDao.validator)
 
 	}
 
