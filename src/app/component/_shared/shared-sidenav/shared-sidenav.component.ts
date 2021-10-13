@@ -13,6 +13,8 @@ export class SharedSidenavComponent implements OnInit {
 
   jwt: JWT | null = null;
 
+  background = environment.apiUrl+'/assets/image/background.jpg'
+
   constructor(
     private authService: AuthService
     ) { }
