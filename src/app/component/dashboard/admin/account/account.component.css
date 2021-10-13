@@ -5,3 +5,8 @@ table {
 th.mat-sort-header-sorted {
     color: black;
 }
+
+.mat-row:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
