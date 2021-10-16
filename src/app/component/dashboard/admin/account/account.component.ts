@@ -23,18 +23,22 @@ export class AccountComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog
   ) { }
   ngOnInit(): void {
-    this.accountService.get().then((accounts: Array<Account>) => {
-      this.dataSource = new MatTableDataSource(accounts);
-    })
-      .catch(err => {
-        console.error(err)
-      })
+    this.init()
   }
 
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
+  }
+
+  async init() {
+    await this.accountService.get().then((accounts: Array<Account>) => {
+      this.dataSource = new MatTableDataSource(accounts);
+    })
+      .catch(err => {
+        console.error(err)
+      })
   }
 
   newAccountDialog() {
@@ -74,9 +78,9 @@ export class AccountComponent implements OnInit, AfterViewInit {
   }
   roleDisplay(role: number): string {
     switch (role) {
-        case 0: return 'Administrator';
-        case 1: return 'Petugas Kantor';
-        case 2: return 'Petugas Lapangan';
+      case 0: return 'Administrator';
+      case 1: return 'Petugas Kantor';
+      case 2: return 'Petugas Lapangan';
     }
     return ''
   }
