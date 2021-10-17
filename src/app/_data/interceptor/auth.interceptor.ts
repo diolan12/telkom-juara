@@ -20,7 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
 		let isToApi = req.url.indexOf(environment.apiUrl) === 0;
 		if (isToApi) {
 			let authReq = req;
-			const token = this.credential.getToken();
+			const token = this.credential.getJWT();
 			if (token != null) {
 				authReq = req.clone({headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer '+ token)});
 			}
