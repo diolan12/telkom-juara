@@ -33,9 +33,6 @@ export class EditAccountDialogComponent {
   ) {
     this.editAccountGroup = this.formBuilder.group(AccountPutDao.validator(data), { validators: AccountPutDao.passwordMatcher })
   }
-  getProfile(): string {
-    return environment.apiUrl + '/assets/profile/' + this.data.photo
-  }
   
   validate() {
 
