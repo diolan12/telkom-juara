@@ -7,6 +7,7 @@ import { LoginDao } from '../dao/login-dao';
 import { Response } from '../model/response'
 import { JWT } from '../model/jwt';
 import { environment } from 'src/environments/environment';
+import { Account } from '../model/account';
 // import LiveData from '../jetpack/LiveData';
 // import MutableLiveData from '../jetpack/MutableLiveData';
 
@@ -25,15 +26,14 @@ export class AuthService {
     private credential: CredentialService
   ) { }
 
-  login(loginDao: LoginDao): Promise<Response> {
+  login(loginDao: LoginDao): Promise<Response<string>> {
     console.log('login()')
     return new Promise((resolve, reject) => {
-      this.http.post<Response>(environment.apiUrl + '/auth/login', loginDao, httpOptions).toPromise()
+      this.http.post<Response<string>>(environment.apiUrl + '/auth/login', loginDao, httpOptions).toPromise()
       .then((res) => {
-        res as Response
         if (res.type === 'SUCCESS') {
           resolve(res)
-          this.credential.setToken(JSON.stringify(res.message));
+          this.credential.setJWT(JSON.stringify(res.content));
         } else {
           reject(res)
         }
@@ -43,16 +43,13 @@ export class AuthService {
     })
   }
 
-  verify(): Promise<Response> {
+  verify(): Promise<Response<Account>> {
     console.log('verify()')
     return new Promise((resolve, reject) => {
       if (this.isLoggedIn()) {
-        let httpOptions = {
-          headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Authorization': "Bearer " + this.credential.getToken() })
-        }
-        this.http.get<Response>(environment.apiUrl + '/auth/verify').toPromise()
+        this.http.get<Response<Account>>(environment.apiUrl + '/auth/verify').toPromise()
           .then(
-            (res: Response) => {
+            (res) => {
               resolve(res)
             })
           .catch(err => { reject(err) })
@@ -60,23 +57,23 @@ export class AuthService {
     });
   }
 
-  account(): Promise<JWT> {
+  account(): Promise<Account> {
     console.log('account()')
     return new Promise((resolve, reject) => {
-      let account = this.credential.getJWT()
+      let account = this.credential.getAccount()
       if (account) {
         // this._jwt.postValue(account) // experimental
         resolve(account)
       } else {
         this.verify()
           .then(
-            (res: Response) => {
+            (res) => {
               if (res.type === 'ERROR') {
                 reject(res)
               } else {
-                this.credential.setJWT(res.message)
+                this.credential.setAccount(res.content)
                 // this._jwt.postValue(res.message) // experimental
-                resolve(res.message)
+                resolve(res.content)
               }
             })
           .catch(err => { reject(err) })
@@ -89,7 +86,7 @@ export class AuthService {
   
 
   isLoggedIn(): boolean {
-    return (this.credential.getToken() !== null)
+    return (this.credential.getJWT() !== null)
   }
 
   logout(): void {
