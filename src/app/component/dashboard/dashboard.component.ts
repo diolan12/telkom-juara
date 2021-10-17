@@ -49,8 +49,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getAccount() {
-    this.authService.account().then((jwt) => {
-      switch (jwt.admin) {
+    this.authService.account().then((account) => {
+      switch (account.role) {
         case 0:
           this.navigate('dashboard/admin/account');
           break;
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
           this.navigate('dashboard/field');
           break;
         default:
-          console.log(jwt)
+          console.log(account)
           break;
       }
     }).catch((err) => {
