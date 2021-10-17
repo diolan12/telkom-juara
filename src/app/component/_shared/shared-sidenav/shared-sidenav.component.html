@@ -4,16 +4,16 @@
             <img src="{{background}}" alt="Profile Background">
         </div>
         <div>
-            <img *ngIf="jwt" class="profile" src="{{getProfile(jwt.picture)}}" alt="Profile Picture">
+            <img *ngIf="account" class="profile" src="{{account.photo}}" alt="Profile Picture">
         </div>
-        <div class="content" *ngIf="jwt">
-            <span>{{jwt.name}}</span>
-            <p>{{jwt.email}}</p>
+        <div class="content" *ngIf="account">
+            <span>{{account.name}}</span>
+            <p>{{account.email}}</p>
         </div>
     </div>
 
-    <div *ngIf="jwt">
-        <div *ngIf="jwt.admin === 0">
+    <div *ngIf="account">
+        <div *ngIf="account.role === 0">
             <div matSubheader>Administrator</div>
             <mat-list-item routerLinkActive="active">
                 <a routerLink="/dashboard/admin/home" matLine>Beranda</a>
@@ -29,7 +29,7 @@
                 <a routerLink="/dashboard/admin/setting" matLine>Setelan</a>
             </mat-list-item>
         </div>
-        <div *ngIf="jwt.admin === 1">
+        <div *ngIf="account.role === 1">
             <div matSubheader>Petugas Kantor</div>
             <mat-list-item routerLinkActive="active">
                 <a routerLink="/dashboard/officer/home" matLine>Beranda</a>
@@ -44,7 +44,7 @@
                 <a routerLink="/dashboard/officer/field" matLine>Petugas Lapangan</a>
             </mat-list-item>
         </div>
-        <div *ngIf="jwt.admin === 2">
+        <div *ngIf="account.role === 2">
             <div matSubheader>Petugas Lapangan</div>
             <mat-list-item routerLinkActive="active">
                 <a routerLink="/dashboard/field/home" matLine>Beranda</a>
