@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from 'src/app/_data/model/account';
 
-import { JWT } from 'src/app/_data/model/jwt';
 import { AuthService } from 'src/app/_data/service/auth.service'
 import { environment } from 'src/environments/environment';
 
@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SharedSidenavComponent implements OnInit {
 
-  jwt: JWT | null = null;
+  account: Account | null = null;
 
   background = environment.apiUrl+'/assets/image/background.jpg'
 
@@ -20,8 +20,8 @@ export class SharedSidenavComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.authService.account().then((jwt) => {
-      this.jwt = jwt
+    this.authService.account().then((account) => {
+      this.account = account
     }).catch((err) => {
       console.error(err)
     })
@@ -29,10 +29,6 @@ export class SharedSidenavComponent implements OnInit {
     //   this.jwt = jwt
     // })
     // this.authService.account()
-  }
-
-  getProfile(photo: string): string {
-    return environment.apiUrl + '/assets/profile/' + photo
   }
 
 }
