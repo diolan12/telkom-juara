@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { JWT } from '../model/jwt';
+import { Account } from '../model/account';
 
-const TOKEN_KEY = 'auth-token';
-const USER_KEY = 'auth-user';
+const JWT_KEY = 'auth-token';
+const ACCOUNT_KEY = 'auth-user';
 
 @Injectable({
   providedIn: 'root'
@@ -15,22 +15,22 @@ export class CredentialService {
     window.localStorage.clear();
   }
 
-  public setToken(token: string): void {
-    window.localStorage.removeItem(TOKEN_KEY);
-    window.localStorage.setItem(TOKEN_KEY, JSON.parse(token));
+  public setJWT(token: string): void {
+    window.localStorage.removeItem(JWT_KEY);
+    window.localStorage.setItem(JWT_KEY, JSON.parse(token));
   }
 
-  public getToken(): string | null {
-    return window.localStorage.getItem(TOKEN_KEY);
+  public getJWT(): string | null {
+    return window.localStorage.getItem(JWT_KEY);
   }
 
-  public setJWT(account: JWT): void {
-    window.localStorage.removeItem(USER_KEY);
-    window.localStorage.setItem(USER_KEY, JSON.stringify(account));
+  public setAccount(account: Account): void {
+    window.localStorage.removeItem(ACCOUNT_KEY);
+    window.localStorage.setItem(ACCOUNT_KEY, JSON.stringify(account));
   }
 
-  public getJWT(): JWT | null {
-    const account = window.localStorage.getItem(USER_KEY);
+  public getAccount(): Account | null {
+    const account = window.localStorage.getItem(ACCOUNT_KEY);
     if (account) {
       return JSON.parse(account);
     }
