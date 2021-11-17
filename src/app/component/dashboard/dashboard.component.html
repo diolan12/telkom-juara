@@ -21,7 +21,7 @@
 
 </mat-toolbar>
 <mat-sidenav-container [style.height.%]=100>
-    <mat-sidenav #sidenav [(opened)]="opened" [style.width.px]=300 [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+    <mat-sidenav #sidenav [(opened)]="opened" [style.width.px]=300 [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="true" fixedTopGap="56">
 
         <!-- Shared Side Navigation -->
         <app-shared-sidenav></app-shared-sidenav>
