@@ -1,0 +1,12 @@
+<h3>Order Baru</h3>
+<button mat-button (click)="newOrderDialog()" color="accent"><mat-icon>add</mat-icon>Order Baru</button>
+
+<br />
+<mat-divider></mat-divider>
+<br />
+
+
+<div>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
+    </table>
+</div>
