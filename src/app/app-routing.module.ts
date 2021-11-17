@@ -8,6 +8,8 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
+import { OrderComponent } from './component/_shared/operation/order/order.component';
+import { CustomerComponent } from './component/_shared/operation/customer/customer.component';
 
 import { AdminComponent } from './component/dashboard/admin/admin.component';
 import { AccountComponent } from './component/dashboard/admin/account/account.component';
@@ -36,6 +38,8 @@ const routes: Routes = [
         path: 'office', component: OfficeComponent, children: [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
           { path: 'home', component: SharedHomeComponent },
+          { path: 'order', component: OrderComponent },
+          { path: 'customer', component: CustomerComponent }
         ]
       },
       {
