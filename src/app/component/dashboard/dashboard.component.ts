@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 
 import { JWT } from '../../_data/model/jwt';
@@ -29,15 +29,15 @@ export class DashboardComponent implements OnInit {
     // this.authService.verify()
     // this.account = this.authService.account()
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 800px)');
-      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-      this.opened = !this.mobileQuery.matches;
-      this.disable = this.mobileQuery.matches;
-      this.mobileQuery.addEventListener('change', (event) => {
-        console.log(event.matches);
-        this.opened = !event.matches
-        this.disable = event.matches
-        return this._mobileQueryListener
-      });
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.opened = !this.mobileQuery.matches;
+    this.disable = this.mobileQuery.matches;
+    this.mobileQuery.addEventListener('change', (event) => {
+      console.log(event.matches);
+      this.opened = !event.matches
+      this.disable = event.matches
+      return this._mobileQueryListener
+    });
   }
 
   ngOnInit() {
@@ -73,7 +73,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigateByUrl(target);
   }
 
-  
+
 
   logout(): void {
     this.authService.logout();
