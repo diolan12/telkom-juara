@@ -3,7 +3,7 @@
 }
 
 .mat-nav-list .mat-list-item.active {
-    background: white;
+    background: gray;
     filter: brightness(90%)
 }
 
