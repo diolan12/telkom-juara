@@ -41,7 +41,6 @@ import { AdminComponent } from './component/dashboard/admin/admin.component';
 import { FieldComponent } from './component/dashboard/field/field.component';
 import { ProfileComponent } from './component/dashboard/profile/profile.component';
 import { OfficeComponent } from './component/dashboard/office/office.component';
-import { HomeComponent } from './component/dashboard/admin/home/home.component';
 import { AccountComponent } from './component/dashboard/admin/account/account.component';
 import { SettingComponent } from './component/dashboard/admin/setting/setting.component';
 import { SharedSidenavComponent } from './component/_shared/shared-sidenav/shared-sidenav.component';
@@ -88,7 +87,6 @@ const materialModules = [
 		ProfileComponent,
 		NotFoundComponent,
 		OfficeComponent,
-		HomeComponent,
 		AccountComponent,
 		SettingComponent,
 		SharedSidenavComponent,
