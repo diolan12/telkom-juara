@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component,  AfterViewInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -14,27 +14,27 @@ import { EditAccountDialogComponent } from './dialog/edit-account-dialog/edit-ac
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent implements OnInit, AfterViewInit {
+export class AccountComponent implements  AfterViewInit {
   displayedColumns: string[] = ['nik', 'name', 'role', 'phone', 'whatsapp'];
   dataSource = new MatTableDataSource(Array<Account>());
 
+
   constructor(
     private accountService: AccountService,
-    public dialog: MatDialog
-  ) { }
-  ngOnInit(): void {
-    this.init()
+    public dialog: MatDialog,
+  ) { 
   }
 
-  @ViewChild(MatSort) sort: MatSort = new MatSort();
+  @ViewChild(MatSort, {static: false}) sort: MatSort = new MatSort();
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+    this.init()
   }
 
   async init() {
     await this.accountService.get().then((accounts: Array<Account>) => {
       this.dataSource = new MatTableDataSource(accounts);
+      this.dataSource.sort = this.sort;
     })
       .catch(err => {
         console.error(err)
