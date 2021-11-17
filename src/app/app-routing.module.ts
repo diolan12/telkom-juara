@@ -10,7 +10,6 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
 
 import { AdminComponent } from './component/dashboard/admin/admin.component';
-import { HomeComponent } from './component/dashboard/admin/home/home.component';
 import { AccountComponent } from './component/dashboard/admin/account/account.component';
 import { SettingComponent } from './component/dashboard/admin/setting/setting.component';
 
