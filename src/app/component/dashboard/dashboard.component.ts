@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
     this.authService.account().then((account) => {
       switch (account.role) {
         case 0:
-          this.navigate('dashboard/admin/account');
+          this.navigate('dashboard/admin');
           break;
         case 1:
           this.navigate('dashboard/office');
