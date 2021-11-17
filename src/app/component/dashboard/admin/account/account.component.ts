@@ -77,12 +77,7 @@ export class AccountComponent implements OnInit, AfterViewInit {
     })
   }
   roleDisplay(role: number): string {
-    switch (role) {
-      case 0: return 'Administrator';
-      case 1: return 'Petugas Kantor';
-      case 2: return 'Petugas Lapangan';
-    }
-    return ''
+    return this.accountService.getRoleDisplay(role)
   }
 
 }
