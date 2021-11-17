@@ -1,0 +1,34 @@
+<h3>Data Pelanggan</h3>
+<button mat-button (click)="newCustomerDialog()" color="accent"><mat-icon>add</mat-icon>Pelanggan Baru</button>
+
+<br />
+<mat-divider></mat-divider>
+<br />
+
+
+<div>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
+
+        <!-- No Indihome Column -->
+        <ng-container matColumnDef="no_indihome">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. Indihome </th>
+            <td mat-cell *matCellDef="let customer"> {{customer.no_indihome === null ? '-' : customer.no_indihome}} </td>
+        </ng-container>
+
+        <!-- No Telephone Column -->
+        <ng-container matColumnDef="no_telephone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. Telp </th>
+            <td mat-cell *matCellDef="let customer"> {{customer.no_telephone === null ? '-' : customer.no_telephone}} </td>
+        </ng-container>
+
+        <!-- No Telephone Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nama </th>
+            <td mat-cell *matCellDef="let customer"> {{customer.name}} </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editCustomerDialog(row)"></tr>
+    </table>
+</div>
