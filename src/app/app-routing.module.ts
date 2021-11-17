@@ -7,6 +7,7 @@ import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 import { NotFoundComponent } from './error/not-found/not-found.component';
+import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
 
 import { AdminComponent } from './component/dashboard/admin/admin.component';
 import { HomeComponent } from './component/dashboard/admin/home/home.component';
@@ -27,13 +28,23 @@ const routes: Routes = [
       {
         path: 'admin', component: AdminComponent, children: [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
-          { path: 'home', component: HomeComponent },
+          { path: 'home', component: SharedHomeComponent },
           { path: 'account', component: AccountComponent },
           { path: 'setting', component: SettingComponent }
         ]
       },
-      { path: 'office', component: OfficeComponent },
-      { path: 'field', component: FieldComponent }
+      {
+        path: 'office', component: OfficeComponent, children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          { path: 'home', component: SharedHomeComponent },
+        ]
+      },
+      {
+        path: 'field', component: FieldComponent, children: [
+          { path: '', redirectTo: 'home', pathMatch: 'full' },
+          { path: 'home', component: SharedHomeComponent },
+        ]
+      }
     ]
   },
   { path: 'profile', canActivate: [AuthGuard], component: ProfileComponent },
