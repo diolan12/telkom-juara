@@ -10,4 +10,24 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.spacer {
+    height: 56px;
+}
+
+
+/* Global table style */
+
+table {
+    width: 100%;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.mat-row:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css"
