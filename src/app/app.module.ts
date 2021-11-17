@@ -51,6 +51,7 @@ import { SharedFooterComponent } from './component/_shared/shared-footer/shared-
 import { AuthInterceptor } from "./_data/interceptor/auth.interceptor";
 import { NewAccountDialogComponent } from './component/dashboard/admin/account/dialog/new-account-dialog/new-account-dialog.component';
 import { EditAccountDialogComponent } from './component/dashboard/admin/account/dialog/edit-account-dialog/edit-account-dialog.component';
+import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
 
 const materialModules = [
 	CdkTreeModule,
@@ -93,7 +94,8 @@ const materialModules = [
 		SharedSidenavComponent,
 		SharedFooterComponent,
 		NewAccountDialogComponent,
-		EditAccountDialogComponent
+		EditAccountDialogComponent,
+  SharedHomeComponent
 	],
 	imports: [
 		BrowserModule,
