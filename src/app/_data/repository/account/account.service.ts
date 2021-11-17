@@ -46,4 +46,12 @@ export class AccountService {
         .catch(err => { reject(err) })
     })
   }
+  getRoleDisplay(role: number): string {
+    switch (role) {
+      case 0: return 'Administrator';
+      case 1: return 'Petugas Kantor';
+      case 2: return 'Petugas Lapangan';
+    }
+    return ''
+  }
 }
