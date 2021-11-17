@@ -32,16 +32,16 @@
         <div *ngIf="account.role === 1">
             <div matSubheader>Petugas Kantor</div>
             <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/officer/home" matLine>Beranda</a>
+                <a routerLink="/dashboard/office/home" matLine>Beranda</a>
             </mat-list-item>
             <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/officer/order" matLine>Order</a>
+                <a routerLink="/dashboard/office/order" matLine>Order</a>
             </mat-list-item>
             <mat-list-item routerLinkActive="active">
                 <a routerLink="/dashboard/officer/presence" matLine>Absensi</a>
             </mat-list-item>
             <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/officer/field" matLine>Petugas Lapangan</a>
+                <a routerLink="/dashboard/office/field" matLine>Petugas Lapangan</a>
             </mat-list-item>
         </div>
         <div *ngIf="account.role === 2">
