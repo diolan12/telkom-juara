@@ -12,11 +12,13 @@ export class AccountService {
   constructor(
     private http: HttpClient) { }
 
-  get(id: number | null = null): Promise<Array<Account>> {
+  get(id: number | null = null, field: boolean = false): Promise<Array<Account>> {
     return new Promise<Array<Account>>((resolve, reject) => {
       let url = ''
       if (id === null) {
         url = environment.apiUrl + '/api/account'
+      } else if (field) {
+        url = environment.apiUrl + '/api/account?where=role-is-2'
       } else {
         url = environment.apiUrl + '/api/account/' + id
       }
