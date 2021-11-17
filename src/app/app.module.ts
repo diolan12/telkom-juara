@@ -51,6 +51,9 @@ import { AuthInterceptor } from "./_data/interceptor/auth.interceptor";
 import { NewAccountDialogComponent } from './component/dashboard/admin/account/dialog/new-account-dialog/new-account-dialog.component';
 import { EditAccountDialogComponent } from './component/dashboard/admin/account/dialog/edit-account-dialog/edit-account-dialog.component';
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
+import { OrderComponent } from './component/_shared/operation/order/order.component';
+import { CustomerComponent } from './component/_shared/operation/customer/customer.component';
+import { AttendanceComponent } from './component/_shared/operation/attendance/attendance.component';
 
 const materialModules = [
 	CdkTreeModule,
@@ -93,7 +96,10 @@ const materialModules = [
 		SharedFooterComponent,
 		NewAccountDialogComponent,
 		EditAccountDialogComponent,
-  SharedHomeComponent
+  SharedHomeComponent,
+  OrderComponent,
+  CustomerComponent,
+  AttendanceComponent
 	],
 	imports: [
 		BrowserModule,
