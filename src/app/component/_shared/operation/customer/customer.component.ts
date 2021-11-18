@@ -12,8 +12,15 @@ import { CustomerService } from 'src/app/_data/repository/customer/customer.serv
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements AfterViewInit {
+  // string array for table headers
   displayedColumns: string[] = ['no_indihome', 'no_telephone', 'name'];
+
+  // blank mat-table data source
   dataSource = new MatTableDataSource(Array<Customer>());
+
+
+  // non-static material table sort initialization
+  @ViewChild(MatSort, {static: false}) sort: MatSort = new MatSort();
 
   constructor(
     private customerService: CustomerService,
@@ -23,9 +30,10 @@ export class CustomerComponent implements AfterViewInit {
     this.getCustomers();
   }
 
-  @ViewChild(MatSort, {static: false}) sort: MatSort = new MatSort();
   ngOnInit(): void {
   }
+
+  // async await get all customers from server, then set data source and sort
   async getCustomers() {
     await this.customerService.get().then((customers: Array<Customer>) => {
       this.dataSource = new MatTableDataSource(customers);
@@ -33,6 +41,7 @@ export class CustomerComponent implements AfterViewInit {
     })
     .catch(error => {})
   }
+
   newCustomerDialog() {
     console.log('New Customer Dialog');
   }
