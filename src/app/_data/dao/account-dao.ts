@@ -2,7 +2,9 @@ import { AbstractControl, FormControl, FormGroupDirective, NgForm, ValidationErr
 import { ErrorStateMatcher } from "@angular/material/core";
 import { Account } from "../model/account";
 
+// class AccountPostDao with static validator and static password validator
 export class AccountPostDao {
+    // static account validator
     public static validator = {
         nik: ['', Validators.required],
         email: ['', Validators.email],
@@ -14,12 +16,15 @@ export class AccountPostDao {
         rePassword: ['', Validators.required],
         role: [null, Validators.required],
     }
+    // static password validator
     public static passwordMatcher: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
         let pass = group.get('password')?.value;
         let confirmPass = group.get('rePassword')?.value
         return pass === confirmPass ? null : { notSame: true }
     }
 }
+
+// interface for account POST DAO
 export interface AccountPostDao {
     id: number;
     nik: string;
@@ -52,6 +57,8 @@ export class AccountPutDao {
         return pass === confirmPass ? null : { notSame: true }
     }
 }
+
+// interface for account PUT DAO
 export interface AccountPutDao {
     nik: string;
     email: string;
@@ -65,6 +72,7 @@ export interface AccountPutDao {
     role: number;
 }
 
+// a password error state matcher
 export class PasswordErrorStateMatcher implements ErrorStateMatcher {
     isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
         const invalidCtrl = !!(control?.invalid && control?.parent?.dirty);
