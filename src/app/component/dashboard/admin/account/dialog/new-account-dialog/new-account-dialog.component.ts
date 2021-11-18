@@ -37,7 +37,7 @@ export class NewAccountDialogComponent {
     if (this.newAccountGroup.invalid) {
       this.toastr.error('Input tidak valid', 'Error membuat akun');
     } else {
-      this.accountService.new(this.newAccountGroup.value).then(response => {
+      this.accountService.create(this.newAccountGroup.value).then(response => {
         this.toastr.success('Akun '+response.name+' berhasil dibuat', 'Akun dibuat');
         this.dialogRef.close(response)
       }).catch(error => {
