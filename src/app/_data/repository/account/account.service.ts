@@ -62,7 +62,22 @@ export class AccountService {
         .catch(err => { reject(err) })
     })
   }
-  getRoleDisplay(role: number): string {
+
+  // function to delete account by parameter of account id returning promise of account array
+  // require parameters of account id
+  delete(id: number): Promise<Array<Account>> {
+    return new Promise<Array<Account>>((resolve, reject) => {
+      this.http.delete<Array<Account>>(environment.apiUrl + '/api/account/' + id).toPromise()
+        .then(response => {
+          resolve(response)
+        })
+        .catch(err => { reject(err) })
+    })
+  }
+
+  // function to get string value of role number, require parameter of role number
+  // 0 will be Administrator, 1 will be Petugas Lapangan, 2 will be Pelanggan, else will be blank
+  getRoleValue(role: number): string {
     switch (role) {
       case 0: return 'Administrator';
       case 1: return 'Petugas Kantor';
