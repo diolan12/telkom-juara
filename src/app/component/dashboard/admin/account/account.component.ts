@@ -15,8 +15,14 @@ import { EditAccountDialogComponent } from './dialog/edit-account-dialog/edit-ac
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements  AfterViewInit {
+  // string array for table headers
   displayedColumns: string[] = ['nik', 'name', 'role', 'phone', 'whatsapp'];
+
+  // blank mat-table data source
   dataSource = new MatTableDataSource(Array<Account>());
+
+  // non-static material table sort initialization
+  @ViewChild(MatSort, {static: false}) sort: MatSort = new MatSort();
 
 
   constructor(
@@ -25,13 +31,13 @@ export class AccountComponent implements  AfterViewInit {
   ) { 
   }
 
-  @ViewChild(MatSort, {static: false}) sort: MatSort = new MatSort();
 
   ngAfterViewInit(): void {
-    this.init()
+    this.getAccounts()
   }
 
-  async init() {
+  // async await get all accounts from server, then set data source and sort
+  async getAccounts() {
     await this.accountService.get().then((accounts: Array<Account>) => {
       this.dataSource = new MatTableDataSource(accounts);
       this.dataSource.sort = this.sort;
