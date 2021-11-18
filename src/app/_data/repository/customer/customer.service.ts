@@ -58,5 +58,16 @@ export class CustomerService {
     })
   }
 
+  // function to delete customer by parameter of customer id returning promise of customer array
+  // require parameter of customer id
+  delete(id: number): Promise<Array<Customer>> {
+    return new Promise<Array<Customer>>((resolve, reject) => {
+      this.http.delete<Array<Customer>>(environment.apiUrl+'/api/customer/' + id).toPromise()
+      .then(response => {
+        resolve(response)
+      })
+      .catch(err => { reject(err) })
+    })
+  }
   
 }
