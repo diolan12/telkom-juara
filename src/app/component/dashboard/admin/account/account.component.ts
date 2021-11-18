@@ -77,7 +77,7 @@ export class AccountComponent implements  AfterViewInit {
     })
   }
   roleDisplay(role: number): string {
-    return this.accountService.getRoleDisplay(role)
+    return this.accountService.getRoleValue(role)
   }
 
 }
