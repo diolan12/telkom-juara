@@ -1,3 +1,4 @@
+// customer model
 export interface Customer {
     id: number
     no_indihome: string
