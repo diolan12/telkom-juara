@@ -1,3 +1,4 @@
+// JSON web token model
 export interface JWT {
     iss: string
     sub: string
