@@ -5,6 +5,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Customer } from 'src/app/_data/model/customer';
 import { CustomerService } from 'src/app/_data/repository/customer/customer.service';
+import { environment } from 'src/environments/environment';
+import { CustomerDialogComponent } from './dialog/customer-dialog/customer-dialog.component';
 
 @Component({
   selector: 'app-customer',
@@ -20,7 +22,7 @@ export class CustomerComponent implements AfterViewInit {
 
 
   // non-static material table sort initialization
-  @ViewChild(MatSort, {static: false}) sort: MatSort = new MatSort();
+  @ViewChild(MatSort, { static: false }) sort: MatSort = new MatSort();
 
   constructor(
     private customerService: CustomerService,
@@ -39,13 +41,28 @@ export class CustomerComponent implements AfterViewInit {
       this.dataSource = new MatTableDataSource(customers);
       this.dataSource.sort = this.sort;
     })
-    .catch(error => {})
+      .catch(() => { })
   }
 
   newCustomerDialog() {
     console.log('New Customer Dialog');
+    const newDialogRef = this.dialog.open(CustomerDialogComponent, {
+      width: environment.modalWidth
+    });
+    newDialogRef.afterClosed().subscribe(() => {
+      this.getCustomers();
+    });
   }
+
   editCustomerDialog(customer: Customer) {
     console.log(customer);
+    const newDialogRef = this.dialog.open(CustomerDialogComponent, {
+      width: environment.modalWidth,
+      data: customer
+    });
+    newDialogRef.afterClosed().subscribe(() => {
+      this.getCustomers();
+    });
   }
 }
+
