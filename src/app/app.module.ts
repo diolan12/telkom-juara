@@ -46,10 +46,14 @@ import { SettingComponent } from './component/dashboard/admin/setting/setting.co
 import { SharedSidenavComponent } from './component/_shared/shared-sidenav/shared-sidenav.component';
 import { SharedFooterComponent } from './component/_shared/shared-footer/shared-footer.component';
 
-// interceptor
-import { AuthInterceptor } from "./_data/interceptor/auth.interceptor";
+// dialog
 import { NewAccountDialogComponent } from './component/dashboard/admin/account/dialog/new-account-dialog/new-account-dialog.component';
 import { EditAccountDialogComponent } from './component/dashboard/admin/account/dialog/edit-account-dialog/edit-account-dialog.component';
+import { CustomerDialogComponent } from './component/_shared/operation/customer/dialog/customer-dialog/customer-dialog.component';
+
+// interceptor
+import { AuthInterceptor } from "./_data/interceptor/auth.interceptor";
+
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
 import { OrderComponent } from './component/_shared/operation/order/order.component';
 import { CustomerComponent } from './component/_shared/operation/customer/customer.component';
@@ -96,10 +100,11 @@ const materialModules = [
 		SharedFooterComponent,
 		NewAccountDialogComponent,
 		EditAccountDialogComponent,
-  SharedHomeComponent,
-  OrderComponent,
-  CustomerComponent,
-  AttendanceComponent
+		SharedHomeComponent,
+		OrderComponent,
+		CustomerComponent,
+		AttendanceComponent,
+		CustomerDialogComponent
 	],
 	imports: [
 		BrowserModule,
