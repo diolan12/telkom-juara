@@ -51,8 +51,8 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions fxLayoutAlign="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close>Tutup</button>
     <button mat-button *ngIf="data != null" (click)="delete()" color="warn">Hapus</button>
-    <button mat-button *ngIf="data != null" (click)="update()" color="accent">Update</button>
+    <button mat-button *ngIf="data != null" (click)="update()" color="accent" cdkFocusInitial>Update</button>
     <button mat-button *ngIf="data == null" (click)="create()" color="accent" cdkFocusInitial>Buat</button>
 </mat-dialog-actions>
