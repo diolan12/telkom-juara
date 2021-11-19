@@ -39,7 +39,7 @@ export class NewAccountDialogComponent {
     } else {
       this.accountService.create(this.newAccountGroup.value).then(response => {
         this.toastr.success('Akun '+response.name+' berhasil dibuat', 'Akun dibuat');
-        this.dialogRef.close(response)
+        this.dialogRef.close(response);
       }).catch(error => {
         this.toastr.error(error.message, 'Error membuat akun');
       })
