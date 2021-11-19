@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Service, ServiceDao } from '../../model/service';
+import { Service, ServiceDto } from '../../model/service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class ServiceService {
 
   // function to create new Service by parameter of ServiceDao, returning promise of Service
   // require parameter of ServiceDao
-  create(serviceDao: ServiceDao): Promise<Service> {
+  create(serviceDao: ServiceDto): Promise<Service> {
     return new Promise<Service>((resolve, reject) => {
       this.http.post<Service>(environment.apiUrl + '/api/service', serviceDao).toPromise()
       .then(response => {
@@ -45,7 +45,7 @@ export class ServiceService {
 
   // function to update Service by parameter of Service id and ServiceDao, returning promise of Service
   // require parameters of Service id and ServiceDao
-  update(id: number, serviceDao: ServiceDao): Promise<Service> {
+  update(id: number, serviceDao: ServiceDto): Promise<Service> {
     return new Promise<Service>((resolve, reject) => {
       this.http.put<Service>(environment.apiUrl + '/api/service/' + id, serviceDao).toPromise()
       .then(response => {
