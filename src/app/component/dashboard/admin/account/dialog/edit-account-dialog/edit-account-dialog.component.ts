@@ -6,7 +6,6 @@ import { AccountPutDao, PasswordErrorStateMatcher } from 'src/app/_data/dao/acco
 import { Account } from 'src/app/_data/model/account';
 import { Role } from 'src/app/_data/model/role';
 import { AccountService } from 'src/app/_data/repository/account/account.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit-account-dialog',
