@@ -1,0 +1,58 @@
+<p mat-dialog-title *ngIf="data == null">
+    Daftarkan pelanggan baru</p>
+<p mat-dialog-title *ngIf="data != null">
+    Ubah data pelanggan</p>
+<mat-dialog-content>
+    <form fxLayout="column" [formGroup]="customerFormGroup">
+
+        <mat-form-field appearance="outline">
+            <mat-label>No. Indihome</mat-label>
+            <input matInput type="tel" formControlName="no_indihome" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>No. Telepon</mat-label>
+            <input matInput type="tel" formControlName="no_telephone" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option value="male">Laki-Laki</mat-option>
+                <mat-option value="female">Perempuan</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput type="tel" formControlName="phone">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Whatsapp</mat-label>
+            <input matInput type="tel" formControlName="whatsapp">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <textarea matInput formControlName="address"></textarea>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button *ngIf="data != null" (click)="delete()" color="warn">Hapus</button>
+    <button mat-button *ngIf="data != null" (click)="update()" color="accent">Update</button>
+    <button mat-button *ngIf="data == null" (click)="create()" color="accent" cdkFocusInitial>Buat</button>
+</mat-dialog-actions>
