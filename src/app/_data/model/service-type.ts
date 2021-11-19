@@ -5,7 +5,7 @@ export interface ServiceType {
     name: string;
 }
 
-export class ServiceTypeDao {
+export class ServiceTypeDto {
     public static postValidator = {
         name: ['', [Validators.required, Validators.maxLength(16)]]
     }
@@ -16,6 +16,6 @@ export class ServiceTypeDao {
     }
 }
 
-export interface ServiceTypeDao {
+export interface ServiceTypeDto {
     name: string;
 }
