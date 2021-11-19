@@ -1,0 +1,31 @@
+<p mat-dialog-title *ngIf="data.service == null">
+    Layanan baru</p>
+<p mat-dialog-title *ngIf="data.service != null">
+    Ubah layanan</p>
+<mat-dialog-content>
+    <form fxLayout="column" [formGroup]="serviceFormGroup">
+
+        <!-- Role here -->
+        <mat-form-field appearance="fill">
+            <mat-label>Jenis Layanan</mat-label>
+            <mat-select formControlName="type">
+                <mat-option *ngFor="let type of types" [value]="type.id">
+                    {{type.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Name here -->
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name" />
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>Tutup</button>
+    <button mat-button *ngIf="data.service != null" (click)="delete()" color="warn">Hapus</button>
+    <button mat-button *ngIf="data.service != null" (click)="update()" color="accent" cdkFocusInitial>Update</button>
+    <button mat-button *ngIf="data.service == null" (click)="create()" color="accent" cdkFocusInitial>Buat</button>
+</mat-dialog-actions>
