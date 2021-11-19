@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ServiceType, ServiceTypeDao } from '../../model/service-type';
+import { ServiceType, ServiceTypeDto } from '../../model/service-type';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,7 @@ export class ServiceTypeService {
 
   // function to create new service-type by parameter of ServiceTypeDao returning promise of service-type
   // require parameter of ServiceTypeDao
-  create(serviceTypeDao: ServiceTypeDao): Promise<ServiceType> {
+  create(serviceTypeDao: ServiceTypeDto): Promise<ServiceType> {
     return new Promise<ServiceType>((resolve, reject) =>{
       this.http.post<ServiceType>(environment.apiUrl + '/api/service-type', serviceTypeDao).toPromise()
       .then(response => {
@@ -47,7 +47,7 @@ export class ServiceTypeService {
 
   // function to update ServiceType by parameter of ServiceTypeDao returning promise of ServiceType
   // require parameters of ServiceType id and ServiceTypeDao
-  update(id: number, serviceTypeDao: ServiceTypeDao): Promise<ServiceType> {
+  update(id: number, serviceTypeDao: ServiceTypeDto): Promise<ServiceType> {
     return new Promise<ServiceType>((resolve, reject) =>{
       this.http.put<ServiceType>(environment.apiUrl + '/api/service-type/' + id, serviceTypeDao).toPromise()
       .then(response => {
