@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { ServiceTypeDao } from '../../dao/service-type-dao';
-import { ServiceType } from '../../model/service-type';
+import { ServiceType, ServiceTypeDao } from '../../model/service-type';
 
 @Injectable({
   providedIn: 'root'
