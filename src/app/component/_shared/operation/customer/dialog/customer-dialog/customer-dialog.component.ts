@@ -28,7 +28,6 @@ export class CustomerDialogComponent {
     } else {
       this.customerFormGroup = this.formBuilder.group(CustomerDao.putValidator(data));
     }
-    // this.customerFormGroup = this.formBuilder.group(CustomerPostDao.validator);
   }
 
   create() {
@@ -37,11 +36,11 @@ export class CustomerDialogComponent {
       this.toastr.error('Input tidak valid', 'Error mendaftarkan pelanggan');
     } else {
       this.customerService.create(this.customerFormGroup.value).then(response => {
-        this.toastr.success('Pelanggan '+response.name+' terdaftar', 'Sukses mendaftarkan pelanggan');
+        this.toastr.success('Pelanggan ' + response.name + ' terdaftar', 'Sukses mendaftarkan pelanggan');
         this.dialogRef.close(response);
-       }).catch(error => {
+      }).catch(error => {
         this.toastr.error(error.message, 'Error mendaftarkan pelanggan');
-       });
+      });
     }
   }
 
@@ -51,26 +50,22 @@ export class CustomerDialogComponent {
       this.toastr.error('Input tidak valid', 'Error memperbarui pelanggan');
     } else {
       this.customerService.update(this.data.id, this.customerFormGroup.value).then(response => {
-        this.toastr.success('Pelanggan '+response.name+' diperbarui', 'Sukses memperbarui pelanggan');
+        this.toastr.success('Pelanggan ' + response.name + ' diperbarui', 'Sukses memperbarui pelanggan');
         this.dialogRef.close(response);
-       }).catch(error => {
+      }).catch(error => {
         this.toastr.error(error.message, 'Error memperbarui pelanggan');
-       });
+      });
     }
   }
 
   delete() {
-    console.log(this.customerFormGroup.value);
-    if (this.customerFormGroup.invalid) {
-      this.toastr.error('Input tidak valid', 'Error menghapus pelanggan');
-    } else {
-      this.customerService.delete(this.data.id).then(response => {
-        this.toastr.success('Pelanggan '+this.data.name+' dihapus', 'Error menghapus pelanggan');
-        this.dialogRef.close(response);
-       }).catch(error => {
-        this.toastr.error(error.message, 'Error menghapus pelanggan');
-       });
-    }
+    this.customerService.delete(this.data.id).then(response => {
+      this.toastr.success('Pelanggan ' + this.data.name + ' dihapus', 'Error menghapus pelanggan');
+      this.dialogRef.close(response);
+    }).catch(error => {
+      this.toastr.error(error.message, 'Error menghapus pelanggan');
+    });
+
   }
 
 }
