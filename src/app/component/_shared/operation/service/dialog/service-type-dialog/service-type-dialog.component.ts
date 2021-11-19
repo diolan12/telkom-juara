@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { ServiceType, ServiceTypeDao } from 'src/app/_data/model/service-type';
+import { ServiceType, ServiceTypeDto } from 'src/app/_data/model/service-type';
 import { ServiceTypeService } from 'src/app/_data/repository/service-type/service-type.service';
 
 @Component({
@@ -23,9 +23,9 @@ export class ServiceTypeDialogComponent {
     private formBuilder: FormBuilder
   ) {
     if (data == null) {
-      this.serviceTypeFormGroup = this.formBuilder.group(ServiceTypeDao.postValidator);
+      this.serviceTypeFormGroup = this.formBuilder.group(ServiceTypeDto.postValidator);
     } else {
-      this.serviceTypeFormGroup = this.formBuilder.group(ServiceTypeDao.putValidator(data));
+      this.serviceTypeFormGroup = this.formBuilder.group(ServiceTypeDto.putValidator(data));
     }
   }
 
