@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
     this.opened = !this.mobileQuery.matches;
     this.disable = this.mobileQuery.matches;
     this.mobileQuery.addEventListener('change', (event) => {
-      console.log(event.matches);
       this.opened = !event.matches
       this.disable = event.matches
       return this._mobileQueryListener
