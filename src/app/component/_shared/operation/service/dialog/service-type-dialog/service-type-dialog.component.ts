@@ -2,8 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { ServiceTypeDao } from 'src/app/_data/dao/service-type-dao';
-import { ServiceType } from 'src/app/_data/model/service-type';
+import { ServiceType, ServiceTypeDao } from 'src/app/_data/model/service-type';
 import { ServiceTypeService } from 'src/app/_data/repository/service-type/service-type.service';
 
 @Component({
