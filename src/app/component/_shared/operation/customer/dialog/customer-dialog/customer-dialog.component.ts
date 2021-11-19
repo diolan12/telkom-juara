@@ -60,7 +60,7 @@ export class CustomerDialogComponent {
 
   delete() {
     this.customerService.delete(this.data.id).then(response => {
-      this.toastr.success('Pelanggan ' + this.data.name + ' dihapus', 'Error menghapus pelanggan');
+      this.toastr.success('Pelanggan ' + this.data.name + ' dihapus', 'Sukses menghapus pelanggan');
       this.dialogRef.close(response);
     }).catch(error => {
       this.toastr.error(error.message, 'Error menghapus pelanggan');
