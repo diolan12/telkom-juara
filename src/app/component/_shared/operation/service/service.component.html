@@ -1,0 +1,64 @@
+<h3>Data Layanan</h3>
+<button mat-button (click)="newServiceDialog()" color="accent"><mat-icon>add</mat-icon>Layanan Baru</button>
+
+<br />
+<mat-divider></mat-divider>
+<br />
+
+<div>
+    <table mat-table [dataSource]="serviceDataSource" matSort class="mat-elevation-z1">
+
+        <!-- Type Column -->
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Jenis Layanan</th>
+            <td mat-cell *matCellDef="let service"> {{displayServiceType(service.type)}} </td>
+        </ng-container>
+
+        <!-- Nama Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nama Layanan</th>
+            <td mat-cell *matCellDef="let service"> {{service.name}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="serviceHeaders"></tr>
+        <tr mat-row *matRowDef="let row; columns: serviceHeaders;" (click)="editServiceDialog(row)"></tr>
+    </table>
+</div>
+
+<br />
+<mat-divider></mat-divider>
+<br />
+
+<h3>Jenis Layanan</h3>
+<button mat-button (click)="newServiceTypeDialog()" color="accent"><mat-icon>add</mat-icon>Jenis Layanan Baru</button>
+
+<br />
+<mat-divider></mat-divider>
+<br />
+
+<div>
+    <table mat-table [dataSource]="serviceTypeDataSource" matSort class="mat-elevation-z1">
+
+        <!-- Nama Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nama Jenis Layanan</th>
+            <td mat-cell *matCellDef="let serviceType"> {{serviceType.name}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tindakan</th>
+            <td mat-cell *matCellDef="let serviceType">
+                <button mat-icon-button aria-label="Edit jenis layanan">
+                    <mat-icon color="accent">edit</mat-icon>
+                </button>
+                <button fxHide mat-icon-button aria-label="Hapus jenis layanan" (click)="deleteServiceType(serviceType.id)">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="serviceTypeHeaders"></tr>
+        <tr mat-row *matRowDef="let row; columns: serviceTypeHeaders;" (click)="editServiceTypeDialog(row)"></tr>
+    </table>
+</div>
