@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CustomerPostDao, CustomerPutDao } from '../../dao/customer-dao';
+import { CustomerDao } from '../../dao/customer-dao';
 import { Customer } from '../../model/customer';
 
 
@@ -22,39 +22,39 @@ export class CustomerService {
       // else get customer by id
       let url = ''
       if (id === null) {
-        url = environment.apiUrl+'/api/customer'
+        url = environment.apiUrl + '/api/customer?clean'
       } else {
-        url = environment.apiUrl+'/api/customer/' + id
+        url = environment.apiUrl + '/api/customer/' + id
       }
       this.http.get<Array<Customer>>(url).toPromise()
-      .then(response => {
-        resolve(response)
-      })
-      .catch(err => { reject(err) })
+        .then(response => {
+          resolve(response)
+        })
+        .catch(err => { reject(err) })
     })
   }
 
   // function to create new customer by parameter of customer method POST dao returning promise of customer
   // require parameter of customer POST dao
-  create(customerPostDao: CustomerPostDao): Promise<Customer> {
+  create(customerPostDao: CustomerDao): Promise<Customer> {
     return new Promise<Customer>((resolve, reject) => {
-      this.http.post<Customer>(environment.apiUrl+'/api/customer', customerPostDao).toPromise()
-      .then(response => {
-        resolve(response)
-      })
-      .catch(err => { reject(err) })
+      this.http.post<Customer>(environment.apiUrl + '/api/customer', customerPostDao).toPromise()
+        .then(response => {
+          resolve(response)
+        })
+        .catch(err => { reject(err) })
     })
   }
 
   // function to update customer by parameter of customer method PUT dao returning promise of customer
   // require parameters of customer id and customer PUT dao
-  update(id: number, customerPutDao: CustomerPutDao): Promise<Customer> {
+  update(id: number, customerPutDao: CustomerDao): Promise<Customer> {
     return new Promise<Customer>((resolve, reject) => {
-      this.http.put<Customer>(environment.apiUrl+'/api/customer/' + id, customerPutDao).toPromise()
-      .then(response => {
-        resolve(response)
-      })
-      .catch(err => { reject(err) })
+      this.http.put<Customer>(environment.apiUrl + '/api/customer/' + id, customerPutDao).toPromise()
+        .then(response => {
+          resolve(response)
+        })
+        .catch(err => { reject(err) })
     })
   }
 
@@ -62,12 +62,12 @@ export class CustomerService {
   // require parameter of customer id
   delete(id: number): Promise<Array<Customer>> {
     return new Promise<Array<Customer>>((resolve, reject) => {
-      this.http.delete<Array<Customer>>(environment.apiUrl+'/api/customer/' + id).toPromise()
-      .then(response => {
-        resolve(response)
-      })
-      .catch(err => { reject(err) })
+      this.http.delete<Array<Customer>>(environment.apiUrl + '/api/customer/' + id).toPromise()
+        .then(response => {
+          resolve(response)
+        })
+        .catch(err => { reject(err) })
     })
   }
-  
+
 }
