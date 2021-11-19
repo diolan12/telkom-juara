@@ -32,20 +32,16 @@ export class CustomerComponent implements AfterViewInit {
     this.getCustomers();
   }
 
-  ngOnInit(): void {
-  }
-
   // async await get all customers from server, then set data source and sort
   async getCustomers() {
     await this.customerService.get().then((customers: Array<Customer>) => {
-      this.dataSource = new MatTableDataSource(customers);
+      this.dataSource.data = customers;
       this.dataSource.sort = this.sort;
     })
       .catch(() => { })
   }
 
   newCustomerDialog() {
-    console.log('New Customer Dialog');
     const newDialogRef = this.dialog.open(CustomerDialogComponent, {
       width: environment.modalWidth
     });
@@ -55,12 +51,11 @@ export class CustomerComponent implements AfterViewInit {
   }
 
   editCustomerDialog(customer: Customer) {
-    console.log(customer);
-    const newDialogRef = this.dialog.open(CustomerDialogComponent, {
+    const editDialogRef = this.dialog.open(CustomerDialogComponent, {
       width: environment.modalWidth,
       data: customer
     });
-    newDialogRef.afterClosed().subscribe(() => {
+    editDialogRef.afterClosed().subscribe(() => {
       this.getCustomers();
     });
   }
