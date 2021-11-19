@@ -3,11 +3,11 @@ import { ServiceType } from "../model/service-type";
 
 export class ServiceTypeDao {
     public static postValidator = {
-        name: ['', [Validators.required]]
+        name: ['', [Validators.required, Validators.maxLength(16)]]
     }
     public static putValidator(data: ServiceType) {
         return {
-            name: [data.name, [Validators.required]]
+            name: [data.name, [Validators.required, Validators.maxLength(16)]]
         }
     }
 }

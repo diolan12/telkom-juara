@@ -41,23 +41,30 @@ import { AdminComponent } from './component/dashboard/admin/admin.component';
 import { FieldComponent } from './component/dashboard/field/field.component';
 import { ProfileComponent } from './component/dashboard/profile/profile.component';
 import { OfficeComponent } from './component/dashboard/office/office.component';
-import { AccountComponent } from './component/dashboard/admin/account/account.component';
+// import { AccountComponent } from './component/dashboard/admin/account/account.component';
 import { SettingComponent } from './component/dashboard/admin/setting/setting.component';
 import { SharedSidenavComponent } from './component/_shared/shared-sidenav/shared-sidenav.component';
 import { SharedFooterComponent } from './component/_shared/shared-footer/shared-footer.component';
 
+// operation component
+import { AccountComponent } from './component/_shared/operation/account/account.component';
+import { CustomerComponent } from './component/_shared/operation/customer/customer.component';
+import { OrderComponent } from './component/_shared/operation/order/order.component';
+import { AttendanceComponent } from './component/_shared/operation/attendance/attendance.component';
+
 // dialog
-import { NewAccountDialogComponent } from './component/dashboard/admin/account/dialog/new-account-dialog/new-account-dialog.component';
-import { EditAccountDialogComponent } from './component/dashboard/admin/account/dialog/edit-account-dialog/edit-account-dialog.component';
+// import { NewAccountDialogComponent } from './component/dashboard/admin/account/dialog/new-account-dialog/new-account-dialog.component';
+// import { EditAccountDialogComponent } from './component/dashboard/admin/account/dialog/edit-account-dialog/edit-account-dialog.component';
+import { AccountDialogComponent } from './component/_shared/operation/account/dialog/account-dialog/account-dialog.component';
 import { CustomerDialogComponent } from './component/_shared/operation/customer/dialog/customer-dialog/customer-dialog.component';
 
 // interceptor
 import { AuthInterceptor } from "./_data/interceptor/auth.interceptor";
 
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
-import { OrderComponent } from './component/_shared/operation/order/order.component';
-import { CustomerComponent } from './component/_shared/operation/customer/customer.component';
-import { AttendanceComponent } from './component/_shared/operation/attendance/attendance.component';
+import { ServiceComponent } from './component/_shared/operation/service/service.component';
+import { ServiceTypeDialogComponent } from './component/_shared/operation/service/dialog/service-type-dialog/service-type-dialog.component';
+import { ServiceDialogComponent } from './component/_shared/operation/service/dialog/service-dialog/service-dialog.component';
 
 const materialModules = [
 	CdkTreeModule,
@@ -98,13 +105,17 @@ const materialModules = [
 		SettingComponent,
 		SharedSidenavComponent,
 		SharedFooterComponent,
-		NewAccountDialogComponent,
-		EditAccountDialogComponent,
+		// NewAccountDialogComponent,
+		// EditAccountDialogComponent,
 		SharedHomeComponent,
 		OrderComponent,
 		CustomerComponent,
 		AttendanceComponent,
-		CustomerDialogComponent
+		CustomerDialogComponent,
+		AccountDialogComponent,
+  ServiceComponent,
+  ServiceTypeDialogComponent,
+  ServiceDialogComponent
 	],
 	imports: [
 		BrowserModule,

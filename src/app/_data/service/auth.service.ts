@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { CredentialService } from '../storage/credential.service';
 import { LoginDao } from '../dao/login-dao';
 import { Response } from '../model/response'
-import { JWT } from '../model/jwt';
 import { environment } from 'src/environments/environment';
 import { Account } from '../model/account';
 // import LiveData from '../jetpack/LiveData';

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Account } from 'src/app/_data/model/account';
-import { AccountPostDao, AccountPutDao } from '../../dao/account-dao';
+import { AccountDao } from '../../dao/account-dao';
 
 // injectable account service with get, create, update, delete method
 @Injectable({
@@ -16,17 +16,20 @@ export class AccountService {
   // function to get all account returning promise of account array
   // require parameters of nullable id and boolean field
   get(id: number | null = null, field: boolean = false): Promise<Array<Account>> {
+    console.log(field);
     return new Promise<Array<Account>>((resolve, reject) => {
       // blank url then decide whether id is null or not
       // if id is null then get all account
       // else get account by id
       let url = ''
       if (id === null) {
-        // url for get all account
-        url = environment.apiUrl + '/api/account'
-      } else if (field) {
-        // url for get account where the role is Petugas Lapangan
-        url = environment.apiUrl + '/api/account?where=role-is-2'
+        if (field) {
+          // url for get account where the role is Petugas Lapangan
+          url = environment.apiUrl + '/api/account?where=role->-0&clean'
+        } else {
+          // url for get all account
+          url = environment.apiUrl + '/api/account?clean'
+        }
       } else {
         // url for get account by id
         url = environment.apiUrl + '/api/account/' + id
@@ -41,9 +44,9 @@ export class AccountService {
 
   // function to create new account by parameter of account method POST dao returning promise of account
   // require parameter of account POST dao
-  create(accountPostDao: AccountPostDao): Promise<Account> {
+  create(accountDao: AccountDao): Promise<Account> {
     return new Promise<Account>((resolve, reject) => {
-      this.http.post<Account>(environment.apiUrl + '/api/account', accountPostDao).toPromise()
+      this.http.post<Account>(environment.apiUrl + '/api/account', accountDao).toPromise()
         .then(response => {
           resolve(response)
         })
@@ -53,9 +56,9 @@ export class AccountService {
 
   // function to update account by parameter of account method PUT dao returning promise of account
   // require parameters of account id and account PUT dao
-  update(id: number, accountPutDao: AccountPutDao): Promise<Account> {
+  update(id: number, accountDao: AccountDao): Promise<Account> {
     return new Promise<Account>((resolve, reject) => {
-      this.http.put<Account>(environment.apiUrl + '/api/account/' + id, accountPutDao).toPromise()
+      this.http.put<Account>(environment.apiUrl + '/api/account/' + id, accountDao).toPromise()
         .then(response => {
           resolve(response)
         })

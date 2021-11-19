@@ -3,9 +3,9 @@ import { ErrorStateMatcher } from "@angular/material/core";
 import { Account } from "../model/account";
 
 // class AccountPostDao with static validator and static password validator
-export class AccountPostDao {
+export class AccountDao {
     // static account validator
-    public static validator = {
+    public static postValidator = {
         nik: ['', Validators.required],
         email: ['', Validators.email],
         name: ['', Validators.required],
@@ -16,6 +16,19 @@ export class AccountPostDao {
         rePassword: ['', Validators.required],
         role: [null, Validators.required],
     }
+    public static putValidator(data: Account) {
+        return {
+            nik: [data.nik, [Validators.maxLength(8)]],
+            email: [data.email, [Validators.email]],
+            name: [data.name, [Validators.required, Validators.maxLength(32)]],
+            gender: [data.gender, [Validators.required]],
+            phone: [data.phone, [Validators.required, Validators.maxLength(16)]],
+            whatsapp: [data.whatsapp, [Validators.maxLength(16)]],
+            // password: ['', [Validators.maxLength(32)]],
+            // rePassword: ['', [this.passwordMatcher]],
+            role: [data.role, [Validators.required]],
+        }
+    }
     // static password validator
     public static passwordMatcher: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
         let pass = group.get('password')?.value;
@@ -25,52 +38,53 @@ export class AccountPostDao {
 }
 
 // interface for account POST DAO
-export interface AccountPostDao {
+export interface AccountDao {
     id: number;
     nik: string;
     email: string;
     name: string;
     gender: string;
     phone: string;
-    whatsapp: string;
-    password: string;
-    role: number;
-}
-
-export class AccountPutDao {
-    public static validator(data: Account) {
-        return {
-            nik: [data.nik, Validators.required],
-            email: [data.email, Validators.email],
-            name: [data.name, Validators.required],
-            gender: [data.gender, Validators.required],
-            phone: [data.phone, Validators.required],
-            whatsapp: [data.whatsapp],
-            password: ['', Validators.required],
-            rePassword: ['', Validators.required],
-            role: [data.role, Validators.required],
-        }
-    }
-    public static passwordMatcher: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
-        let pass = group.get('password')?.value;
-        let confirmPass = group.get('rePassword')?.value
-        return pass === confirmPass ? null : { notSame: true }
-    }
-}
-
-// interface for account PUT DAO
-export interface AccountPutDao {
-    nik: string;
-    email: string;
-    name: string;
-    gender: string;
-    phone: string;
     whatsapp: string | null;
-    photo: string | null;
     password: string;
     rePassword: string;
     role: number;
 }
+
+// export class AccountPutDao {
+//     public static validator(data: Account) {
+//         return {
+//             nik: [data.nik, Validators.required],
+//             email: [data.email, Validators.email],
+//             name: [data.name, Validators.required],
+//             gender: [data.gender, Validators.required],
+//             phone: [data.phone, Validators.required],
+//             whatsapp: [data.whatsapp],
+//             password: ['', Validators.required],
+//             rePassword: ['', Validators.required],
+//             role: [data.role, Validators.required],
+//         }
+//     }
+//     public static passwordMatcher: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
+//         let pass = group.get('password')?.value;
+//         let confirmPass = group.get('rePassword')?.value
+//         return pass === confirmPass ? null : { notSame: true }
+//     }
+// }
+
+// interface for account PUT DAO
+// export interface AccountPutDao {
+//     nik: string;
+//     email: string;
+//     name: string;
+//     gender: string;
+//     phone: string;
+//     whatsapp: string | null;
+//     photo: string | null;
+//     password: string;
+//     rePassword: string;
+//     role: number;
+// }
 
 // a password error state matcher
 export class PasswordErrorStateMatcher implements ErrorStateMatcher {
