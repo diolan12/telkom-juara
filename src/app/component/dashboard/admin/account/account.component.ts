@@ -6,6 +6,7 @@ import { Account } from 'src/app/_data/model/account';
 import { AccountService } from 'src/app/_data/repository/account/account.service';
 import { NewAccountDialogComponent } from './dialog/new-account-dialog/new-account-dialog.component';
 import { EditAccountDialogComponent } from './dialog/edit-account-dialog/edit-account-dialog.component';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -59,7 +60,7 @@ export class AccountComponent implements  AfterViewInit {
     //   password: ''
     // };
     const newDialogRef = this.dialog.open(NewAccountDialogComponent, {
-      width: '400px',
+      width: environment.modalWidth,
       // data: d
     })
     newDialogRef.afterClosed().subscribe(data => {
@@ -73,7 +74,7 @@ export class AccountComponent implements  AfterViewInit {
 
   editAccountDialog(account: Account) {
     const editDialogRef = this.dialog.open(EditAccountDialogComponent, {
-      width: '400px',
+      width: environment.modalWidth,
       data: account
     })
     console.log(account);
