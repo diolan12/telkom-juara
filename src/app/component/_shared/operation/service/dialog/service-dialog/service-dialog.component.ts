@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { Service, ServiceDao } from 'src/app/_data/model/service';
+import { Service, ServiceDto } from 'src/app/_data/model/service';
 import { ServiceType } from 'src/app/_data/model/service-type';
 import { ServiceTypeService } from 'src/app/_data/repository/service-type/service-type.service';
 import { ServiceService } from 'src/app/_data/repository/service/service.service';
@@ -31,9 +31,9 @@ export class ServiceDialogComponent {
     console.log(data);
     this.types = data.serviceTypes;
     if (data.service == null) {
-      this.serviceFormGroup = this.formBuilder.group(ServiceDao.postValidator)
+      this.serviceFormGroup = this.formBuilder.group(ServiceDto.postValidator)
     } else {
-      this.serviceFormGroup = this.formBuilder.group(ServiceDao.putValidator(data.service))
+      this.serviceFormGroup = this.formBuilder.group(ServiceDto.putValidator(data.service))
     }
   }
 
