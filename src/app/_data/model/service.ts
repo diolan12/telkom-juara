@@ -1,5 +1,4 @@
 import { Validators } from "@angular/forms"
-import { ServiceType } from "./service-type"
 
 export interface Service {
     id: number;
