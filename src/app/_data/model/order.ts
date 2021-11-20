@@ -7,7 +7,7 @@ export interface Order {
     office: number;
     status: string;
     customer: number;
-    service_type: number;
+    service: number;
 }
 
 export class OrderDTO {
@@ -16,7 +16,7 @@ export class OrderDTO {
         office: [null, [Validators.required]],
         status: ['', [Validators.required]],
         customer: [null, [Validators.required]],
-        service_type: [null, [Validators.required]]
+        service: [null, [Validators.required]]
     }
     public static putValidator(data: Order) {
         return {
@@ -24,7 +24,7 @@ export class OrderDTO {
             office: [data.office, [Validators.required]],
             status: [data.status, [Validators.required]],
             customer: [data.customer, [Validators.required]],
-            service_type: [data.service_type, [Validators.required]]
+            service: [data.service, [Validators.required]]
         }
     }
 }
@@ -34,5 +34,5 @@ export interface OrderDTO {
     office: number;
     status: string;
     customer: number;
-    service_type: number;
+    service: number;
 }
