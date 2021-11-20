@@ -34,7 +34,10 @@ const routes: Routes = [
         path: 'admin', component: AdminComponent, children: [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
           { path: 'home', component: SharedHomeComponent },
+          { path: 'order', component: OrderComponent },
+          { path: 'customer', component: CustomerComponent },
           { path: 'account', component: AccountComponent },
+          { path: 'service', component: ServiceComponent },
           { path: 'setting', component: SettingComponent }
         ]
       },
