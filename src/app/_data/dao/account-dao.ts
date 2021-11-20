@@ -3,7 +3,7 @@ import { ErrorStateMatcher } from "@angular/material/core";
 import { Account } from "../model/account";
 
 // class AccountPostDao with static validator and static password validator
-export class AccountDao {
+export class AccountDto {
     // static account validator
     public static postValidator = {
         nik: ['', Validators.required],
@@ -38,7 +38,7 @@ export class AccountDao {
 }
 
 // interface for account POST DAO
-export interface AccountDao {
+export interface AccountDto {
     id: number;
     nik: string;
     email: string;
