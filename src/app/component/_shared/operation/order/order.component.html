@@ -1,5 +1,5 @@
 <h3>Order Baru</h3>
-<button mat-button (click)="newOrderDialog()" color="accent"><mat-icon>add</mat-icon>Order Baru</button>
+<button [fxHide]="user?.role == 2" mat-button (click)="newOrderDialog()" color="accent"><mat-icon>add</mat-icon>Order Baru</button>
 
 <br />
 <mat-divider></mat-divider>
@@ -8,7 +8,7 @@
 <div [formGroup]="orderControl">
     <p>Filter berdasarkan status:</p>
     <mat-radio-group aria-label="Filter by order status" formControlName="options">
-        <mat-radio-button value="null">Semua</mat-radio-button>
+        <mat-radio-button value="all">Semua</mat-radio-button>
         <mat-radio-button value="pending">Menunggu</mat-radio-button>
         <mat-radio-button value="ongoing">Sedang Dikerjakan</mat-radio-button>
         <mat-radio-button value="completed">Selesai</mat-radio-button>
@@ -18,17 +18,25 @@
 
 <mat-accordion>
 
-    <mat-expansion-panel *ngFor="let order of dataSource.data; let i = index" (opened)="panelOpenState[i] = true" (closed)="panelOpenState[i] = false">
+    <mat-expansion-panel *ngFor="let order of dataSource.data; let i = index">
         <mat-expansion-panel-header>
             <mat-panel-title>
-                Order bpk/ibu {{order.customer}}
+                {{order.uid}} {{order.customer?.name}}
             </mat-panel-title>
             <mat-panel-description>
-                {{order.uid}}-{{order.status}}
+                ( {{getStatusDisplay(order.status)}} )
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <div>
-            <p>I'm visible because I am open</p>
+        <div fxLayout="column">
+            <div>
+                <p>Diterima oleh: {{order.office?.name}}</p>
+                <p *ngIf="order.field != null">Dikerjakan oleh: {{order.field.name}}</p>
+                <p>Layanan: {{order.service?.name}}</p>
+            </div>
+            <div fxFlexAlign="end">
+                <button fxHide [fxShow]="order.status == 'pending'" (click)="toOngoing('ongoing', order)" mat-button color="accent">Kerjakan</button>
+                <button fxHide [fxShow]="order.status == 'ongoing'" (click)="toOngoing('completed', order)" mat-button color="accent">Tandai Selesai</button>
+            </div>
         </div>
     </mat-expansion-panel>
 
