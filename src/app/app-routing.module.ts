@@ -11,6 +11,7 @@ import { SharedHomeComponent } from './component/_shared/shared-home/shared-home
 
 import { OrderComponent } from './component/_shared/operation/order/order.component';
 import { CustomerComponent } from './component/_shared/operation/customer/customer.component';
+import { AttendanceComponent } from './component/_shared/operation/attendance/attendance.component';
 import { AccountComponent } from './component/_shared/operation/account/account.component';
 import { ServiceComponent } from './component/_shared/operation/service/service.component';
 
@@ -43,6 +44,7 @@ const routes: Routes = [
           { path: 'home', component: SharedHomeComponent },
           { path: 'order', component: OrderComponent },
           { path: 'customer', component: CustomerComponent },
+          { path: 'attendance', component: AttendanceComponent },
           { path: 'service', component: ServiceComponent },
           { path: 'field', component: AccountComponent }
         ]
@@ -51,6 +53,8 @@ const routes: Routes = [
         path: 'field', component: FieldComponent, children: [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
           { path: 'home', component: SharedHomeComponent },
+          { path: 'order', component: OrderComponent },
+          { path: 'attendance', component: AttendanceComponent }
         ]
       }
     ]
