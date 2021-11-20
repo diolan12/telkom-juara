@@ -2,7 +2,7 @@ import { Validators } from "@angular/forms";
 import { Customer } from "../model/customer";
 
 // class CustomerPostDao with a static validator
-export class CustomerDao {
+export class CustomerDto {
     // static customer validator
     public static postValidator = {
         no_indihome: ['', Validators.maxLength(16)],
@@ -29,7 +29,7 @@ export class CustomerDao {
 }
 
 // interface for customer method POST DAO
-export interface CustomerDao {
+export interface CustomerDto {
     no_indihome: string | null
     no_telephone: string | null
     email: string
