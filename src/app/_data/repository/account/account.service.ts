@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Account } from 'src/app/_data/model/account';
-import { AccountDao } from '../../dao/account-dao';
+import { AccountDto } from '../../dao/account-dao';
 
 // injectable account service with get, create, update, delete method
 @Injectable({
@@ -43,10 +43,10 @@ export class AccountService {
   }
 
   // function to create new account by parameter of account method POST dao returning promise of account
-  // require parameter of account POST dao
-  create(accountDao: AccountDao): Promise<Account> {
+  // require parameter of account dao
+  create(accountDto: AccountDto): Promise<Account> {
     return new Promise<Account>((resolve, reject) => {
-      this.http.post<Account>(environment.apiUrl + '/api/account', accountDao).toPromise()
+      this.http.post<Account>(environment.apiUrl + '/api/account', accountDto).toPromise()
         .then(response => {
           resolve(response)
         })
@@ -56,9 +56,9 @@ export class AccountService {
 
   // function to update account by parameter of account method PUT dao returning promise of account
   // require parameters of account id and account PUT dao
-  update(id: number, accountDao: AccountDao): Promise<Account> {
+  update(id: number, accountDto: AccountDto): Promise<Account> {
     return new Promise<Account>((resolve, reject) => {
-      this.http.put<Account>(environment.apiUrl + '/api/account/' + id, accountDao).toPromise()
+      this.http.put<Account>(environment.apiUrl + '/api/account/' + id, accountDto).toPromise()
         .then(response => {
           resolve(response)
         })
