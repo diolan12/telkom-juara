@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CustomerDao } from '../../dao/customer-dao';
+import { CustomerDto } from '../../dao/customer-dao';
 import { Customer } from '../../model/customer';
 
 
@@ -36,7 +36,7 @@ export class CustomerService {
 
   // function to create new customer by parameter of customer method POST dao returning promise of customer
   // require parameter of customer POST dao
-  create(customerPostDao: CustomerDao): Promise<Customer> {
+  create(customerPostDao: CustomerDto): Promise<Customer> {
     return new Promise<Customer>((resolve, reject) => {
       this.http.post<Customer>(environment.apiUrl + '/api/customer', customerPostDao).toPromise()
         .then(response => {
@@ -48,7 +48,7 @@ export class CustomerService {
 
   // function to update customer by parameter of customer method PUT dao returning promise of customer
   // require parameters of customer id and customer PUT dao
-  update(id: number, customerPutDao: CustomerDao): Promise<Customer> {
+  update(id: number, customerPutDao: CustomerDto): Promise<Customer> {
     return new Promise<Customer>((resolve, reject) => {
       this.http.put<Customer>(environment.apiUrl + '/api/customer/' + id, customerPutDao).toPromise()
         .then(response => {
