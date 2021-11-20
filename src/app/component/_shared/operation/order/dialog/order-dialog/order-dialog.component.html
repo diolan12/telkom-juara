@@ -1,1 +1,29 @@
-<p>order-dialog works!</p>
+<p mat-dialog-title *ngIf="data == null">
+    Order baru</p>
+<p mat-dialog-title *ngIf="data != null">
+    Ubah data order</p>
+<mat-dialog-content>
+    <form fxLayout="column">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Nama Pelanggan</mat-label>
+            <input type="text" placeholder="Ketik nama pelanggan" aria-label="Number" matInput [formControl]="customerFormControl" [matAutocomplete]="customer" />
+            <mat-autocomplete #customer="matAutocomplete" [displayWith]="displayCustomer">
+                <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">{{customer.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Jenis Layanan</mat-label>
+            <input type="text" placeholder="Ketik nama layanan" aria-label="Number" matInput [formControl]="serviceFormControl" [matAutocomplete]="service" />
+            <mat-autocomplete #service="matAutocomplete" [displayWith]="displayService">
+                <mat-option *ngFor="let service of filteredServices | async" [value]="service">{{service.name}}</mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>Tutup</button>
+    <button mat-button *ngIf="data == null" (click)="dismiss()" color="accent" cdkFocusInitial>Buat</button>
+</mat-dialog-actions>
