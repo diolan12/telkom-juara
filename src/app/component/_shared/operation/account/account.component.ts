@@ -7,6 +7,7 @@ import { AccountService } from 'src/app/_data/repository/account/account.service
 import { AuthService } from 'src/app/_data/service/auth.service';
 import { AccountDialogComponent } from './dialog/account-dialog/account-dialog.component';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -26,6 +27,7 @@ export class AccountComponent implements AfterViewInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort = new MatSort();
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private accountService: AccountService,
     public dialog: MatDialog,
@@ -48,6 +50,10 @@ export class AccountComponent implements AfterViewInit {
       this.dataSource.sort = this.sort;
     })
       .catch(err => {
+        if (err.status == 401) {
+          this.authService.logout();
+          this.router.navigate(['/login']);
+        }
         console.error(err)
       })
   }
