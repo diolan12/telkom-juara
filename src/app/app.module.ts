@@ -32,6 +32,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Component
 import { NotFoundComponent } from './error/not-found/not-found.component';
@@ -41,7 +42,6 @@ import { AdminComponent } from './component/dashboard/admin/admin.component';
 import { FieldComponent } from './component/dashboard/field/field.component';
 import { ProfileComponent } from './component/dashboard/profile/profile.component';
 import { OfficeComponent } from './component/dashboard/office/office.component';
-// import { AccountComponent } from './component/dashboard/admin/account/account.component';
 import { SettingComponent } from './component/dashboard/admin/setting/setting.component';
 import { SharedSidenavComponent } from './component/_shared/shared-sidenav/shared-sidenav.component';
 import { SharedFooterComponent } from './component/_shared/shared-footer/shared-footer.component';
@@ -53,18 +53,18 @@ import { OrderComponent } from './component/_shared/operation/order/order.compon
 import { AttendanceComponent } from './component/_shared/operation/attendance/attendance.component';
 
 // dialog
-// import { NewAccountDialogComponent } from './component/dashboard/admin/account/dialog/new-account-dialog/new-account-dialog.component';
-// import { EditAccountDialogComponent } from './component/dashboard/admin/account/dialog/edit-account-dialog/edit-account-dialog.component';
 import { AccountDialogComponent } from './component/_shared/operation/account/dialog/account-dialog/account-dialog.component';
 import { CustomerDialogComponent } from './component/_shared/operation/customer/dialog/customer-dialog/customer-dialog.component';
+import { ServiceTypeDialogComponent } from './component/_shared/operation/service/dialog/service-type-dialog/service-type-dialog.component';
+import { ServiceDialogComponent } from './component/_shared/operation/service/dialog/service-dialog/service-dialog.component';
 
 // interceptor
 import { AuthInterceptor } from "./_data/interceptor/auth.interceptor";
 
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
 import { ServiceComponent } from './component/_shared/operation/service/service.component';
-import { ServiceTypeDialogComponent } from './component/_shared/operation/service/dialog/service-type-dialog/service-type-dialog.component';
-import { ServiceDialogComponent } from './component/_shared/operation/service/dialog/service-dialog/service-dialog.component';
+import { OrderDialogComponent } from './component/_shared/operation/order/dialog/order-dialog/order-dialog.component';
+
 
 const materialModules = [
 	CdkTreeModule,
@@ -88,7 +88,8 @@ const materialModules = [
 	MatTableModule,
 	MatSortModule,
 	MatPaginatorModule,
-	MatSelectModule
+	MatSelectModule,
+	MatExpansionModule
 ]
 
 @NgModule({
@@ -105,17 +106,16 @@ const materialModules = [
 		SettingComponent,
 		SharedSidenavComponent,
 		SharedFooterComponent,
-		// NewAccountDialogComponent,
-		// EditAccountDialogComponent,
 		SharedHomeComponent,
 		OrderComponent,
 		CustomerComponent,
 		AttendanceComponent,
 		CustomerDialogComponent,
 		AccountDialogComponent,
-  ServiceComponent,
-  ServiceTypeDialogComponent,
-  ServiceDialogComponent
+		ServiceComponent,
+		ServiceTypeDialogComponent,
+		ServiceDialogComponent,
+  OrderDialogComponent
 	],
 	imports: [
 		BrowserModule,
