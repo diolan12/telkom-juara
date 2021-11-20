@@ -33,6 +33,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 // Component
 import { NotFoundComponent } from './error/not-found/not-found.component';
@@ -89,7 +90,8 @@ const materialModules = [
 	MatSortModule,
 	MatPaginatorModule,
 	MatSelectModule,
-	MatExpansionModule
+	MatExpansionModule,
+	MatAutocompleteModule
 ]
 
 @NgModule({
@@ -115,7 +117,7 @@ const materialModules = [
 		ServiceComponent,
 		ServiceTypeDialogComponent,
 		ServiceDialogComponent,
-  OrderDialogComponent
+		OrderDialogComponent
 	],
 	imports: [
 		BrowserModule,
