@@ -5,8 +5,31 @@
 <mat-divider></mat-divider>
 <br />
 
-
-<div>
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
-    </table>
+<div [formGroup]="orderControl">
+    <p>Filter berdasarkan status:</p>
+    <mat-radio-group aria-label="Filter by order status" formControlName="options">
+        <mat-radio-button value="null">Semua</mat-radio-button>
+        <mat-radio-button value="pending">Menunggu</mat-radio-button>
+        <mat-radio-button value="ongoing">Sedang Dikerjakan</mat-radio-button>
+        <mat-radio-button value="completed">Selesai</mat-radio-button>
+    </mat-radio-group>
 </div>
+<br />
+
+<mat-accordion>
+
+    <mat-expansion-panel *ngFor="let order of dataSource.data; let i = index" (opened)="panelOpenState[i] = true" (closed)="panelOpenState[i] = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Order bpk/ibu {{order.customer}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{order.uid}}-{{order.status}}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div>
+            <p>I'm visible because I am open</p>
+        </div>
+    </mat-expansion-panel>
+
+</mat-accordion>
