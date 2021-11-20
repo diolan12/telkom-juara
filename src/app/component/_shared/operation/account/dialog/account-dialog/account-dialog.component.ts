@@ -24,7 +24,7 @@ export class AccountDialogComponent {
 
   roles: Array<Role> = [
     { value: 0, text: 'Administrator' },
-    { value: 1, text: 'Kantor' },
+    { value: 1, text: 'Petugas Kantor' },
     { value: 2, text: 'Petugas Lapangan' }
   ];
 
@@ -41,12 +41,12 @@ export class AccountDialogComponent {
       if (account.role === 0) {
         this.roles = [
           { value: 0, text: 'Administrator' },
-          { value: 1, text: 'Kantor' },
+          { value: 1, text: 'Petugas Kantor' },
           { value: 2, text: 'Petugas Lapangan' }
         ]
       } else {
         this.roles = [
-          { value: 1, text: 'Kantor' },
+          { value: 1, text: 'Petugas Kantor' },
           { value: 2, text: 'Petugas Lapangan' }
         ]
       }
