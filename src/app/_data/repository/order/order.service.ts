@@ -21,12 +21,12 @@ export class OrderService {
       let url = '';
       if (id === null) {
         if (status !== null) {
-          url = environment.apiUrl + '/api/order?clean&where=status-is-'+status;
+          url = environment.apiUrl + '/api/order?relation&clean&where=status-is-'+status;
         } else {
-          url = environment.apiUrl + '/api/order?clean';
+          url = environment.apiUrl + '/api/order?relation&clean';
         }
       } else {
-        url = environment.apiUrl + '/api/order/'+id;
+        url = environment.apiUrl + '/api/order/'+id+'?relation';
       }
       this.http.get<Array<Order>>(url).toPromise()
       .then(response => {
