@@ -7,27 +7,27 @@
 
         <mat-form-field appearance="outline">
             <mat-label>No. Indihome</mat-label>
-            <input matInput type="tel" formControlName="no_indihome" />
+            <input matInput maxLength="16" type="tel" formControlName="no_indihome" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>No. Telepon</mat-label>
-            <input matInput type="tel" formControlName="no_telephone" />
+            <input matInput maxLength="16" type="tel" formControlName="no_telephone" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email">
+            <input required matInput type="email" formControlName="email">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
-            <input matInput type="text" formControlName="name" />
+            <input required maxLength="32" matInput type="text" formControlName="name" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender">
+            <mat-select required formControlName="gender">
                 <mat-option value="male">Laki-Laki</mat-option>
                 <mat-option value="female">Perempuan</mat-option>
             </mat-select>
@@ -35,17 +35,17 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Phone</mat-label>
-            <input matInput type="tel" formControlName="phone">
+            <input required maxLength="16" matInput type="tel" formControlName="phone">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Whatsapp</mat-label>
-            <input matInput type="tel" formControlName="whatsapp">
+            <input matInput maxLength="16" type="tel" formControlName="whatsapp">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
-            <textarea matInput formControlName="address"></textarea>
+            <textarea required maxLength="256" matInput formControlName="address"></textarea>
         </mat-form-field>
 
     </form>
