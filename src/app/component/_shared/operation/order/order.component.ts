@@ -36,15 +36,15 @@ export class OrderComponent implements OnInit, AfterViewInit {
   services: Service[] = [];
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<DisplayOrder>();
+  dataSource = new MatTableDataSource<Order>();
   tempData: Array<Order> = [];
 
   constructor(
     private authService: AuthService,
     private orderService: OrderService,
-    private customerService: CustomerService,
-    private accountService: AccountService,
-    private serviceService: ServiceService,
+    // private customerService: CustomerService,
+    // private accountService: AccountService,
+    // private serviceService: ServiceService,
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
     private toastr: ToastrService,
@@ -53,7 +53,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
       this.user = account;
     })
     this.orderControl = this.formBuilder.group({
-      options: ['all']
+      options: ['pending']
     })
     this.orderControl.valueChanges.toPromise().then((data) => {
       console.log(data);
@@ -70,39 +70,49 @@ export class OrderComponent implements OnInit, AfterViewInit {
   }
   async init() {
     let con = (this.orderControl.value.options == 'all') ? null : this.orderControl.value.options
-    await this.getAccounts();
-    await this.getCustomers();
-    await this.getServices();
+    // await this.getAccounts();
+    // await this.getCustomers();
+    // await this.getServices();
     await this.getOrder(con);
-    this.build()
+    // this.build()
   }
-  async getAccounts() {
-    await this.accountService.get().then((accounts: Array<Account>) => {
-      this.accounts = accounts;
-    }).catch((error) => {
+  // async getAccounts() {
+  //   await this.accountService.get().then((accounts: Array<Account>) => {
+  //     this.accounts = accounts;
+  //   }).catch((error) => {
 
-    })
-  }
-  async getCustomers() {
-    await this.customerService.get().then((customers: Array<Customer>) => {
-      this.customers = customers;
-    }).catch((error) => {
+  //   })
+  // }
+  // async getCustomers() {
+  //   await this.customerService.get().then((customers: Array<Customer>) => {
+  //     this.customers = customers;
+  //   }).catch((error) => {
 
-    })
-  }
-  async getServices() {
-    await this.serviceService.get().then((services: Array<Service>) => {
-      this.services = services;
-    }).catch((error) => {
+  //   })
+  // }
+  // async getServices() {
+  //   await this.serviceService.get().then((services: Array<Service>) => {
+  //     this.services = services;
+  //   }).catch((error) => {
 
-    })
-  }
+  //   })
+  // }
   async getOrder(control: string | null) {
     await this.orderService.get(null, control).then((orders: Array<Order>) => {
-      this.tempData = orders;
+      this.dataSource.data = orders;
     }).catch((error) => {
 
     })
+  }
+
+  output: any;
+  displayOutput(event: any) {
+    var reader = new FileReader();
+		reader.readAsDataURL(event.target.files[0]);
+
+    reader.onload = (_event) => {
+			this.output = reader.result; 
+		}
   }
 
   newOrderDialog() {
@@ -131,63 +141,64 @@ export class OrderComponent implements OnInit, AfterViewInit {
     });
   }
 
-  build() {
-    this.dataSource.data = this.tempData.map((order: Order): DisplayOrder => {
-      return {
-        id: order.id,
-        uid: order.uid,
-        field: this.getAccount(order.field),
-        office: this.getAccount(order.office),
-        customer: this.getCustomer(order.customer),
-        status: order.status,
-        service: this.getService(order.service),
-      }
-    });
-    console.log(this.dataSource.data);
-  }
+  // build() {
+  //   this.dataSource.data = this.tempData.map((order: Order): DisplayOrder => {
+  //     return {
+  //       id: order.id,
+  //       uid: order.uid,
+  //       field: this.getAccount(order.field),
+  //       office: this.getAccount(order.office),
+  //       customer: this.getCustomer(order.customer),
+  //       status: order.status,
+  //       service: order.service,
+  //     }
+  //   });
+  //   console.log(this.dataSource.data);
+  // }
 
-  getAccount(id: number | null): Account | null {
-    if (id === null) {
-      return null;
-    }
-    let _account: Account | null = null;
-    this.accounts.forEach((account: Account) => {
-      if (account.id === id) {
-        _account = account;
-      }
-    })
-    return _account!;
-  }
+  // getAccount(id: number | null): Account | null {
+  //   if (id === null) {
+  //     return null;
+  //   }
+  //   let _account: Account | null = null;
+  //   this.accounts.forEach((account: Account) => {
+  //     if (account.id === id) {
+  //       _account = account;
+  //     }
+  //   })
+  //   return _account!;
+  // }
 
-  getCustomer(id: number): Customer | null {
-    let _customer: Customer | null = null;
-    this.customers.forEach((customer: Customer) => {
-      if (customer.id === id) {
-        _customer = customer;
-      }
-    })
-    return _customer!;
-  }
-  getService(id: number): Service | null {
-    let _service: Service | null = null;
-    this.services.forEach((service: Service) => {
-      if (service.id === id) {
-        _service = service;
-      }
-    })
-    return _service!;
-  }
+  // getCustomer(id: number): Customer | null {
+  //   let _customer: Customer | null = null;
+  //   this.customers.forEach((customer: Customer) => {
+  //     if (customer.id === id) {
+  //       _customer = customer;
+  //     }
+  //   })
+  //   return _customer!;
+  // }
+  // getService(id: number): Service | null {
+  //   let _service: Service | null = null;
+  //   this.services.forEach((service: Service) => {
+  //     if (service.id === id) {
+  //       _service = service;
+  //     }
+  //   })
+  //   return _service!;
+  // }
 
   getStatusDisplay(status: string) {
     switch (status) {
       case 'pending': return 'Menunggu';
       case 'ongoing': return 'Sedang Dikerjakan';
+      case 'trouble': return 'Terkendala';
       case 'completed': return 'Selesai';
       default: return '';
     }
   }
 
-  toOngoing(status: string, order: DisplayOrder) {
+  setStatus(status: string, order: Order) {
     // field: number | null;
     // office: number;
     // status: string;
@@ -195,10 +206,10 @@ export class OrderComponent implements OnInit, AfterViewInit {
     // service: number;
     let o: OrderDTO = {
       field: (this.user?.id === undefined) ? null : this.user.id,
-      office: order.office!.id,
+      office: order.office.id,
       status: status,
-      customer: order.customer!.id,
-      service: order.service!.id,
+      customer: order.customer.id,
+      service: order.service.id,
     }
     this.orderService.update(order.id, o).then((response) => {
 
@@ -210,12 +221,12 @@ export class OrderComponent implements OnInit, AfterViewInit {
   }
 }
 
-interface DisplayOrder {
-  id: number;
-  uid: string;
-  field: Account | null;
-  office: Account | null;
-  customer: Customer | null;
-  status: string;
-  service: Service | null;
-}
+// interface DisplayOrder {
+//   id: number;
+//   uid: string;
+//   field: Account | null;
+//   office: Account | null;
+//   customer: Customer | null;
+//   status: string;
+//   service: Service | null;
+// }
