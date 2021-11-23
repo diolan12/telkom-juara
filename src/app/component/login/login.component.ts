@@ -1,9 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { LoginDao } from 'src/app/_data/dao/login-dao';
+import { LoginDTO } from 'src/app/_data/dao/login-dto';
 import { AuthService } from 'src/app/_data/service/auth.service'
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private formBuilder: FormBuilder
 	) {
-		this.authForm = this.formBuilder.group(LoginDao.validator)
+		this.authForm = this.formBuilder.group(LoginDTO.validator)
 
 	}
 
