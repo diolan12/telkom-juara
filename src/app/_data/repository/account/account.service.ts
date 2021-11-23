@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Account } from 'src/app/_data/model/account';
-import { AccountDto } from '../../dao/account-dao';
+import { Account, AccountDto } from 'src/app/_data/model/account';
 
 // injectable account service with get, create, update, delete method
 @Injectable({
