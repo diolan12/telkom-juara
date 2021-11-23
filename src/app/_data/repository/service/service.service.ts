@@ -21,7 +21,7 @@ export class ServiceService {
       if (id === null) {
         url = environment.apiUrl + '/api/service?clean&relation';
       } else {
-        url = environment.apiUrl + '/api/service/' + id;
+        url = environment.apiUrl + '/api/service/' + id+ '?relation';
       }
       this.http.get<Array<Service>>(url).toPromise()
       .then(response => {
