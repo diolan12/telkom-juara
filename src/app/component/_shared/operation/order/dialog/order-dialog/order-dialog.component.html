@@ -7,7 +7,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Nama Pelanggan</mat-label>
-            <input type="text" placeholder="Ketik nama pelanggan" aria-label="Number" matInput [formControl]="customerFormControl" [matAutocomplete]="customer" />
+            <input required type="text" placeholder="Ketik nama pelanggan" aria-label="Number" matInput [formControl]="customerFormControl" [matAutocomplete]="customer" />
             <mat-autocomplete #customer="matAutocomplete" [displayWith]="displayCustomer">
                 <mat-option *ngFor="let customer of filteredCustomers | async" [value]="customer">{{customer.name}}</mat-option>
             </mat-autocomplete>
@@ -15,7 +15,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Jenis Layanan</mat-label>
-            <input type="text" placeholder="Ketik nama layanan" aria-label="Number" matInput [formControl]="serviceFormControl" [matAutocomplete]="service" />
+            <input required type="text" placeholder="Ketik nama layanan" aria-label="Number" matInput [formControl]="serviceFormControl" [matAutocomplete]="service" />
             <mat-autocomplete #service="matAutocomplete" [displayWith]="displayService">
                 <mat-option *ngFor="let service of filteredServices | async" [value]="service">{{service.name}}</mat-option>
             </mat-autocomplete>
