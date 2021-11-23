@@ -19,7 +19,7 @@ export class ServiceService {
       // else get service by id
       let url = '';
       if (id === null) {
-        url = environment.apiUrl + '/api/service?clean';
+        url = environment.apiUrl + '/api/service?clean&relation';
       } else {
         url = environment.apiUrl + '/api/service/' + id;
       }

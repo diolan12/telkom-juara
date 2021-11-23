@@ -11,7 +11,7 @@
         <!-- Type Column -->
         <ng-container matColumnDef="type">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Jenis Layanan</th>
-            <td mat-cell *matCellDef="let service"> {{displayServiceType(service.type)}} </td>
+            <td mat-cell *matCellDef="let service"> {{service.type.name}} </td>
         </ng-container>
 
         <!-- Nama Column -->
