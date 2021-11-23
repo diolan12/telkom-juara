@@ -34,6 +34,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 // Component
 import { NotFoundComponent } from './error/not-found/not-found.component';
@@ -91,7 +92,8 @@ const materialModules = [
 	MatPaginatorModule,
 	MatSelectModule,
 	MatExpansionModule,
-	MatAutocompleteModule
+	MatAutocompleteModule,
+	MatGridListModule
 ]
 
 @NgModule({
