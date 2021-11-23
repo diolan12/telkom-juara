@@ -11,6 +11,7 @@
         <mat-radio-button value="all">Semua</mat-radio-button>
         <mat-radio-button value="pending">Menunggu</mat-radio-button>
         <mat-radio-button value="ongoing">Sedang Dikerjakan</mat-radio-button>
+        <mat-radio-button value="trouble">Kendala</mat-radio-button>
         <mat-radio-button value="completed">Selesai</mat-radio-button>
     </mat-radio-group>
 </div>
@@ -19,23 +20,33 @@
 <mat-accordion>
 
     <mat-expansion-panel *ngFor="let order of dataSource.data; let i = index">
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header fxLayout="row">
             <mat-panel-title>
-                {{order.uid}} {{order.customer?.name}}
+                {{order.uid}} - ({{order.customer.name}})
             </mat-panel-title>
-            <mat-panel-description>
-                ( {{getStatusDisplay(order.status)}} )
+            <mat-panel-description fxLayoutAlign="end">
+                <i>{{getStatusDisplay(order.status)}}</i>
             </mat-panel-description>
         </mat-expansion-panel-header>
         <div fxLayout="column">
             <div>
-                <p>Diterima oleh: {{order.office?.name}}</p>
+                <p>Diterima oleh: {{order.office.name}}</p>
                 <p *ngIf="order.field != null">Dikerjakan oleh: {{order.field.name}}</p>
-                <p>Layanan: {{order.service?.name}}</p>
+                <p>Layanan: {{order.service.name}}</p>
+
+                <img id="output" width="200" *ngIf="output" [src]="output" />
+                <input fxHide mat-flat-button color="primary" accept="image/*" id="input-file-id" type="file" (change)="displayOutput($event)" />
+                <label fxHide [fxShow]="order.status == 'ongoing'" for="input-file-id" class="mat-flat-button mat-primary" color="primary">Choose Files</label>
+
+                <button fxHide type="file" mat-flat-button color="primary">Primary</button>
             </div>
             <div fxFlexAlign="end">
-                <button fxHide [fxShow]="order.status == 'pending'" (click)="toOngoing('ongoing', order)" mat-button color="accent">Kerjakan</button>
-                <button fxHide [fxShow]="order.status == 'ongoing'" (click)="toOngoing('completed', order)" mat-button color="accent">Tandai Selesai</button>
+                <button fxHide [fxShow]="order.status == 'pending' || order.status == 'trouble'" (click)="setStatus('ongoing', order)" mat-button color="accent">Kerjakan</button>
+
+                <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('trouble', order)" mat-button color="warn">Kendala</button>
+                <button fxHide [fxShow]="order.status == 'trouble'" (click)="setStatus('ongoing', order)" mat-button color="accent">Kerjakan</button>
+
+                <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('completed', order)" mat-button color="accent">Tandai Selesai</button>
             </div>
         </div>
     </mat-expansion-panel>
