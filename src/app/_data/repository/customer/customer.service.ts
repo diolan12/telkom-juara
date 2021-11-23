@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { CustomerDto } from '../../dao/customer-dao';
-import { Customer } from '../../model/customer';
+import { Customer, CustomerDto } from '../../model/customer';
 
 
 // injectable customer service with get, create, update, delete method
