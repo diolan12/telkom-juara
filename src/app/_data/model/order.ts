@@ -1,13 +1,16 @@
 import { Validators } from "@angular/forms"
+import { Account } from "./account"
+import { Customer } from "./customer"
+import { Service } from "./service"
 
 export interface Order {
     id: number;
     uid: string;
-    field: number | null;
-    office: number;
+    field: Account | null;
+    office: Account;
     status: string;
-    customer: number;
-    service: number;
+    customer: Customer;
+    service: Service;
 }
 
 export class OrderDTO {
@@ -23,8 +26,8 @@ export class OrderDTO {
             field: [data.field, []],
             office: [data.office, [Validators.required]],
             status: [data.status, [Validators.required]],
-            customer: [data.customer, [Validators.required]],
-            service: [data.service, [Validators.required]]
+            customer: [data.customer.id, [Validators.required]],
+            service: [data.service.id, [Validators.required]]
         }
     }
 }
