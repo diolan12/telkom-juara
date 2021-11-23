@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { CredentialService } from '../storage/credential.service';
-import { LoginDao } from '../dao/login-dao';
+import { LoginDTO } from '../dao/login-dto';
 import { Response } from '../model/response'
 import { environment } from 'src/environments/environment';
 import { Account } from '../model/account';
@@ -25,7 +25,7 @@ export class AuthService {
     private credential: CredentialService
   ) { }
 
-  login(loginDao: LoginDao): Promise<Response<string>> {
+  login(loginDao: LoginDTO): Promise<Response<string>> {
     console.log('login()')
     return new Promise((resolve, reject) => {
       this.http.post<Response<string>>(environment.apiUrl + '/auth/login', loginDao, httpOptions).toPromise()
