@@ -2,8 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { CustomerDto } from 'src/app/_data/dao/customer-dao';
-import { Customer } from 'src/app/_data/model/customer';
+import { Customer, CustomerDto } from 'src/app/_data/model/customer';
 import { CustomerService } from 'src/app/_data/repository/customer/customer.service';
 
 @Component({
