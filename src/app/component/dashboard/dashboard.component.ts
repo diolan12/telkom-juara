@@ -12,7 +12,6 @@ import { AuthService } from '../../_data/service/auth.service'
 })
 export class DashboardComponent implements OnInit {
 
-  // account: Account;
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
   opened: boolean;
@@ -26,8 +25,6 @@ export class DashboardComponent implements OnInit {
     changeDetectorRef: ChangeDetectorRef,
     mediaMatcher: MediaMatcher
   ) {
-    // this.authService.verify()
-    // this.account = this.authService.account()
     this.mobileQuery = mediaMatcher.matchMedia('(max-width: 800px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.opened = !this.mobileQuery.matches;
@@ -41,14 +38,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getAccount()
-    // this.authService.jwt.observe(this, (jwt) => {
-    //   this.jwt = jwt
-    // })
-    // this.authService.account()
   }
 
-  getAccount() {
-    this.authService.account().then((account) => {
+  async getAccount() {
+    await this.authService.account().then((account) => {
       switch (account.role) {
         case 0:
           this.navigate('dashboard/admin');
