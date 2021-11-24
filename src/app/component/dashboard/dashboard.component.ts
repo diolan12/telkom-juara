@@ -65,15 +65,12 @@ export class DashboardComponent implements OnInit {
       }
     }).catch((err) => {
       console.error(err)
-      this.router.navigate(['/login']);
     })
   }
 
   navigate(target: string) {
     this.router.navigateByUrl(target);
   }
-
-
 
   logout(): void {
     this.authService.logout();
