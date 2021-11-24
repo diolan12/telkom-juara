@@ -11,6 +11,10 @@ export interface Order {
     status: string;
     customer: Customer;
     service: Service;
+    doc_customer: string | null;
+    doc_customer_taken_at: string | null;
+    doc_house: string | null;
+    doc_house_taken_at: string | null;
 }
 
 export class OrderDTO {
