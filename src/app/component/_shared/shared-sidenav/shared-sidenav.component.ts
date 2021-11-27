@@ -25,10 +25,6 @@ export class SharedSidenavComponent implements OnInit {
     }).catch((err) => {
       console.error(err)
     })
-    // this.authService.jwt.observe(this, (jwt) => {
-    //   this.jwt = jwt
-    // })
-    // this.authService.account()
   }
 
 }
