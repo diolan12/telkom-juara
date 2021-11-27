@@ -16,7 +16,6 @@ import { AccountComponent } from './component/_shared/operation/account/account.
 import { ServiceComponent } from './component/_shared/operation/service/service.component';
 
 import { AdminComponent } from './component/dashboard/admin/admin.component';
-// import { AccountComponent } from './component/dashboard/admin/account/account.component';
 import { SettingComponent } from './component/dashboard/admin/setting/setting.component';
 
 import { FieldComponent } from './component/dashboard/field/field.component';
