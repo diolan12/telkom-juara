@@ -82,7 +82,7 @@ export class AccountService {
   getRoleValue(role: number): string {
     switch (role) {
       case 0: return 'Administrator';
-      case 1: return 'Petugas Kantosr';
+      case 1: return 'Petugas Kantor';
       case 2: return 'Petugas Lapangan';
     }
     return ''
