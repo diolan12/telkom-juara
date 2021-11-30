@@ -30,4 +30,8 @@ th.mat-sort-header-sorted {
     filter: brightness(90%);
 }
 
+.content-padding {
+    padding: 24px;
+}
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css"
