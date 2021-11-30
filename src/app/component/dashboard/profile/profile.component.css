@@ -1,0 +1,40 @@
+.container {
+    /* width: 75%; */
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.colorize {
+    background-color: yellow;
+}
+
+.card-image-container {
+    position: relative;
+    height: 60%;
+}
+
+.profile {
+    position: absolute;
+    left: 33%;
+    right: 32%;
+    bottom: 0;
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    /* [class*="container"] {
+        margin-left: 14px;
+        margin-right: 14px;
+    } */
+    .container {
+        margin-left: 14px;
+        margin-right: 14px;
+    }
+    .colorize {
+        background-color: green;
+    }
+}
