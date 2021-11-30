@@ -66,6 +66,7 @@ import { AuthInterceptor } from "./_data/interceptor/auth.interceptor";
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
 import { ServiceComponent } from './component/_shared/operation/service/service.component';
 import { OrderDialogComponent } from './component/_shared/operation/order/dialog/order-dialog/order-dialog.component';
+import { OrderDetailComponent } from './component/_shared/operation/order/order-detail/order-detail.component';
 
 
 const materialModules = [
@@ -119,7 +120,8 @@ const materialModules = [
 		ServiceComponent,
 		ServiceTypeDialogComponent,
 		ServiceDialogComponent,
-		OrderDialogComponent
+		OrderDialogComponent,
+  OrderDetailComponent
 	],
 	imports: [
 		BrowserModule,
