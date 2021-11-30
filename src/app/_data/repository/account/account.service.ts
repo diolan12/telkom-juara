@@ -24,7 +24,7 @@ export class AccountService {
       if (id === null) {
         if (field) {
           // url for get account where the role is Petugas Lapangan
-          url = environment.apiUrl + '/api/account?where=role->-0&clean'
+          url = environment.apiUrl + '/api/account?where=role.>.0&clean'
         } else {
           // url for get all account
           url = environment.apiUrl + '/api/account?clean'
