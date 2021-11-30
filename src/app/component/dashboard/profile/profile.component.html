@@ -1,1 +1,83 @@
-<p>profile works!</p>
+<div fxFlex="100%" fxLayoutAlign="center center" class="content-padding">
+    <div fxFlex="60%" fxFlex.lt-sm="100%" fxFlex.lt-md="80%">
+        <div class="">
+            <mat-card>
+                <div class="card-image-container">
+                    <img mat-card-image src="{{background}}" alt="Photo of a Shiba Inu">
+                    <img *ngIf="account" class="profile" src="{{account.photo}}" alt="Profile Picture">
+                </div>
+                <mat-card-header>
+                    <mat-card-title>
+                        <h1>{{account?.name}}</h1>
+                    </mat-card-title>
+                    <mat-card-subtitle>{{account?.email}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Profile works!</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<div fxHide fxLayoutAlign="center stretch" fxFlex="80%" fxFlex.lt-md="100%">
+
+    <div fxLayout="column" style="width: 100%" fxLayoutAlign="center" gdGridAlign.lg="center">
+        <mat-card fxLayout="column">
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>{{account?.name}}</h1>
+                </mat-card-title>
+                <mat-card-subtitle>{{account?.email}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="profile-card-container">
+                    <div class="background">
+                        <img fxHide src="{{background}}" alt="Profile Background">
+                    </div>
+                    <div>
+                        <img fxHide *ngIf="account" class="profile" src="{{account.photo}}" alt="Profile Picture">
+                    </div>
+                    <div class="content" *ngIf="account">
+                        <span>{{account.name}}</span>
+                        <p>{{account.email}}</p>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary">Logout</button>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+    <div fxLayout="column" color="accent" class="container">
+        <div *ngIf="account">
+            <span>{{account.name}}</span>
+            <p>{{account.email}}</p>
+            <mat-card fxLayout="column">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h1>{{account?.name}}</h1>
+                    </mat-card-title>
+                    <mat-card-subtitle>{{account?.email}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="profile-card-container">
+                        <div class="background">
+                            <img fxHide src="{{background}}" alt="Profile Background">
+                        </div>
+                        <div>
+                            <img fxHide *ngIf="account" class="profile" src="{{account.photo}}" alt="Profile Picture">
+                        </div>
+                        <div class="content" *ngIf="account">
+                            <span>{{account.name}}</span>
+                            <p>{{account.email}}</p>
+                        </div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary">Logout</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
