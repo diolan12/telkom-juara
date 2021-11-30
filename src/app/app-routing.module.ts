@@ -10,6 +10,7 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
 import { SharedHomeComponent } from './component/_shared/shared-home/shared-home.component';
 
 import { OrderComponent } from './component/_shared/operation/order/order.component';
+import { OrderDetailComponent } from './component/_shared/operation/order/order-detail/order-detail.component';
 import { CustomerComponent } from './component/_shared/operation/customer/customer.component';
 import { AttendanceComponent } from './component/_shared/operation/attendance/attendance.component';
 import { AccountComponent } from './component/_shared/operation/account/account.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
           { path: 'home', component: SharedHomeComponent },
           { path: 'order', component: OrderComponent },
+          { path: 'order/:uid', component: OrderDetailComponent },
           { path: 'customer', component: CustomerComponent },
           { path: 'account', component: AccountComponent },
           { path: 'service', component: ServiceComponent },
@@ -45,6 +47,7 @@ const routes: Routes = [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
           { path: 'home', component: SharedHomeComponent },
           { path: 'order', component: OrderComponent },
+          { path: 'order/:uid', component: OrderDetailComponent },
           { path: 'customer', component: CustomerComponent },
           { path: 'attendance', component: AttendanceComponent },
           { path: 'service', component: ServiceComponent },
@@ -56,6 +59,7 @@ const routes: Routes = [
           { path: '', redirectTo: 'home', pathMatch: 'full' },
           { path: 'home', component: SharedHomeComponent },
           { path: 'order', component: OrderComponent },
+          { path: 'order/:uid', component: OrderDetailComponent },
           { path: 'attendance', component: AttendanceComponent }
         ]
       }
