@@ -44,13 +44,19 @@ export class DashboardComponent implements OnInit {
     await this.authService.account().then((account) => {
       switch (account.role) {
         case 0:
-          this.navigate('dashboard/admin');
+          if (this.router.url.split('/')[2] != 'admin'){
+            this.navigate('dashboard/admin');
+          }
           break;
         case 1:
-          this.navigate('dashboard/office');
+          if (this.router.url.split('/')[2] != 'office'){
+            this.navigate('dashboard/office');
+          }
           break;
         case 2:
-          this.navigate('dashboard/field');
+          if (this.router.url.split('/')[2] != 'field'){
+            this.navigate('dashboard/field');
+          }
           break;
         default:
           console.log(account)
