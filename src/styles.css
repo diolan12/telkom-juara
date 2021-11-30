@@ -34,4 +34,8 @@ th.mat-sort-header-sorted {
     padding: 24px;
 }
 
+.content-margin {
+    margin: 24px;
+}
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css"
