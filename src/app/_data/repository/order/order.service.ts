@@ -60,5 +60,14 @@ export class OrderService {
         .catch(err => { reject(err) })
     })
   }
-
+  getStatusDisplay(status: string) {
+    switch (status) {
+      case 'pending': return 'Menunggu';
+      case 'ongoing': return 'Sedang Dikerjakan';
+      case 'trouble': return 'Terkendala';
+      case 'completed': return 'Selesai';
+      case 'archived': return 'Diarsipkan';
+      default: return '';
+    }
+  }
 }
