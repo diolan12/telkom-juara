@@ -60,7 +60,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    // this.init();
+    this.init();
   }
 
   async init() {
@@ -74,38 +74,6 @@ export class OrderComponent implements OnInit, AfterViewInit {
     }).catch((error) => {
 
     })
-  }
-
-  // output: any;
-  displayOutput(id: number, col: string, order: Order, event: any) {
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-
-    reader.onload = (_event) => {
-      // this.output = reader.result;
-    }
-    this.upload(id, col, order, event.target.files[0]).toPromise().then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.error(error);
-    }).finally(() => {
-      this.init();
-    })
-  }
-
-  upload(id: number, col: string, order: Order, file: any): Observable<any> {
-
-    var base = environment.apiUrl + '/api/order/' + id + '/upload/' + col + '?name=' + order.uid +'-'+ col + '&timestamp=' + col + '_taken_at';
-    console.log(base);
-    // Create form data
-    const formData = new FormData();
-
-    // Store form name as "file" with file data
-    formData.append("file", file, file.name);
-
-    // Make http post request over api
-    // with formData as req
-    return this.http.post(base, formData)
   }
 
   newOrderDialog() {
@@ -145,20 +113,20 @@ export class OrderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setStatus(status: string, order: Order) {
-    let o: OrderDTO = {
-      field: (this.user?.id === undefined) ? null : this.user.id,
-      office: order.office.id,
-      status: status,
-      customer: order.customer.id,
-      service: order.service.id,
-    }
-    this.orderService.update(order.id, o).then((response) => {
+  // setStatus(status: string, order: Order) {
+  //   let o: OrderDTO = {
+  //     field: (this.user?.id === undefined) ? null : this.user.id,
+  //     office: order.office.id,
+  //     status: status,
+  //     customer: order.customer.id,
+  //     service: order.service.id,
+  //   }
+  //   this.orderService.update(order.id, o).then((response) => {
 
-    }).catch((error) => {
+  //   }).catch((error) => {
 
-    }).finally(() => {
-      this.init();
-    })
-  }
+  //   }).finally(() => {
+  //     this.init();
+  //   })
+  // }
 }
