@@ -1,15 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { AfterViewInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
 import { Account } from 'src/app/_data/model/account';
-import { Customer } from 'src/app/_data/model/customer';
 import { Order, OrderDTO } from 'src/app/_data/model/order';
-import { Service } from 'src/app/_data/model/service';
 import { OrderService } from 'src/app/_data/repository/order/order.service';
 import { AuthService } from 'src/app/_data/service/auth.service';
 import { environment } from 'src/environments/environment';
@@ -28,12 +24,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
 
   user: Account | null = null;
 
-  // customers: Customer[] = [];
-  // accounts: Account[] = [];
-  // services: Service[] = [];
-
   dataSource = new MatTableDataSource<Order>();
-  // tempData: Array<Order> = [];
 
   constructor(
     private authService: AuthService,
@@ -99,17 +90,6 @@ export class OrderComponent implements OnInit, AfterViewInit {
     }).catch((error) => {
       this.toastr.error(error.message, 'Error membuat order');
     });
-  }
-
-  getStatusDisplay(status: string) {
-    switch (status) {
-      case 'pending': return 'Menunggu';
-      case 'ongoing': return 'Sedang Dikerjakan';
-      case 'trouble': return 'Terkendala';
-      case 'completed': return 'Selesai';
-      case 'archived': return 'Diarsipkan';
-      default: return '';
-    }
   }
 
 }
