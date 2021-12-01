@@ -60,6 +60,25 @@ export class OrderService {
         .catch(err => { reject(err) })
     })
   }
+
+  upload(id: number, col: string, order: Order, file: any): Promise<Order> {
+    let url = environment.apiUrl + '/api/order/' + id + '/upload/' + col + '?name=' + order.uid +'-'+ col + '&timestamp=' + col + '_taken_at';
+    console.log(url);
+    // Create form data
+    let formData = new FormData();
+
+    // Store form name as "file" with file data
+    formData.append("file", file, file.name);
+
+    return new Promise<Order>((resolve, reject) => {
+      this.http.post<Order>(url, formData).toPromise()
+        .then(response => {
+          resolve(response)
+        })
+        .catch(err => { reject(err) })
+    })
+  }
+
   getStatusDisplay(status: string) {
     switch (status) {
       case 'pending': return 'Menunggu';
