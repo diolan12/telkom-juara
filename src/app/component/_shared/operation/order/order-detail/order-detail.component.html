@@ -159,7 +159,7 @@
                     <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto di upload pada: {{order.doc_customer_taken_at}}</p>
 
                     <input fxHide #doc_customer mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustPotrait(order, $event)" />
-                    <button fxHide [fxShow]="order.status == 'completed'" mat-stroked-button color="accent" (click)="doc_customer.click()">Upload Foto</button>
+                    <button fxHide [fxShow]="order.status == 'completed' && user.role > 1" mat-stroked-button color="accent" (click)="doc_customer.click()">Upload Foto</button>
                 </div>
                 <div fxFlex.sm="49" fxFlex="29" fxLayout="column" fxLayoutAlign="space-evenly space-around">
                     <div fxLayout="row" fxLayoutAlign="space-around center">
@@ -180,11 +180,11 @@
 
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="end">
-        <button fxHide [fxShow]="order.status == 'pending' || order.status == 'trouble'" (click)="setStatus('ongoing', order)" mat-button color="accent">Kerjakan</button>
+        <button fxHide [fxShow]="order.status == 'pending' || order.status == 'trouble'  && user.role > 1" (click)="setStatus('ongoing', order)" mat-button color="accent">Kerjakan</button>
 
-        <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('trouble', order)" mat-button color="warn">Kendala</button>
+        <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('trouble', order)" mat-button color="warn">Kendala</button>
 
-        <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('completed', order)" mat-button color="accent">Tandai Selesai</button>
+        <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('completed', order)" mat-button color="accent">Tandai Selesai</button>
         <button fxHide [fxShow]="order.status == 'completed'" (click)="setStatus('archived', order)" mat-button color="accent" [disabled]="order.doc_customer == null || order.doc_house == null">
             Arsipkan
         </button>
