@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 // ToastrModule
 import { ToastrModule } from 'ngx-toastr';
@@ -71,6 +72,7 @@ import { OrderDetailComponent } from './component/_shared/operation/order/order-
 
 const materialModules = [
 	CdkTreeModule,
+	ClipboardModule,
 	FlexLayoutModule,
 	FormsModule,
 	ReactiveFormsModule,
