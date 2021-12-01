@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 
@@ -17,10 +18,13 @@ export class DashboardComponent implements OnInit {
   opened: boolean;
   disable: boolean;
 
+  routerUrlParamCount: number = 0
+
   jwt: JWT | null = null;
 
   constructor(
     private router: Router,
+    public location: Location,
     private authService: AuthService,
     changeDetectorRef: ChangeDetectorRef,
     mediaMatcher: MediaMatcher
@@ -34,6 +38,10 @@ export class DashboardComponent implements OnInit {
       this.disable = event.matches
       return this._mobileQueryListener
     });
+    this.router.events.subscribe(() => {
+      this.routerUrlParamCount = this.router.url.split('/').length
+      console.log(this.routerUrlParamCount)
+    })
   }
 
   ngOnInit() {
