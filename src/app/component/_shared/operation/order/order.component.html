@@ -45,7 +45,7 @@
                     <img fxHide [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" />
                 </div>
             </div>
-            <div fxFlexAlign="end" *ngIf="user != null" fxHide [fxShow]="user?.role == 2">
+            <div fxFlexAlign="end">
                 <a [routerLink]="[order.uid]" mat-button color="accent">Lihat detail</a>
 
             </div>
