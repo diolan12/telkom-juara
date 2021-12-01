@@ -185,7 +185,7 @@
         <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('trouble', order)" mat-button color="warn">Kendala</button>
 
         <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('completed', order)" mat-button color="accent">Tandai Selesai</button>
-        <button fxHide [fxShow]="order.status == 'completed'" (click)="setStatus('archived', order)" mat-button color="accent" [disabled]="order.doc_customer == null || order.doc_house == null">
+        <button fxHide [fxShow]="order.status == 'completed' && user.role < 2" (click)="setStatus('archived', order)" mat-button color="accent" [disabled]="order.doc_customer == null || order.doc_house == null">
             Arsipkan
         </button>
     </mat-card-actions>
