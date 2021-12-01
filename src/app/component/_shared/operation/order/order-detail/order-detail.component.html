@@ -1,1 +1,192 @@
-<p>order-detail works!</p>
+<mat-card *ngIf="order != null">
+    <mat-card-header>
+        <mat-card-title>No. {{order.uid}}</mat-card-title>
+        <mat-card-subtitle *ngIf="order">{{order.customer.name}}
+            <i>({{orderService.getStatusDisplay(order.status)}})</i>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div fxLayout="column" class="" fxLayoutAlign="space-evenly space-around">
+            <mat-divider [inset]="true"></mat-divider>
+            <h2 class="subheading-2">Pelanggan</h2>
+            <div>
+                <table>
+                    <tr *ngIf="order.customer.whatsapp != null">
+                        <td>No. Indihome</td>
+                        <td>: {{order.customer.no_indihome}}
+                            <button mat-icon-button color="accent" [cdkCopyToClipboard]="order.customer.no_indihome!">
+                                <mat-icon>content_copy</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>No. Telepon</td>
+                        <td>: {{order.customer.no_telephone}}
+                            <button mat-icon-button color="accent" [cdkCopyToClipboard]="order.customer.no_telephone!">
+                                <mat-icon>content_copy</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Atas Nama</td>
+                        <td>: {{order.customer.gender == 'male' ? 'Bapak' : 'Ibu'}} {{order.customer.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>: {{order.customer.email}}
+                            <a mat-icon-button color="accent" href="mailto:{{order.customer.email}}">
+                                <mat-icon>email</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>No. Telp Pribadi</td>
+                        <td>: {{order.customer.phone}}
+                            <a mat-icon-button color="accent" href="tel:{{order.customer.phone}}">
+                                <mat-icon>call</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="order.customer.whatsapp != null && order.customer.whatsapp != ''">
+                        <td>No. Whatsapp</td>
+                        <td>: {{order.customer.whatsapp}}
+                            <a mat-icon-button color="accent" href="https://wa.me/{{order.customer.whatsapp}}" target=”_blank”>
+                                <mat-icon>chat</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Alamat</td>
+                        <td>: {{order.customer.address}}</td>
+                    </tr>
+                </table>
+
+            </div>
+            <mat-divider [inset]="true"></mat-divider>
+            <h2 class="subheading-2">Detail Order</h2>
+            <div>
+                <table>
+                    <tr>
+                        <td>No. Order</td>
+                        <td>: {{order.uid}}
+                            <button mat-icon-button color="accent" [cdkCopyToClipboard]="order.uid">
+                                <mat-icon>content_copy</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Layanan {{order.service.type.name}}</td>
+                        <td>: {{order.service.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Order</td>
+                        <td>: {{order.created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td>Diterima Oleh</td>
+                        <td>: {{order.office.name}}
+                            <a mat-icon-button color="accent" href="tel:{{order.office.phone}}">
+                                <mat-icon>call</mat-icon>
+                            </a>
+                            <a mat-icon-button color="accent" href="https://wa.me/{{order.office.whatsapp}}" *ngIf="order.office.whatsapp != null" target=”_blank”>
+                                <mat-icon>chat</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr *ngIf="order.field != null">
+                        <td>Dikerjakan Oleh</td>
+                        <td>: {{order.field.name}}
+                            <a mat-icon-button color="accent" href="tel:{{order.field.phone}}">
+                                <mat-icon>call</mat-icon>
+                            </a>
+                            <a mat-icon-button color="accent" href="https://wa.me/{{order.field.whatsapp}}" *ngIf="order.field.whatsapp != null" target=”_blank”>
+                                <mat-icon>chat</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <mat-divider [inset]="true"></mat-divider>
+            <h2 class="subheading-2">Dokumentasi Perangkat</h2>
+            <div>
+                <mat-grid-list [cols]="tileCols" cols.xs="1" cols.gt-xs="3" rowHeight="3:4">
+                    <mat-grid-tile>
+                        <div>
+                            <p>Jenis layanan: {{order.service.name}}</p>
+                            <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto diambil pada: {{order.doc_customer_taken_at}}</p>
+                        </div>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+
+                        <mat-grid-tile-header>
+                            <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto diambil pada: {{order.doc_customer_taken_at}}</p>
+                        </mat-grid-tile-header>
+                        <img mat-card-image *ngIf="order.doc_customer != null" [src]="order.doc_customer" />
+                        <mat-grid-tile-footer>
+                            <input fxHide mat-flat-button color="primary" accept="image/*" id="doc_customer" type="file" />
+                            <label fxHide [fxShow]="order.status == 'completed'" for="doc_customer" class="mat-flat-button mat-primary content-margin" color="primary">Foto dengan pelanggan</label>
+                        </mat-grid-tile-footer>
+
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <img *ngIf="order.doc_customer != null" src="{{order.doc_customer}}" />
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <mat-card class="example-card">
+                            <img mat-card-image [src]="order.doc_customer" alt="Photo of a Shiba Inu">
+                            <mat-card-content>
+                                <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto diambil pada: {{order.doc_customer_taken_at}}</p>
+                            </mat-card-content>
+                        </mat-card>
+                    </mat-grid-tile>
+                    <mat-grid-tile>
+                        <img *ngIf="order.doc_customer != null" src="{{order.doc_customer}}" />
+                    </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+
+            <mat-divider [inset]="true"></mat-divider>
+            <h2 class="subheading-2">Dokumentasi Akhir</h2>
+            <div fxLayout="row" fxLayoutGap="2%" fxLayoutAlign="space-around end">
+                <div fxFlex.sm="49" fxFlex="29" fxLayout="column" fxLayoutAlign="space-evenly space-around">
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <mat-icon [fxHide]="order.doc_customer == null" aria-hidden="false" aria-label="Example home icon">check_box</mat-icon>
+                        <mat-icon [fxHide]="order.doc_customer != null" aria-hidden="false" aria-label="Example home icon">check_box_outline_blank</mat-icon>
+                        <span>Foto dengan pelanggan</span>
+                    </div>
+                    <img *ngIf="order.doc_customer != null" src="{{order.doc_customer}}" />
+
+                    <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto di upload pada: {{order.doc_customer_taken_at}}</p>
+
+                    <input fxHide #doc_customer mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustPotrait(order, $event)" />
+                    <button fxHide [fxShow]="order.status == 'completed'" mat-stroked-button color="accent" (click)="doc_customer.click()">Upload Foto</button>
+                </div>
+                <div fxFlex.sm="49" fxFlex="29" fxLayout="column" fxLayoutAlign="space-evenly space-around">
+                    <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <mat-icon [fxHide]="order.doc_house == null" aria-hidden="false" aria-label="Example home icon">check_box</mat-icon>
+                        <mat-icon [fxHide]="order.doc_house != null" aria-hidden="false" aria-label="Example home icon">check_box_outline_blank</mat-icon>
+                        <span>Foto rumah pelanggan</span>
+                    </div>
+                    <img *ngIf="order.doc_house != null" src="{{order.doc_house}}" />
+
+                    <p fxLayoutAlign="center" *ngIf="order.doc_house_taken_at != null">foto di upload pada: {{order.doc_house_taken_at}}</p>
+
+                    <input fxHide #doc_house mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustHouse(order, $event)" />
+                    <button fxHide [fxShow]="order.status == 'completed'" mat-stroked-button color="accent" (click)="doc_house.click()">Upload Foto</button>
+                </div>
+            </div>
+
+        </div>
+
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end">
+        <button fxHide [fxShow]="order.status == 'pending' || order.status == 'trouble'" (click)="setStatus('ongoing', order)" mat-button color="accent">Kerjakan</button>
+
+        <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('trouble', order)" mat-button color="warn">Kendala</button>
+
+        <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('completed', order)" mat-button color="accent">Tandai Selesai</button>
+        <button fxHide [fxShow]="order.status == 'completed'" (click)="setStatus('archived', order)" mat-button color="accent" [disabled]="order.doc_customer == null || order.doc_house == null">
+            Arsipkan
+        </button>
+    </mat-card-actions>
+</mat-card>
