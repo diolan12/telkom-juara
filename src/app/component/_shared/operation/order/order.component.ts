@@ -113,20 +113,4 @@ export class OrderComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // setStatus(status: string, order: Order) {
-  //   let o: OrderDTO = {
-  //     field: (this.user?.id === undefined) ? null : this.user.id,
-  //     office: order.office.id,
-  //     status: status,
-  //     customer: order.customer.id,
-  //     service: order.service.id,
-  //   }
-  //   this.orderService.update(order.id, o).then((response) => {
-
-  //   }).catch((error) => {
-
-  //   }).finally(() => {
-  //     this.init();
-  //   })
-  // }
 }
