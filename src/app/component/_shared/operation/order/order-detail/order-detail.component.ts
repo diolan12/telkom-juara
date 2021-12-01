@@ -34,9 +34,7 @@ export class OrderDetailComponent implements OnInit {
     private authService: AuthService,
     public orderService: OrderService,
     changeDetectorRef: ChangeDetectorRef,
-    mediaMatcher: MediaMatcher,
-    private http: HttpClient
-  ) {
+    mediaMatcher: MediaMatcher  ) {
     this.authService.account().then((account: Account) => {
       this.user = account;
     })
@@ -78,14 +76,11 @@ export class OrderDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(location.origin);
-    let a = this.router.url.split('/')[4]
-    this.orderUniqueID = a
-    this.getOrderByUniqueID(a)
+    this.orderUniqueID = this.router.url.split('/')[4]
+    this.getOrderByUniqueID(this.orderUniqueID)
   }
 
   async getOrderByUniqueID(uid: string) {
-    // this.order = null
     this.orderService.get<Array<Order>>(uid).then((order) => {
       this.order = order[0]
       console.log(order)
