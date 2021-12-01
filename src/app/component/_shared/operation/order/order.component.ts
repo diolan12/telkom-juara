@@ -37,11 +37,10 @@ export class OrderComponent implements OnInit, AfterViewInit {
 
   constructor(
     private authService: AuthService,
-    private orderService: OrderService,
+    public orderService: OrderService,
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private toastr: ToastrService,
-    private http: HttpClient
+    private toastr: ToastrService
   ) {
     this.authService.account().then((account: Account) => {
       this.user = account;
