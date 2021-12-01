@@ -2,12 +2,10 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Account } from 'src/app/_data/model/account';
 import { Order, OrderDTO } from 'src/app/_data/model/order';
 import { OrderService } from 'src/app/_data/repository/order/order.service';
 import { AuthService } from 'src/app/_data/service/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-order-detail',
