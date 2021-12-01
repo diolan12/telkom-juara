@@ -38,6 +38,7 @@ export class OrderDTO {
 }
 
 export interface OrderDTO {
+    uid: string;
     field: number | null;
     office: number;
     status: string;
