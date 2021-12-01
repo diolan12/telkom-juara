@@ -26,7 +26,7 @@
                 {{order.uid}} - ({{order.customer.name}})
             </mat-panel-title>
             <mat-panel-description fxLayoutAlign="end">
-                <i>{{getStatusDisplay(order.status)}}</i>
+                <i>{{orderService.getStatusDisplay(order.status)}}</i>
             </mat-panel-description>
         </mat-expansion-panel-header>
         <div fxLayout="column">
@@ -35,28 +35,19 @@
                 <p *ngIf="order.field != null">Dikerjakan oleh: {{order.field.name}}</p>
                 <p>Layanan: {{order.service.name}}</p>
 
-
                 <button fxHide type="file" mat-flat-button color="primary">Primary</button>
             </div>
             <div fxLayout="row" fxLayoutAlign="center">
                 <div>
-                    <img id="doc_customer{{order.id}}" fxHide [fxShow]="order.doc_customer != null" width="200" [src]="order.doc_customer" />
-                    <input role="listitem" fxHide mat-flat-button color="primary" accept="image/*" id="doc_customer" type="file" (change)="displayOutput(order.id, 'doc_customer', order, $event)" />
-                    <label fxHide [fxShow]="order.status == 'completed'" for="doc_customer" class="mat-flat-button mat-primary" color="primary">Foto dengan {{order.customer.name}}</label>
+                    <img fxHide [fxShow]="order.doc_customer != null" width="200" [src]="order.doc_customer" />
                 </div>
                 <div>
-                    <img id="doc_house{{order.id}}" fxHide [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" />
-                    <input role="listitem" fxHide mat-flat-button color="primary" accept="image/*" id="doc_house" type="file" (change)="displayOutput(order.id, 'doc_house', order, $event)" />
-                    <label fxHide [fxShow]="order.status == 'completed'" for="doc_house" class="mat-flat-button mat-primary" color="primary">Foto rumah pelanggan {{order.id}}</label>
+                    <img fxHide [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" />
                 </div>
             </div>
             <div fxFlexAlign="end" *ngIf="user != null" fxHide [fxShow]="user?.role == 2">
-                <button fxHide [fxShow]="order.status == 'pending' || order.status == 'trouble'" (click)="setStatus('ongoing', order)" mat-button color="accent">Kerjakan</button>
+                <a [routerLink]="[order.uid]" mat-button color="accent">Lihat detail</a>
 
-                <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('trouble', order)" mat-button color="warn">Kendala</button>
-
-                <button fxHide [fxShow]="order.status == 'ongoing'" (click)="setStatus('completed', order)" mat-button color="accent">Tandai Selesai</button>
-                <button fxHide [fxShow]="order.status == 'completed'" (click)="setStatus('archived', order)" mat-button color="accent">Arsipkan</button>
             </div>
         </div>
     </mat-expansion-panel>
