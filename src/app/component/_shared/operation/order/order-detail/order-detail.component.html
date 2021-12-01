@@ -1,4 +1,4 @@
-<mat-card *ngIf="order != null">
+<mat-card *ngIf="order != null && user != null">
     <mat-card-header>
         <mat-card-title>No. {{order.uid}}</mat-card-title>
         <mat-card-subtitle *ngIf="order">{{order.customer.name}}
@@ -172,7 +172,7 @@
                     <p fxLayoutAlign="center" *ngIf="order.doc_house_taken_at != null">foto di upload pada: {{order.doc_house_taken_at}}</p>
 
                     <input fxHide #doc_house mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustHouse(order, $event)" />
-                    <button fxHide [fxShow]="order.status == 'completed'" mat-stroked-button color="accent" (click)="doc_house.click()">Upload Foto</button>
+                    <button fxHide [fxShow]="order.status == 'completed' && user.role > 1" mat-stroked-button color="accent" (click)="doc_house.click()">Upload Foto</button>
                 </div>
             </div>
 
