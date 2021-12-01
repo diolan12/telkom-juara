@@ -15,6 +15,7 @@ export interface Order {
     doc_customer_taken_at: string | null;
     doc_house: string | null;
     doc_house_taken_at: string | null;
+    created_at: string;
 }
 
 export class OrderDTO {
