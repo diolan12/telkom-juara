@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { LoginDTO } from 'src/app/_data/dao/login-dto';
+import { LoginDTO } from 'src/app/_data/dto/login-dto';
 import { AuthService } from 'src/app/_data/service/auth.service'
 
 @Component({
