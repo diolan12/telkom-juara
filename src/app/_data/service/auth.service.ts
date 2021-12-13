@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 import { CredentialService } from '../storage/credential.service';
-import { LoginDTO } from '../dao/login-dto';
+import { LoginDTO } from '../dto/login-dto';
 import { Response } from '../model/response'
 import { environment } from 'src/environments/environment';
 import { Account } from '../model/account';
