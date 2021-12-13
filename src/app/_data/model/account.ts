@@ -18,19 +18,19 @@ export interface Account {
 export class AccountDto {
     // static account validator
     public static postValidator = {
-        nik: ['', [Validators.required]],
+        nik: ['', [Validators.required, Validators.maxLength(8)]],
         email: ['', [Validators.email]],
-        name: ['', [Validators.required]],
+        name: ['', [Validators.required, Validators.maxLength(32)]],
         gender: ['', [Validators.required]],
-        phone: ['', [Validators.required]],
-        whatsapp: [null, [Validators.required]],
+        phone: ['', [Validators.required, Validators.maxLength(16)]],
+        whatsapp: [null, [Validators.maxLength(16)]],
         password: ['', [Validators.required]],
         rePassword: ['', [Validators.required]],
         role: [null, [Validators.required]],
     }
     public static putValidator(data: Account) {
         return {
-            nik: [data.nik, [Validators.maxLength(8)]],
+            nik: [data.nik, [Validators.required, Validators.maxLength(8)]],
             email: [data.email, [Validators.email]],
             name: [data.name, [Validators.required, Validators.maxLength(32)]],
             gender: [data.gender, [Validators.required]],
