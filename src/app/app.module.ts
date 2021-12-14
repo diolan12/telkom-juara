@@ -68,6 +68,7 @@ import { SharedHomeComponent } from './component/_shared/shared-home/shared-home
 import { ServiceComponent } from './component/_shared/operation/service/service.component';
 import { OrderDialogComponent } from './component/_shared/operation/order/dialog/order-dialog/order-dialog.component';
 import { OrderDetailComponent } from './component/_shared/operation/order/order-detail/order-detail.component';
+import { OrderPhotoDialogComponent } from './component/_shared/operation/order/order-detail/order-photo-dialog/order-photo-dialog.component';
 
 
 const materialModules = [
@@ -123,7 +124,8 @@ const materialModules = [
 		ServiceTypeDialogComponent,
 		ServiceDialogComponent,
 		OrderDialogComponent,
-  OrderDetailComponent
+  OrderDetailComponent,
+  OrderPhotoDialogComponent
 	],
 	imports: [
 		BrowserModule,
