@@ -11,7 +11,7 @@
             <h2 class="subheading-2">Pelanggan</h2>
             <div>
                 <table>
-                    <tr *ngIf="order.customer.whatsapp != null">
+                    <tr *ngIf="order.customer.no_indihome != null">
                         <td>No. Indihome</td>
                         <td>: {{order.customer.no_indihome}}
                             <button mat-icon-button color="accent" [cdkCopyToClipboard]="order.customer.no_indihome!">
@@ -19,7 +19,7 @@
                             </button>
                         </td>
                     </tr>
-                    <tr>
+                    <tr *ngIf="order.customer.no_telephone != null">
                         <td>No. Telepon</td>
                         <td>: {{order.customer.no_telephone}}
                             <button mat-icon-button color="accent" [cdkCopyToClipboard]="order.customer.no_telephone!">
@@ -80,7 +80,7 @@
                     </tr>
                     <tr>
                         <td>Tanggal Order</td>
-                        <td>: {{order.created_at}}</td>
+                        <td>: {{parseLocale(order.created_at)}}</td>
                     </tr>
                     <tr>
                         <td>Diterima Oleh</td>
@@ -106,42 +106,38 @@
                     </tr>
                 </table>
             </div>
+
             <mat-divider [inset]="true"></mat-divider>
-            <h2 class="subheading-2">Dokumentasi Perangkat</h2>
+            <h2 class="subheading-2" [fxHide]="order.status == 'pending'">Dokumentasi Perangkat</h2>
+            <button mat-button fxHide [fxShow]="order.status == 'ongoing' && user.role == 2" (click)="newDocDialog(order.id)" color="accent"><mat-icon>add</mat-icon>Dokumentasi Baru</button>
             <div>
-                <mat-grid-list [cols]="tileCols" cols.xs="1" cols.gt-xs="3" rowHeight="3:4">
-                    <mat-grid-tile>
-                        <div>
-                            <p>Jenis layanan: {{order.service.name}}</p>
-                            <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto diambil pada: {{order.doc_customer_taken_at}}</p>
-                        </div>
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-
-                        <mat-grid-tile-header>
-                            <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto diambil pada: {{order.doc_customer_taken_at}}</p>
+                <mat-grid-list [cols]="tileCols" rowHeight="3:5" *ngIf="order.photo.length != 0">
+                    <!-- looks like we got a winner -->
+                    <mat-grid-tile *ngFor="let tile of order.photo">
+                        <mat-grid-tile-header fxLayout="column">
+                            <p>{{tile.description}}</p>
                         </mat-grid-tile-header>
-                        <img mat-card-image *ngIf="order.doc_customer != null" [src]="order.doc_customer" />
-                        <mat-grid-tile-footer>
-                            <input fxHide mat-flat-button color="primary" accept="image/*" id="doc_customer" type="file" />
-                            <label fxHide [fxShow]="order.status == 'completed'" for="doc_customer" class="mat-flat-button mat-primary content-margin" color="primary">Foto dengan pelanggan</label>
+                        <img mat-card-image *ngIf="tile.file != null" [src]="tile.file" />
+                        <mat-grid-tile-footer fxLayoutAlign="space-around center">
+                            <p *ngIf="order.status == 'archived'">{{parseLocale(tile.created_at)}}</p>
+                            <button *ngIf="order.status != 'archived'" mat-button color="accent" (click)="detailDocDialog(tile)">Detail</button>
                         </mat-grid-tile-footer>
+                    </mat-grid-tile>
 
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <img *ngIf="order.doc_customer != null" src="{{order.doc_customer}}" />
-                    </mat-grid-tile>
-                    <mat-grid-tile>
-                        <mat-card class="example-card">
+
+                    <mat-grid-tile fxHide>
+                        <mat-card class="">
                             <img mat-card-image [src]="order.doc_customer" alt="Photo of a Shiba Inu">
                             <mat-card-content>
                                 <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto diambil pada: {{order.doc_customer_taken_at}}</p>
                             </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button>LIKE</button>
+                                <button mat-button>SHARE</button>
+                            </mat-card-actions>
                         </mat-card>
                     </mat-grid-tile>
-                    <mat-grid-tile>
-                        <img *ngIf="order.doc_customer != null" src="{{order.doc_customer}}" />
-                    </mat-grid-tile>
+
                 </mat-grid-list>
             </div>
 
@@ -179,13 +175,16 @@
         </div>
 
     </mat-card-content>
+    <mat-divider></mat-divider>
     <mat-card-actions fxLayoutAlign="end">
-        <button fxHide [fxShow]="order.status == 'pending' || order.status == 'trouble'  && user.role > 1" (click)="setStatus('ongoing', order)" mat-button color="accent">Kerjakan</button>
+        <a *ngIf="order.office.whatsapp != null && user.role > 1" mat-stroked-button color="accent" [href]="whatsappReport" target="_blank">Laporan ke admin</a>
 
-        <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('trouble', order)" mat-button color="warn">Kendala</button>
+        <button fxHide [fxShow]="(order.status == 'pending' || order.status == 'trouble')  && user.role > 1" (click)="setStatus('ongoing', order)" mat-stroked-button color="accent">Kerjakan</button>
 
-        <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('completed', order)" mat-button color="accent">Tandai Selesai</button>
-        <button fxHide [fxShow]="order.status == 'completed' && user.role < 2" (click)="setStatus('archived', order)" mat-button color="accent" [disabled]="order.doc_customer == null || order.doc_house == null">
+        <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('trouble', order)" mat-stroked-button color="warn">Kendala</button>
+
+        <button fxHide [fxShow]="order.status == 'ongoing'  && user.role > 1" (click)="setStatus('completed', order)" mat-stroked-button color="accent">Tandai Selesai</button>
+        <button fxHide [fxShow]="order.status == 'completed' && user.role < 2" (click)="setStatus('archived', order)" mat-stroked-button color="accent" [disabled]="order.doc_customer == null || order.doc_house == null">
             Arsipkan
         </button>
     </mat-card-actions>
