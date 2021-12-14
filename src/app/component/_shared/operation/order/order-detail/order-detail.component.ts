@@ -1,11 +1,15 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/_data/model/account';
 import { Order, OrderDTO } from 'src/app/_data/model/order';
+import { OrderPhoto } from 'src/app/_data/model/order-photo';
 import { OrderService } from 'src/app/_data/repository/order/order.service';
 import { AuthService } from 'src/app/_data/service/auth.service';
+import { environment } from 'src/environments/environment';
+import { OrderPhotoDialogComponent } from './order-photo-dialog/order-photo-dialog.component';
 
 @Component({
   selector: 'app-order-detail',
@@ -15,6 +19,7 @@ import { AuthService } from 'src/app/_data/service/auth.service';
 export class OrderDetailComponent implements OnInit {
 
   orderUniqueID = "---"
+  whatsappReport: string = "";
 
   xSmall: MediaQueryList;
   small: MediaQueryList;
@@ -34,11 +39,13 @@ export class OrderDetailComponent implements OnInit {
     private authService: AuthService,
     public orderService: OrderService,
     changeDetectorRef: ChangeDetectorRef,
-    mediaMatcher: MediaMatcher  ) {
+    mediaMatcher: MediaMatcher,
+    public dialog: MatDialog
+    ) {
     this.authService.account().then((account: Account) => {
       this.user = account;
     })
-    this.xSmall = mediaMatcher.matchMedia('(max-width: 600px)');
+    this.xSmall = mediaMatcher.matchMedia('(max-width: 599.98px)');
     this.small = mediaMatcher.matchMedia('(min-width: 600px) and (max-width: 959.98px)');
     this.medium = mediaMatcher.matchMedia('(min-width: 960px) and (max-width: 1279.98px)');
     this.large = mediaMatcher.matchMedia('(min-width: 1280px) and (max-width: 1919.98px)');
@@ -48,7 +55,8 @@ export class OrderDetailComponent implements OnInit {
     this._largeQueryListener = () => changeDetectorRef.detectChanges();
     this.xSmall.matches ? this.tileCols = 2 : this.tileCols = this.tileCols;
     this.small.matches ? this.tileCols = 3 : this.tileCols = this.tileCols;
-    this.medium.matches ? this.tileCols = 4 : this.tileCols = 5;
+    this.medium.matches ? this.tileCols = 4 : this.tileCols = this.tileCols;
+    this.large.matches ? this.tileCols = 5 : this.tileCols = this.tileCols;
     this.xSmall.addEventListener('change', (event) => {
       if (event.matches) {
         this.tileCols = 2
@@ -57,7 +65,7 @@ export class OrderDetailComponent implements OnInit {
     });
     this.small.addEventListener('change', (event) => {
       if (event.matches) {
-        this.tileCols = 2
+        this.tileCols = 3
       }
       return this._smallQueryListener
     })
@@ -81,10 +89,27 @@ export class OrderDetailComponent implements OnInit {
   }
 
   async getOrderByUniqueID(uid: string) {
-    this.orderService.get<Array<Order>>(uid).then((order) => {
+    await this.orderService.get<Array<Order>>(uid).then((order) => {
       this.order = order[0]
-      console.log(order)
     })
+    console.log(this.order)
+    this.buildReport()
+  }
+  private buildReport(){
+    let waApi = "https://api.whatsapp.com/send?"
+    let phone = this.order!.office.whatsapp
+    let header = "*Laporan Order "+this.order?.uid+"* "
+    let content = " \n\n"+
+    "Nama: "+this.order?.customer.name+"\n"+
+    "Layanan "+this.order?.service.type.name+": "+this.order?.service.name+"\n"+
+    "Status: "+this.orderService.getStatusDisplay(this.order!.status)
+    let note = ""
+    if (this.order?.status == "completed") {
+      note = "\n\nCatatan: \n*Siap diarsipkan*"
+    }
+    let link = "\n\nLink: "+window.location
+    let text = header+content+note+link
+    this.whatsappReport = waApi+"phone="+phone+"&text="+encodeURI(text)
   }
   uploadCustPotrait(order: Order, event: any) {
     console.log('uploadCustPotrait');
@@ -100,6 +125,7 @@ export class OrderDetailComponent implements OnInit {
       this.ngOnInit();
     })
   }
+  
   uploadCustHouse(order: Order, event: any) {
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -130,6 +156,36 @@ export class OrderDetailComponent implements OnInit {
     }).finally(() => {
       this.ngOnInit();
     })
+  }
+  parseLocale(datetime: Date){
+    return new Date(datetime).toLocaleString()
+  }
+  parseLocaleDate(datetime: Date){
+    return new Date(datetime).toLocaleDateString()
+  }
+  parseLocaleTime(datetime: Date){
+    return new Date(datetime).toLocaleTimeString()
+  }
+  newDocDialog(orderId: number) {
+    const newDialogRef = this.dialog.open(OrderPhotoDialogComponent, {
+      width: environment.modalWidth,
+      data: {
+        order: orderId,
+        description: null
+      }
+    });
+    newDialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
+  detailDocDialog(data: OrderPhoto) {
+    const newDialogRef = this.dialog.open(OrderPhotoDialogComponent, {
+      width: environment.modalWidth,
+      data: data
+    });
+    newDialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
   }
 
 }
