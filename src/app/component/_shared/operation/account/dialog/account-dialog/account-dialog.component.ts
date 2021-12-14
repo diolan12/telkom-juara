@@ -91,7 +91,6 @@ export class AccountDialogComponent {
     }).catch(error => {
       this.toastr.error(error.message, 'Error');
     });
-
   }
 
 }
