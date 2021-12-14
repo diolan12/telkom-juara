@@ -1,6 +1,7 @@
 import { Validators } from "@angular/forms"
 import { Account } from "./account"
 import { Customer } from "./customer"
+import { OrderPhoto } from "./order-photo"
 import { Service } from "./service"
 
 export interface Order {
@@ -15,7 +16,8 @@ export interface Order {
     doc_customer_taken_at: string | null;
     doc_house: string | null;
     doc_house_taken_at: string | null;
-    created_at: string;
+    photo: Array<OrderPhoto>;
+    created_at: Date;
 }
 
 export class OrderDTO {
