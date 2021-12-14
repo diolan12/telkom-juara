@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Order, OrderDTO } from '../../model/order';
+import { OrderPhoto, OrderPhotoDTO } from '../../model/order-photo';
 
 @Injectable({
   providedIn: 'root'
