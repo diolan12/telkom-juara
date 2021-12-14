@@ -107,8 +107,7 @@ export class OrderDetailComponent implements OnInit {
     if (this.order?.status == "completed") {
       note = "\n\nCatatan: \n*Siap diarsipkan*"
     }
-    let link = "\n\nLink: "+window.location
-    let text = header+content+note+link
+    let text = header+content+note
     this.whatsappReport = waApi+"phone="+phone+"&text="+encodeURI(text)
   }
   uploadCustPotrait(order: Order, event: any) {
