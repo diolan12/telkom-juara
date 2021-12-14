@@ -15,22 +15,22 @@
 
         <mat-form-field appearance="outline">
             <mat-label>NIK</mat-label>
-            <input matInput type="number" formControlName="nik" />
+            <input required maxLength="8" matInput type="number" formControlName="nik" />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput type="email" formControlName="email">
+            <input required matInput type="email" formControlName="email">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
-            <input matInput type="text" formControlName="name" />
+            <input required maxLength="32" matInput type="text" formControlName="name" />
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender">
+            <mat-select required formControlName="gender">
                 <mat-option value="male">Laki-Laki</mat-option>
                 <mat-option value="female">Perempuan</mat-option>
             </mat-select>
@@ -39,7 +39,7 @@
         <!-- Role here -->
         <mat-form-field appearance="fill">
             <mat-label>Role</mat-label>
-            <mat-select formControlName="role">
+            <mat-select required formControlName="role">
                 <mat-option *ngFor="let role of roles" [value]="role.value">
                     {{role.text}}
                 </mat-option>
@@ -48,22 +48,22 @@
 
         <mat-form-field appearance="outline">
             <mat-label>Phone</mat-label>
-            <input matInput type="tel" formControlName="phone">
+            <input required maxLength="16" matInput type="tel" formControlName="phone">
         </mat-form-field>
 
         <mat-form-field appearance="outline">
             <mat-label>Whatsapp</mat-label>
-            <input matInput type="tel" formControlName="whatsapp">
+            <input maxLength="16" matInput type="tel" formControlName="whatsapp">
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="data == null">
             <mat-label>Password</mat-label>
-            <input matInput type="password" formControlName="password">
+            <input required matInput type="password" formControlName="password">
         </mat-form-field>
 
         <mat-form-field appearance="outline" *ngIf="data == null">
             <mat-label>Verify password</mat-label>
-            <input matInput [type]="togglePassword ? 'password' : 'text'" formControlName="rePassword" [errorStateMatcher]="passwordMatcher">
+            <input required matInput [type]="togglePassword ? 'password' : 'text'" formControlName="rePassword" [errorStateMatcher]="passwordMatcher">
             <a mat-icon-button matSuffix (click)="togglePassword = !togglePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="togglePassword">
                 <mat-icon>{{togglePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
             </a>
