@@ -1,0 +1,32 @@
+<p mat-dialog-title *ngIf="data.description == null">
+    Dokumentasi baru</p>
+<p mat-dialog-title *ngIf="data.description != null">
+    {{data.description}}</p>
+<mat-dialog-content>
+
+    <form fxLayout="column" [formGroup]="orderPhotoFormGroup">
+        <div *ngIf="data.description != null" fxLayout="column" fxLayoutAlign="center">
+            <img *ngIf="data.file != null" class="mat-form-field-flex" [src]="data.file" alt="Documentation Picture">
+        </div>
+        <input fxHide #order_doc accept="image/*" type="file" (change)="uploadDoc(data, $event)" />
+        <button mat-button fxHide [fxShow]="data.description != null" (click)="order_doc.click()" color="accent"><mat-icon>upload</mat-icon>Upload</button>
+        <div *ngIf="data.description != null">
+            <br/>
+            <mat-divider></mat-divider>
+            <br/>
+        </div>
+        <p *ngIf="data.updated_at != null">Di upload pada {{data.updated_at.toLocaleString()}}</p>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Deskripsi</mat-label>
+            <input required maxLength="24" matInput type="text" formControlName="description" />
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end">
+    <button mat-button mat-dialog-close>Tutup</button>
+    <button mat-button *ngIf="data.description != null" (click)="delete()" color="warn">Hapus</button>
+    <button mat-button *ngIf="data.description != null" (click)="update()" color="accent" cdkFocusInitial>Update</button>
+    <button mat-button *ngIf="data.description == null" (click)="create()" color="accent" cdkFocusInitial>Buat</button>
+</mat-dialog-actions>
