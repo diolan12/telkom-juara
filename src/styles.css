@@ -15,6 +15,15 @@ body {
 }
 
 
+/* Calender Date Marker */
+
+.marked-date {
+    background: rgb(81, 255, 0) !important;
+    /* background-color: red !important; */
+    border-radius: 100%;
+}
+
+
 /* Global table style */
 
 table {
