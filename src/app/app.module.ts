@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ClipboardModule} from '@angular/cdk/clipboard';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 // ToastrModule
 import { ToastrModule } from 'ngx-toastr';
 
 // Material design modules
+import { MatNativeDateModule } from '@angular/material/core'
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatCardModule } from '@angular/material/card';
@@ -36,6 +37,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 // Component
 import { NotFoundComponent } from './error/not-found/not-found.component';
@@ -72,6 +74,7 @@ import { OrderPhotoDialogComponent } from './component/_shared/operation/order/o
 
 
 const materialModules = [
+	MatNativeDateModule,
 	CdkTreeModule,
 	ClipboardModule,
 	FlexLayoutModule,
@@ -97,7 +100,8 @@ const materialModules = [
 	MatSelectModule,
 	MatExpansionModule,
 	MatAutocompleteModule,
-	MatGridListModule
+	MatGridListModule,
+	MatDatepickerModule
 ]
 
 @NgModule({
@@ -124,8 +128,8 @@ const materialModules = [
 		ServiceTypeDialogComponent,
 		ServiceDialogComponent,
 		OrderDialogComponent,
-  OrderDetailComponent,
-  OrderPhotoDialogComponent
+		OrderDetailComponent,
+		OrderPhotoDialogComponent
 	],
 	imports: [
 		BrowserModule,
