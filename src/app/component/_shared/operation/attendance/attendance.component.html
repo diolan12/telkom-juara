@@ -1,1 +1,35 @@
-<p>attendance works!</p>
+<h3>Absensi</h3>
+
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [dateClass]="dateClas" [(selected)]="selected"></mat-calendar>
+</mat-card>
+<p>Selected date: {{selected}}</p>
+
+<div class="month" background-color="primary">
+    <ul>
+        <button class="prev" mat-icon-button><mat-icon>navigate_before</mat-icon></button>
+        <button class="next" mat-icon-button><mat-icon>navigate_next</mat-icon></button>
+        <li>
+            {{getMonth()}}<br>
+            <span style="font-size:18px">{{dateTime.getFullYear()}}</span>
+        </li>
+    </ul>
+</div>
+
+<ul class="weekdays">
+    <li>Senin</li>
+    <li>Selasa</li>
+    <li>Rabu</li>
+    <li>Kamis</li>
+    <li>Jum'at</li>
+    <li>Sabtu</li>
+    <li>Minggu</li>
+</ul>
+
+<ul class="days">
+    <li *ngFor="let blank of blankDateSpaces"></li>
+    <li *ngFor="let date of dates">
+        <span class="active" *ngIf="date == today; else other_date">{{date}}</span>
+        <ng-template #other_date>{{ date }}</ng-template>
+    </li>
+</ul>
