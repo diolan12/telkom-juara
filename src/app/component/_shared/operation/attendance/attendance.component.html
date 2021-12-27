@@ -1,13 +1,11 @@
 <h3>Absensi</h3>
 
 <mat-card class="demo-inline-calendar-card">
-    <mat-calendar #calendar [dateClass]="dateClass" [(selected)]="selected"></mat-calendar>
+    <mat-calendar #calendar [dateClass]="dateClass" [(selected)]="selected" (selectedChange)="select($event)"></mat-calendar>
 </mat-card>
 <br/>
-<mat-divider></mat-divider>
-<br/>
 <div fxLayout="column">
-    <p>Selected date: {{selected}}</p>
+    <p *ngIf="text != ''">{{text}}</p>
     <mat-divider></mat-divider>
     <br/>
     <button mat-stroked-button color="accent" [disabled]="isAttend" (click)="roleCall()">Absen</button>
