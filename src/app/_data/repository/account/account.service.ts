@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Account, AccountDto } from 'src/app/_data/model/account';
+import { Account, AccountDTO } from 'src/app/_data/model/account';
 
 // injectable account service with get, create, update, delete method
 @Injectable({
@@ -15,7 +15,7 @@ export class AccountService {
   // function to get all account returning promise of account array
   // require parameters of nullable id and boolean field
   get(id: number | null = null, field: boolean = false): Promise<Array<Account>> {
-    console.log(field);
+    // console.log(field);
     return new Promise<Array<Account>>((resolve, reject) => {
       // blank url then decide whether id is null or not
       // if id is null then get all account
@@ -43,7 +43,7 @@ export class AccountService {
 
   // function to create new account by parameter of account method POST dao returning promise of account
   // require parameter of account dao
-  create(accountDto: AccountDto): Promise<Account> {
+  create(accountDto: AccountDTO): Promise<Account> {
     return new Promise<Account>((resolve, reject) => {
       this.http.post<Account>(environment.apiUrl + '/api/account', accountDto).toPromise()
         .then(response => {
@@ -55,7 +55,7 @@ export class AccountService {
 
   // function to update account by parameter of account method PUT dao returning promise of account
   // require parameters of account id and account PUT dao
-  update(id: number, accountDto: AccountDto): Promise<Account> {
+  update(id: number, accountDto: AccountDTO): Promise<Account> {
     return new Promise<Account>((resolve, reject) => {
       this.http.put<Account>(environment.apiUrl + '/api/account/' + id, accountDto).toPromise()
         .then(response => {
