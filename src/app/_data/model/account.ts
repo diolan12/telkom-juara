@@ -15,7 +15,7 @@ export interface Account {
 }
 
 // class AccountPostDao with static validator and static password validator
-export class AccountDto {
+export class AccountDTO {
     // static account validator
     public static postValidator = {
         nik: ['', [Validators.required, Validators.maxLength(8)]],
@@ -50,7 +50,7 @@ export class AccountDto {
 }
 
 // interface for account POST DAO
-export interface AccountDto {
+export interface AccountDTO {
     id: number;
     nik: string;
     email: string;
