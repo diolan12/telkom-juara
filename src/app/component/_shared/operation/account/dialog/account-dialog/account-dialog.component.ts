@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { Account, AccountDto, PasswordErrorStateMatcher } from 'src/app/_data/model/account';
+import { Account, AccountDTO, PasswordErrorStateMatcher } from 'src/app/_data/model/account';
 import { Role } from 'src/app/_data/model/role';
 import { AccountService } from 'src/app/_data/repository/account/account.service';
 import { AuthService } from 'src/app/_data/service/auth.service';
@@ -52,9 +52,9 @@ export class AccountDialogComponent {
     })
     
     if (data == null) {
-      this.accountFormGroup = this.formBuilder.group(AccountDto.postValidator, { validators: AccountDto.passwordMatcher })
+      this.accountFormGroup = this.formBuilder.group(AccountDTO.postValidator, { validators: AccountDTO.passwordMatcher })
     } else {
-      this.accountFormGroup = this.formBuilder.group(AccountDto.putValidator(data), { validators: AccountDto.passwordMatcher })
+      this.accountFormGroup = this.formBuilder.group(AccountDTO.putValidator(data), { validators: AccountDTO.passwordMatcher })
     }
   }
 
