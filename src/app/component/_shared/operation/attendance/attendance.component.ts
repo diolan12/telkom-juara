@@ -14,15 +14,11 @@ import { DatetimeService } from 'src/app/_data/service/datetime/datetime.service
 })
 export class AttendanceComponent implements OnInit {
 
+  isAttend: boolean = false
+
   selected: Date | null = null;
 
   dateTime: Date
-  datesThisMonth: number
-  dates: number[]
-  firstDayOfMonth: number
-  blankDateSpaces: Array<number>
-
-  today: number
 
   account: Account | null = null;
   attendances: Array<Date> = []
@@ -37,32 +33,24 @@ export class AttendanceComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.dateTime = new Date()
-    this.datesThisMonth = new Date(this.dateTime.getFullYear(), this.dateTime.getMonth(), 0).getDate()
-    this.dates = new Array<number>(this.datesThisMonth).fill(0).map((x,i) => i+1)
-    this.firstDayOfMonth = new Date(this.dateTime.getFullYear(), this.dateTime.getMonth(), 1).getDay()
-    this.blankDateSpaces = Array(this.firstDayOfMonth - 1).fill(0).map((x,i)=>i)
-    console.log(this.blankDateSpaces.length)
-    this.today = this.dateTime.getDate()
-    // this.calender = document.getElementById('calender')
   }
 
   ngOnInit(): void {
-    
     this.initData()
   }
-  isAttend: boolean = false
+
   private async initData() {
     await this.authService.account().then(account => {
       this.account = account
     })
     await this.attendanceService.get(this.account?.id).then(attendances => {
       attendances.map(attendance => {
-        console.log(attendance.created_at)
+        // console.log(attendance.created_at)
         let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString()) 
         let local = this.datetimeService.UTCtoLocal(utc)
         this.attendances.push(local)
-        console.log(utc.toISOString())
-        console.log(local.toString())
+        // console.log(utc.toISOString())
+        // console.log(local.toString())
         if (local.getDate() == this.dateTime.getDate() && local.getMonth() == this.dateTime.getMonth() && local.getFullYear() == this.dateTime.getFullYear()) {
           this.isAttend = true
         }
@@ -74,7 +62,7 @@ export class AttendanceComponent implements OnInit {
     console.log(this.attendances)
   }
   render() {
-    this.calendar.dateClass = this.dateClas
+    this.calendar.dateClass = this.dateClass
     this.calendar.updateTodaysDate()
     
   }
@@ -92,28 +80,8 @@ export class AttendanceComponent implements OnInit {
       this.initData()
     })
   }
-  getMonth(): string {
-    let m = this.dateTime.getMonth() + 1
-    let month = ""
-
-    // generate switch statement to choose month
-    switch (m) {
-      case 1: month = 'Januari'; break
-      case 2: month = 'Februari'; break
-      case 3: month = 'Maret'; break
-      case 4: month = 'April'; break
-      case 5: month = 'Mei'; break
-      case 6: month = 'Juni'; break
-      case 7: month = 'Juli'; break
-      case 8: month = 'Agustus'; break
-      case 9: month = 'September'; break
-      case 10: month = 'Oktober'; break
-      case 11: month = 'November'; break
-      case 12: month = 'Desember'; break
-    }
-    return month
-  }
-  dateClas: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
+  
+  dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     let markedDates: Array<number> = []
     // console.log(this.attendances)
     this.attendances.map(attendance => {
