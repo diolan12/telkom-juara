@@ -17,6 +17,7 @@ export class AttendanceComponent implements OnInit {
   isAttend: boolean = false
 
   selected: Date | null = null;
+  text: string = '';
 
   dateTime: Date
 
@@ -39,6 +40,21 @@ export class AttendanceComponent implements OnInit {
     this.initData()
   }
 
+  select(event: Date | null) {
+    // this.dateTime = event
+    // this.render()
+    if (event != null) {
+      this.attendances.some(attendance => {
+        if (event.getDate() == attendance.getDate() && event.getMonth() == attendance.getMonth() && event.getFullYear() == attendance.getFullYear()) {
+          this.text = "Anda absen pada jam " + attendance.toLocaleTimeString('id-ID', { hour12: false })
+          return true
+        } else {
+          this.text = ''
+          return false
+        }
+      })
+    }
+  }
   private async initData() {
     await this.authService.account().then(account => {
       this.account = account
@@ -46,7 +62,7 @@ export class AttendanceComponent implements OnInit {
     await this.attendanceService.get(this.account?.id).then(attendances => {
       attendances.map(attendance => {
         // console.log(attendance.created_at)
-        let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString()) 
+        let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString())
         let local = this.datetimeService.UTCtoLocal(utc)
         this.attendances.push(local)
         // console.log(utc.toISOString())
@@ -55,8 +71,6 @@ export class AttendanceComponent implements OnInit {
           this.isAttend = true
         }
       })
-      // this.attendances = attendances
-      // this.calendar.dateClass = this.dateClas
     })
     this.render()
     console.log(this.attendances)
@@ -64,36 +78,35 @@ export class AttendanceComponent implements OnInit {
   render() {
     this.calendar.dateClass = this.dateClass
     this.calendar.updateTodaysDate()
-    
+
   }
   roleCall() {
     let data = {
       account: this.account!.id
     }
     this.attendanceService.create(data).then((response) => {
-      this.toastr.success("Anda absen pada tanggal "+this.datetimeService.UTCtoLocal(new Date(response.created_at)).toLocaleDateString(), "Berhasil Absen")
+      this.toastr.success("Anda absen pada tanggal " + this.datetimeService.UTCtoLocal(new Date(response.created_at)).toLocaleDateString(), "Berhasil Absen")
     }).catch((response) => {
-      this.toastr.error("Server error: "+response.message, "Gagal Absen")
+      this.toastr.error("Server error: " + response.message, "Gagal Absen")
     }).finally(() => {
       this.render()
       // window.location.reload()
       this.initData()
     })
   }
-  
+
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     let markedDates: Array<number> = []
     // console.log(this.attendances)
     this.attendances.map(attendance => {
-      if(cellDate.getMonth() === attendance.getMonth()) {
+      if (cellDate.getMonth() === attendance.getMonth()) {
         markedDates.push(attendance.getDate())
         // console.log(attendance.getDate())
       }
     })
-    if (view === 'month' ) {
+    if (view === 'month') {
       const date = cellDate.getDate();
 
-      // Highlight the 1st and 20th day of each month.
       return markedDates.includes(date) ? 'marked-date' : '';
       // return date === 1 || date === 20 ? 'marked-date' : '';
     }
