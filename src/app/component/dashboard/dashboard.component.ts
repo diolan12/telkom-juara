@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     });
     this.router.events.subscribe(() => {
       this.routerUrlParamCount = this.router.url.split('/').length
-      console.log(this.routerUrlParamCount)
+      // console.log(this.routerUrlParamCount)
     })
   }
 
