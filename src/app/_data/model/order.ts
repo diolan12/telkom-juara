@@ -17,7 +17,7 @@ export interface Order {
     doc_house: string | null;
     doc_house_taken_at: string | null;
     photo: Array<OrderPhoto>;
-    created_at: Date;
+    created_at: string;
 }
 
 export class OrderDTO {

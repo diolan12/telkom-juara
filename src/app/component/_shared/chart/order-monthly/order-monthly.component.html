@@ -1,0 +1,4 @@
+<div nz-col nzSpan="12">
+    <h4> Grafik Order Bulan {{datetimeService.getMonthName(today.getMonth())}}</h4>
+    <div id="chart2" echarts [options]="monthlyChart" [merge]="updateMonthly" [loading]="isLoading" theme="macarons"></div>
+</div>

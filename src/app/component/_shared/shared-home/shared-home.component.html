@@ -1,11 +1,20 @@
 <h3>Beranda</h3>
-
+<div fxLayout="column" fxLayoutAlign="space-between space-between" fxLayoutGap="20px">
+    <mat-card>
+        <app-order-weekly></app-order-weekly>
+    </mat-card>
+</div>
+<br/>
+<div fxLayout="column" fxLayoutAlign="space-between space-between" fxLayoutGap="20px">
+    <mat-card>
+        <app-order-monthly></app-order-monthly>
+    </mat-card>
+</div>
 <br />
-<mat-divider></mat-divider>
-<br />
-
-<div>
-    Line Charts
+<div fxLayout="column" fxLayoutAlign="space-between space-between" fxLayoutGap="20px">
+    <mat-card>
+        <app-order-yearly></app-order-yearly>
+    </mat-card>
 </div>
 
 <br />
@@ -13,17 +22,13 @@
 <br />
 
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stat-card">
-    <mat-card fxFlex="25">
-        <div fxLayoutGaps="20px">Line Charts</div>
+    <mat-card fxFlex="50" fxFlex.gt-sm="100">
+        <div fxLayoutGaps="20px">
+            <app-order-service-yearly></app-order-service-yearly>
+        </div>
     </mat-card>
-    <mat-card fxFlex="25">
-        <div>Line Charts</div>
-    </mat-card>
-    <mat-card fxFlex="25">
-        <div>Line Charts</div>
-    </mat-card>
-    <mat-card fxFlex="25">
-        <div>Line Charts</div>
+    <mat-card fxFlex="50">
+        <app-order-service-monthly></app-order-service-monthly>
     </mat-card>
 </div>
 

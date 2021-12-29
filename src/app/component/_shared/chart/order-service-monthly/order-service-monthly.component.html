@@ -1,0 +1,4 @@
+<div nz-col nzSpan="6">
+    <h4> Trending Persentase Layanan Bulan {{datetimeService.getMonthName(today.getMonth())}} </h4>
+    <div id="chart2" echarts [options]="monthlyChart" [merge]="updateMonthlyPie" [loading]="isLoading" theme="macarons"></div>
+</div>

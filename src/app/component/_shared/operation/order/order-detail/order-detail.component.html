@@ -121,7 +121,7 @@
                         <mat-grid-tile-header fxLayout="column">
                             <p>{{tile.description}}</p>
                         </mat-grid-tile-header>
-                        <img mat-card-image *ngIf="tile.file != null" [src]="tile.file" />
+                        <img mat-card-image *ngIf="tile.file != null" [src]="tile.file" alt="" />
                         <mat-grid-tile-footer fxLayoutAlign="space-around center">
                             <p *ngIf="order.status == 'archived'">{{parseLocale(tile.created_at)}}</p>
                             <button *ngIf="order.status != 'archived'" mat-button color="accent" (click)="detailDocDialog(tile)">Detail</button>
@@ -155,11 +155,11 @@
                         <mat-icon [fxHide]="order.doc_customer != null" aria-hidden="false" aria-label="Example home icon">check_box_outline_blank</mat-icon>
                         <span>Foto dengan pelanggan</span>
                     </div>
-                    <img *ngIf="order.doc_customer != null" src="{{order.doc_customer}}" />
+                    <img *ngIf="order.doc_customer != null" src="{{order.doc_customer}}" alt="Foto dengan pelanggan" />
 
                     <p fxLayoutAlign="center" *ngIf="order.doc_customer_taken_at != null">foto di upload pada: {{order.doc_customer_taken_at}}</p>
 
-                    <input fxHide #doc_customer mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustPotrait(order, $event)" />
+                    <input placeholder="upload" fxHide #doc_customer mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustPotrait(order, $event)" />
                     <button fxHide [fxShow]="order.status == 'completed' && user.role > 1" mat-stroked-button color="accent" (click)="doc_customer.click()">Upload Foto</button>
                 </div>
                 <div fxFlex.sm="49" fxFlex="29" fxLayout="column" fxLayoutAlign="space-evenly space-around">
@@ -168,11 +168,11 @@
                         <mat-icon [fxHide]="order.doc_house != null" aria-hidden="false" aria-label="Example home icon">check_box_outline_blank</mat-icon>
                         <span>Foto rumah pelanggan</span>
                     </div>
-                    <img *ngIf="order.doc_house != null" src="{{order.doc_house}}" />
+                    <img *ngIf="order.doc_house != null" src="{{order.doc_house}}" alt="Foto rumah pelanggan" />
 
                     <p fxLayoutAlign="center" *ngIf="order.doc_house_taken_at != null">foto di upload pada: {{order.doc_house_taken_at}}</p>
 
-                    <input fxHide #doc_house mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustHouse(order, $event)" />
+                    <input placeholder="upload" fxHide #doc_house mat-flat-button color="primary" accept="image/*" type="file" (change)="uploadCustHouse(order, $event)" />
                     <button fxHide [fxShow]="order.status == 'completed' && user.role > 1" mat-stroked-button color="accent" (click)="doc_house.click()">Upload Foto</button>
                 </div>
             </div>

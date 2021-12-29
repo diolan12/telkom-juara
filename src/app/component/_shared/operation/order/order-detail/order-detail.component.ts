@@ -8,6 +8,7 @@ import { Order, OrderDTO } from 'src/app/_data/model/order';
 import { OrderPhoto } from 'src/app/_data/model/order-photo';
 import { OrderService } from 'src/app/_data/repository/order/order.service';
 import { AuthService } from 'src/app/_data/service/auth.service';
+import { DatetimeService } from 'src/app/_data/service/datetime/datetime.service';
 import { environment } from 'src/environments/environment';
 import { OrderPhotoDialogComponent } from './order-photo-dialog/order-photo-dialog.component';
 
@@ -37,6 +38,7 @@ export class OrderDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private datetimeService: DatetimeService,
     public orderService: OrderService,
     changeDetectorRef: ChangeDetectorRef,
     mediaMatcher: MediaMatcher,
@@ -156,14 +158,14 @@ export class OrderDetailComponent implements OnInit {
       this.ngOnInit();
     })
   }
-  parseLocale(datetime: Date){
-    return new Date(datetime).toLocaleString()
+  parseLocale(datetime: string){
+    return this.datetimeService.UTCStringtoLocal(datetime).toLocaleString()
   }
-  parseLocaleDate(datetime: Date){
-    return new Date(datetime).toLocaleDateString()
+  parseLocaleDate(datetime: string){
+    return this.datetimeService.UTCStringtoLocal(datetime).toLocaleDateString()
   }
-  parseLocaleTime(datetime: Date){
-    return new Date(datetime).toLocaleTimeString()
+  parseLocaleTime(datetime: string){
+    return this.datetimeService.UTCStringtoLocal(datetime).toLocaleTimeString()
   }
   newDocDialog(orderId: number) {
     const newDialogRef = this.dialog.open(OrderPhotoDialogComponent, {

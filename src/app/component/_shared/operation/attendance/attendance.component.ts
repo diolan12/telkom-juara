@@ -62,8 +62,8 @@ export class AttendanceComponent implements OnInit {
     await this.attendanceService.get(this.account?.id).then(attendances => {
       attendances.map(attendance => {
         // console.log(attendance.created_at)
-        let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString())
-        let local = this.datetimeService.UTCtoLocal(utc)
+        // let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString())
+        let local = this.datetimeService.UTCStringtoLocal(attendance.created_at)
         this.attendances.push(local)
         // console.log(utc.toISOString())
         // console.log(local.toString())

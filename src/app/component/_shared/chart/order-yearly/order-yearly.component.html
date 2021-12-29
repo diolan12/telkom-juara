@@ -1,0 +1,4 @@
+<div nz-col nzSpan="12">
+    <h4> Grafik Order Tahun {{today.getFullYear()}} </h4>
+    <div #yearly id="chart1" echarts [options]="yearlyChart" [merge]="updateYearly" [loading]="isLoading" class="demo-chart" theme="macarons"></div>
+</div>

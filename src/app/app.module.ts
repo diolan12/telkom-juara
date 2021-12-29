@@ -11,6 +11,9 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 // ToastrModule
 import { ToastrModule } from 'ngx-toastr';
 
+// Ngx-Echarts
+import { NgxEchartsModule } from 'ngx-echarts';
+
 // Material design modules
 import { MatNativeDateModule } from '@angular/material/core'
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -71,15 +74,15 @@ import { ServiceComponent } from './component/_shared/operation/service/service.
 import { OrderDialogComponent } from './component/_shared/operation/order/dialog/order-dialog/order-dialog.component';
 import { OrderDetailComponent } from './component/_shared/operation/order/order-detail/order-detail.component';
 import { OrderPhotoDialogComponent } from './component/_shared/operation/order/order-detail/order-photo-dialog/order-photo-dialog.component';
+import { OrderYearlyComponent } from './component/_shared/chart/order-yearly/order-yearly.component';
+import { OrderMonthlyComponent } from './component/_shared/chart/order-monthly/order-monthly.component';
+import { OrderWeeklyComponent } from './component/_shared/chart/order-weekly/order-weekly.component';
+import { OrderServiceMonthlyComponent } from './component/_shared/chart/order-service-monthly/order-service-monthly.component';
+import { OrderServiceYearlyComponent } from './component/_shared/chart/order-service-yearly/order-service-yearly.component';
 
 
 const materialModules = [
 	MatNativeDateModule,
-	CdkTreeModule,
-	ClipboardModule,
-	FlexLayoutModule,
-	FormsModule,
-	ReactiveFormsModule,
 	MatFormFieldModule,
 	MatCardModule,
 	MatIconModule,
@@ -129,7 +132,12 @@ const materialModules = [
 		ServiceDialogComponent,
 		OrderDialogComponent,
 		OrderDetailComponent,
-		OrderPhotoDialogComponent
+		OrderPhotoDialogComponent,
+  OrderYearlyComponent,
+  OrderMonthlyComponent,
+  OrderWeeklyComponent,
+  OrderServiceMonthlyComponent,
+  OrderServiceYearlyComponent
 	],
 	imports: [
 		BrowserModule,
@@ -144,7 +152,15 @@ const materialModules = [
 
 		BrowserAnimationsModule,
 		ToastrModule.forRoot(),
-		materialModules
+		CdkTreeModule,
+		ClipboardModule,
+		FlexLayoutModule,
+		FormsModule,
+		ReactiveFormsModule,
+		materialModules,
+		NgxEchartsModule.forRoot({
+			echarts: () => import('echarts')
+		})
 	],
 	providers: [
 		{

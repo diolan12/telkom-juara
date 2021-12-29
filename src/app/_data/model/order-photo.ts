@@ -5,9 +5,9 @@ export interface OrderPhoto {
     order: number;
     file: string | null;
     description: string;
-    created_at: Date;
-    updated_at: Date | null;
-    deleted_at: Date | null;
+    created_at: string;
+    updated_at: string | null;
+    deleted_at: string | null;
 }
 
 export class OrderPhotoDTO {
