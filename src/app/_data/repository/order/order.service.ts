@@ -14,7 +14,7 @@ export class OrderService {
 
   // function to get all orders return type promise of order array
   // require parameters of nullable id and string status
-  get<T>(uid: string | null = null, status: string | null = null): Promise<T> {
+  get<T>(uid: string | null = null, status: string | null = null, field: number | null = null): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       // blank url then decide whether id is null or not
       // if id is null then get all account
@@ -26,13 +26,11 @@ export class OrderService {
         } else {
           url = environment.apiUrl + '/api/order?relation&clean';
         }
+        if (field !== null) {
+          url += '&where=field.is.' + field;
+        }
       } else {
-        url = environment.apiUrl + '/api/order?where=uid.is.' + uid + '&relation';
-        this.http.get<T>(url).toPromise()
-          .then(response => {
-            resolve(response)
-          })
-          .catch(err => { reject(err) })
+        url = environment.apiUrl + '/api/order?relation&where=uid.is.' + uid;
       }
       this.http.get<T>(url).toPromise()
         .then(response => {
