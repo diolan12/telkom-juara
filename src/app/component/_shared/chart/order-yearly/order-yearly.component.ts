@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
+import { Account } from 'src/app/_data/model/account';
 import { Order } from 'src/app/_data/model/order';
 import { OrderService } from 'src/app/_data/repository/order/order.service';
+import { AuthService } from 'src/app/_data/service/auth.service';
 import { DatetimeService } from 'src/app/_data/service/datetime/datetime.service';
 
 @Component({
@@ -11,6 +13,7 @@ import { DatetimeService } from 'src/app/_data/service/datetime/datetime.service
 })
 export class OrderYearlyComponent implements AfterViewInit {
 
+  account: Account | null = null;
   today: Date;
   isLoading = true
 
@@ -18,7 +21,11 @@ export class OrderYearlyComponent implements AfterViewInit {
   
   updateYearly: any
   async initYearlyCharts() {
-    await this.orderService.get<Array<Order>>().then((orders: Order[]) => {
+    let field: number | null = null
+    if (this.account?.role === 2) {
+      field = this.account.id
+    }
+    await this.orderService.get<Array<Order>>(null, null, field).then((orders: Order[]) => {
       orders.forEach((order: Order) => {
         let local = this.datetimeService.UTCStringtoLocal(order.created_at)
         if (local.getFullYear() === this.today.getFullYear()) {
@@ -37,14 +44,20 @@ export class OrderYearlyComponent implements AfterViewInit {
     })
   }
   constructor(
+    private authService: AuthService,
     private datetimeService: DatetimeService,
     private orderService: OrderService
   ) {
     this.today = new Date();
+    this.authService.account().then((account: Account) => {
+      this.account = account
+    })
   }
   ngAfterViewInit(): void {
     this.isLoading = true
-    this.initYearlyCharts()
+    if (this.account !== null) {
+      this.initYearlyCharts()
+    }
   }
 
   yearlyChart: EChartsOption = {
