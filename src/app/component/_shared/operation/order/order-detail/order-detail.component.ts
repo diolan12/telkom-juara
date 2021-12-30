@@ -150,6 +150,9 @@ export class OrderDetailComponent implements OnInit {
       customer: order.customer.id,
       service: order.service.id,
     }
+    if (status === 'archived') {
+      o.field = order.field!.id
+    }
     this.orderService.update(order.id, o).then((response) => {
 
     }).catch((error) => {
