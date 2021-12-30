@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OrderPhoto, OrderPhotoDTO } from 'src/app/_data/model/order-photo';
 import { OrderPhotoService } from 'src/app/_data/repository/order-photo/order-photo.service';
@@ -12,9 +13,11 @@ import { OrderPhotoService } from 'src/app/_data/repository/order-photo/order-ph
 })
 export class OrderPhotoDialogComponent implements OnInit {
 
+  orderUniqueID: string = '';
   orderPhotoFormGroup: FormGroup;
 
   constructor(
+    private router: Router,
     private orderPhotoService: OrderPhotoService,
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<OrderPhotoDialogComponent>,
@@ -29,6 +32,7 @@ export class OrderPhotoDialogComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.orderUniqueID = this.router.url.split('/')[4]
   }
   create() {
     if (this.orderPhotoFormGroup.invalid) {
@@ -67,7 +71,7 @@ export class OrderPhotoDialogComponent implements OnInit {
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
 
-    this.orderPhotoService.upload(orderPhoto.id, 'file', orderPhoto, event.target.files[0]).then((response) => {
+    this.orderPhotoService.upload(orderPhoto.id, this.orderUniqueID, orderPhoto, event.target.files[0]).then((response) => {
       console.log(response);
       this.toastr.success('Dokumentasi diperbarui', 'Berhasil mengupload foto');
     }).catch((error) => {

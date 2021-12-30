@@ -14,14 +14,14 @@ export class OrderPhotoDTO {
     public static postValidator(data: OrderPhoto) {
         return {
             order: [data.order, [Validators.required]],
-            description: ['', [Validators.required, Validators.maxLength(32)]]
+            description: ['', [Validators.required, Validators.maxLength(12)]]
         }
     }
 
     public static putValidator(data: OrderPhoto) {
         return {
             order: [data.order, [Validators.required]],
-            description: [data.description, [Validators.required, Validators.maxLength(32)]]
+            description: [data.description, [Validators.required, Validators.maxLength(12)]]
         }
     }
 }
