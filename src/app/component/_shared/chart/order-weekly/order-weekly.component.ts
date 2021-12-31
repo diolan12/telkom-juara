@@ -29,7 +29,7 @@ export class OrderWeeklyComponent implements AfterViewInit {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
-        type: 'shadow',
+        type: 'cross',
       },
     },
     xAxis: [
@@ -43,7 +43,9 @@ export class OrderWeeklyComponent implements AfterViewInit {
     ],
     yAxis: [
       {
+        name: 'Order masuk',
         type: 'value',
+        minInterval: 0
       },
     ],
     series: [

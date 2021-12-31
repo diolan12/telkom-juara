@@ -24,6 +24,7 @@ export class OrderServiceYearlyComponent implements AfterViewInit {
     //   subtext: 'Tahun',
     //   left: 'center'
     // },
+    // legend: {},
     tooltip: {
       trigger: 'item'
     },

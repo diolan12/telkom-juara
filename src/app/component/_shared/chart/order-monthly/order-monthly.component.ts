@@ -26,7 +26,7 @@ export class OrderMonthlyComponent implements AfterViewInit {
     tooltip: {
       trigger: 'axis',
       axisPointer: {
-        type: 'shadow',
+        type: 'cross',
       },
     },
     xAxis: [
@@ -38,7 +38,13 @@ export class OrderMonthlyComponent implements AfterViewInit {
         },
       },
     ],
-    yAxis: {},
+    yAxis: [
+      {
+        name: 'Order masuk',
+        type: 'value',
+        minInterval: 0
+      },
+    ],
     series: [
       {
         name: 'Order per hari',

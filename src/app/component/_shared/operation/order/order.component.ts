@@ -59,7 +59,11 @@ export class OrderComponent implements OnInit, AfterViewInit {
   }
 
   async getOrder(control: string | null) {
-    await this.orderService.get<Array<Order>>(null, control).then((orders: Array<Order>) => {
+    let field = null
+    if (this.user?.role === 2) {
+      // field = this.user.id
+    }
+    await this.orderService.get<Array<Order>>(null, control, field).then((orders: Array<Order>) => {
       this.dataSource.data = orders;
     }).catch((error) => {
 

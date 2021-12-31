@@ -81,11 +81,16 @@ export class OrderYearlyComponent implements AfterViewInit {
         axisTick: {
           alignWithLabel: true,
         },
+        axisLabel: {
+          rotate: 45
+        },
       },
     ],
     yAxis: [
       {
+        name: 'Order masuk',
         type: 'value',
+        minInterval: 0
       },
     ],
     series: [
