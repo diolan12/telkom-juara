@@ -22,8 +22,11 @@
 
     <mat-expansion-panel role="listitem" *ngFor="let order of dataSource.data; let i = index">
         <mat-expansion-panel-header fxLayout="row">
-            <mat-panel-title>
+            <mat-panel-title *ngIf="order.customer != null">
                 {{order.uid}} - ({{order.customer.name}})
+            </mat-panel-title>
+            <mat-panel-title *ngIf="order.customer == null" color="warn" class="red-text">
+                Data pelanggan dihapus
             </mat-panel-title>
             <mat-panel-description fxLayoutAlign="end">
                 <i>{{orderService.getStatusDisplay(order.status)}}</i>
@@ -35,6 +38,7 @@
                 <p *ngIf="order.field != null">Dikerjakan oleh: {{order.field.name}}</p>
                 <p>Layanan: {{order.service.name}}</p>
             </div>
+
             <div fxLayout="row" fxLayoutAlign="space-evenly center">
                 <div>
                     <img [fxShow]="order.doc_customer != null" width="200" [src]="order.doc_customer" />
@@ -43,7 +47,7 @@
                     <img [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" />
                 </div>
             </div>
-            <div fxFlexAlign="end">
+            <div fxFlexAlign="end" *ngIf="order.customer != null">
                 <a [routerLink]="[order.uid]" mat-button color="accent">Lihat detail</a>
 
             </div>
