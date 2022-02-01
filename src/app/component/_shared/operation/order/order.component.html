@@ -34,15 +34,13 @@
                 <p>Diterima oleh: {{order.office.name}}</p>
                 <p *ngIf="order.field != null">Dikerjakan oleh: {{order.field.name}}</p>
                 <p>Layanan: {{order.service.name}}</p>
-
-                <button fxHide type="file" mat-flat-button color="primary">Primary</button>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-evenly center">
                 <div>
-                    <img fxHide [fxShow]="order.doc_customer != null" width="200" [src]="order.doc_customer" />
+                    <img [fxShow]="order.doc_customer != null" width="200" [src]="order.doc_customer" />
                 </div>
                 <div>
-                    <img fxHide [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" />
+                    <img [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" />
                 </div>
             </div>
             <div fxFlexAlign="end">
