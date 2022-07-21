@@ -16,7 +16,7 @@ export class AttendanceService {
     if (account === null) {
       url = environment.apiUrl + '/api/attendance?relation'
     } else {
-      url = environment.apiUrl + '/api/attendance?relation&where=account.is.' + account
+      url = environment.apiUrl + '/api/attendance?relation&where=account.is.' + account + '&clean'
     }
     return new Promise<Array<Attendance>>((resolve, reject) => {
       this.http.get<Array<Attendance>>(url).toPromise()
