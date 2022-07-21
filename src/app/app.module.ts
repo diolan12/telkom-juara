@@ -79,6 +79,7 @@ import { OrderMonthlyComponent } from './component/_shared/chart/order-monthly/o
 import { OrderWeeklyComponent } from './component/_shared/chart/order-weekly/order-weekly.component';
 import { OrderServiceMonthlyComponent } from './component/_shared/chart/order-service-monthly/order-service-monthly.component';
 import { OrderServiceYearlyComponent } from './component/_shared/chart/order-service-yearly/order-service-yearly.component';
+import { WidgetAttendanceComponent } from './component/_shared/chart/widget-attendance/widget-attendance.component';
 
 
 const materialModules = [
@@ -137,7 +138,8 @@ const materialModules = [
   OrderMonthlyComponent,
   OrderWeeklyComponent,
   OrderServiceMonthlyComponent,
-  OrderServiceYearlyComponent
+  OrderServiceYearlyComponent,
+  WidgetAttendanceComponent
 	],
 	imports: [
 		BrowserModule,
