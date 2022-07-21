@@ -24,6 +24,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
 
   user: Account | null = null;
 
+  filter: any = null
+
   dataSource = new MatTableDataSource<Order>();
 
   constructor(
@@ -55,7 +57,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
 
   async init() {
     let con = (this.orderFilter.value.options == 'all') ? null : this.orderFilter.value.options
-    await this.getOrder(con);
+    this.getOrder(con);
   }
 
   async getOrder(control: string | null) {
@@ -66,7 +68,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
     await this.orderService.get<Array<Order>>(null, control, field).then((orders: Array<Order>) => {
       this.dataSource.data = orders;
     }).catch((error) => {
-
+      this.toastr.error(error.message, 'Error memuat data order');
     })
   }
 
@@ -91,6 +93,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
   createOrder(orderDto: OrderDTO) {
     this.orderService.create(orderDto).then((response) => {
       this.toastr.success('Order terdaftar', 'Sukses membuat order');
+      let con = (this.orderFilter.value.options == 'all') ? null : this.orderFilter.value.options
+      this.getOrder(con);
     }).catch((error) => {
       this.toastr.error(error.message, 'Error membuat order');
     });
