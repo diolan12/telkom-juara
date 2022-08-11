@@ -83,7 +83,7 @@ export class OrderMonthlyComponent implements AfterViewInit {
     }
     await this.orderService.get<Array<Order>>(null, null, field).then((orders: Order[]) => {
       orders.forEach((order: Order) => {
-        let local = this.datetimeService.UTCStringtoLocal(order.created_at)
+        let local = this.datetimeService.parse(order.created_at)
         if (this.today.getMonth() === local.getMonth() && this.today.getFullYear() === local.getFullYear()) {
           this.monthlyStats[local.getDate()-1] += 1
         }
