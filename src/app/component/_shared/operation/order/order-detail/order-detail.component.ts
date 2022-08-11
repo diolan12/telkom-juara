@@ -162,13 +162,13 @@ export class OrderDetailComponent implements OnInit {
     })
   }
   parseLocale(datetime: string){
-    return this.datetimeService.UTCStringtoLocal(datetime).toLocaleString()
+    return this.datetimeService.parse(datetime).toLocaleString()
   }
   parseLocaleDate(datetime: string){
-    return this.datetimeService.UTCStringtoLocal(datetime).toLocaleDateString()
+    return this.datetimeService.parse(datetime).toLocaleDateString()
   }
   parseLocaleTime(datetime: string){
-    return this.datetimeService.UTCStringtoLocal(datetime).toLocaleTimeString()
+    return this.datetimeService.parse(datetime).toLocaleTimeString()
   }
   newDocDialog(orderId: number) {
     const newDialogRef = this.dialog.open(OrderPhotoDialogComponent, {
