@@ -22,7 +22,7 @@ export class OrderService {
       let url = '';
       if (uid === null) {
         if (status !== null) {
-          url = environment.apiUrl + '/api/order?relation&clean&where=status.is.' + status;
+          url = environment.apiUrl + '/api/order?relation&clean&where=status.is.' + status + '&orderBy=updated_at-desc';
         } else {
           url = environment.apiUrl + '/api/order?relation&clean';
         }
