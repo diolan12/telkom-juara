@@ -46,7 +46,8 @@ export class AttendanceComponent implements OnInit {
     if (event != null) {
       this.attendances.some(attendance => {
         if (event.getDate() == attendance.getDate() && event.getMonth() == attendance.getMonth() && event.getFullYear() == attendance.getFullYear()) {
-          this.text = "Anda absen pada jam " + attendance.toLocaleTimeString('id-ID', { hour12: false })
+          this.text = "Anda absen pada " + this.datetimeService.timeStringFormat(attendance)
+      this.toastr.success("Anda absen pada " + this.datetimeService.timeStringFormat(attendance), this.datetimeService.dateStringFormat(attendance))
           return true
         } else {
           this.text = ''
@@ -61,12 +62,12 @@ export class AttendanceComponent implements OnInit {
     })
     await this.attendanceService.get(this.account?.id).then(attendances => {
       attendances.map(attendance => {
-        // console.log(attendance.created_at)
+        console.log(attendance.created_at)
         // let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString())
-        let local = this.datetimeService.UTCStringtoLocal(attendance.created_at)
+        let local = new Date(attendance.created_at)//this.datetimeService.UTCStringtoLocal(attendance.created_at)
         this.attendances.push(local)
         // console.log(utc.toISOString())
-        // console.log(local.toString())
+        console.log(local.toString())
         if (local.getDate() == this.dateTime.getDate() && local.getMonth() == this.dateTime.getMonth() && local.getFullYear() == this.dateTime.getFullYear()) {
           this.isAttend = true
         }
@@ -75,6 +76,7 @@ export class AttendanceComponent implements OnInit {
     this.render()
     console.log(this.attendances)
   }
+  
   render() {
     this.calendar.dateClass = this.dateClass
     this.calendar.updateTodaysDate()
@@ -85,7 +87,7 @@ export class AttendanceComponent implements OnInit {
       account: this.account!.id
     }
     this.attendanceService.create(data).then((response) => {
-      this.toastr.success("Anda absen pada tanggal " + this.datetimeService.UTCtoLocal(new Date(response.created_at)).toLocaleDateString(), "Berhasil Absen")
+      this.toastr.success("Anda absen pada tanggal " + this.datetimeService.parse(response.created_at).toLocaleDateString(), "Berhasil Absen")
     }).catch((response) => {
       this.toastr.error("Server error: " + response.message, "Gagal Absen")
     }).finally(() => {
