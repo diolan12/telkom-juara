@@ -8,12 +8,12 @@
                 </div>
                 <mat-card-header>
                     <mat-card-title>
-                        <h1>{{account?.name}}</h1>
+                        <h1><b>{{account?.name}}</b> ({{role}})</h1>
                     </mat-card-title>
                     <mat-card-subtitle>{{account?.email}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                    <p>Profile works!</p>
+                    <!-- <p>Profile works!</p> -->
                 </mat-card-content>
             </mat-card>
         </div>
@@ -56,9 +56,9 @@
             <mat-card fxLayout="column">
                 <mat-card-header>
                     <mat-card-title>
-                        <h1>{{account?.name}}</h1>
+                        <h1><b>{{account.name}}</b> ({{account.role}})</h1>
                     </mat-card-title>
-                    <mat-card-subtitle>{{account?.email}}</mat-card-subtitle>
+                    <mat-card-subtitle>{{account.email}}</mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
                     <div class="profile-card-container">
