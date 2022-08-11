@@ -14,14 +14,15 @@
 }
 
 .profile {
-    position: absolute;
-    left: 33%;
-    right: 32%;
-    bottom: 0;
-    width: 128px;
-    height: 128px;
-    object-fit: cover;
+    display: block;
+    position: fixed;
+    left: 50%;
+    right: 50%;
+    margin: 0;
+    z-index: 1;
+    width: 180px;
     border-radius: 50%;
+    transform: translate(-50%, -105%);
 }
 
 @media only screen and (max-width: 768px) {
