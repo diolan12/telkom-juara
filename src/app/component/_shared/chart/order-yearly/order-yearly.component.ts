@@ -27,7 +27,7 @@ export class OrderYearlyComponent implements AfterViewInit {
     }
     await this.orderService.get<Array<Order>>(null, null, field).then((orders: Order[]) => {
       orders.forEach((order: Order) => {
-        let local = this.datetimeService.UTCStringtoLocal(order.created_at)
+        let local = this.datetimeService.parse(order.created_at)
         if (local.getFullYear() === this.today.getFullYear()) {
           this.yearlyStats[local.getMonth()] += 1
         }
