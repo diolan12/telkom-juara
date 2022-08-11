@@ -9,21 +9,21 @@ export class DatetimeService {
   constructor() {
     this.dateTime = new Date();
   }
-  UTCtoLocal(date: Date): Date {
-    var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-
-    var offset = this.dateTime.getTimezoneOffset() / 60;
-    var hours = date.getHours();
-
-    newDate.setHours(hours - offset);
-
-    return newDate;
+  parse(i18nDatetime: string): Date {
+    return new Date(i18nDatetime);
   }
-  UTCStringtoLocal(stringDate: string): Date {
-    let utc = new Date(new Date(Date.parse(stringDate)).toISOString())
-    let date = this.UTCtoLocal(utc)
-
-    return date;
+  
+  timeStringFormat(date: Date | string): string{
+    if (typeof date === 'string') {
+      date = this.parse(date)
+    }
+    return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
+  }
+  dateStringFormat(date: Date): string {
+    if (typeof date === 'string') {
+      date = this.parse(date)
+    }
+    return this.getDayName(date.getDay()) + ', ' + date.getDate() + ' ' + this.getMonthName(date.getMonth()) + ' ' + date.getFullYear();
   }
   
 
