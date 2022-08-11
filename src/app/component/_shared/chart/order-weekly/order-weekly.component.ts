@@ -83,7 +83,7 @@ export class OrderWeeklyComponent implements AfterViewInit {
     }
     await this.orderService.get<Array<Order>>(null, null, field).then((orders: Order[]) => {
       orders.forEach((order: Order) => {
-        let local = this.datetimeService.UTCStringtoLocal(order.created_at)
+        let local = this.datetimeService.parse(order.created_at)
         if (this.today.getMonth() === local.getMonth() && this.today.getFullYear() === local.getFullYear()) {
           if (local.getDate() >= this.startOfTheWeek && local.getDate() <= this.startOfTheWeek + 6) {
             this.weeklyStats[local.getDate() - this.startOfTheWeek] += 1
