@@ -32,9 +32,9 @@ export class WidgetAttendanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.initData()
-    this.text = "Pukul "+ this.dateTime.toLocaleTimeString('id-ID', { hour12: false })
+    this.text = "Pukul "+ this.datetimeService.timeStringFormat(this.dateTime)
     if (this.isAttend) {
-      this.text = "Anda absen pada jam " + this.dateTime.toLocaleTimeString('id-ID', { hour12: false })
+      this.text = "Anda absen pada jam " + this.datetimeService.timeStringFormat(this.dateTime)
     } else {
       this.text = 'Anda belum absen'
     }
@@ -48,7 +48,7 @@ export class WidgetAttendanceComponent implements OnInit {
       attendances.map(attendance => {
         // console.log(attendance.created_at)
         // let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString())
-        let local = this.datetimeService.UTCStringtoLocal(attendance.created_at)
+        let local = this.datetimeService.parse(attendance.created_at)
         this.attendances.push(local)
         // console.log(utc.toISOString())
         // console.log(local.toString())
