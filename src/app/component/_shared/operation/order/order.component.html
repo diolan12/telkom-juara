@@ -41,10 +41,10 @@
 
             <div fxLayout="row" fxLayoutAlign="space-evenly center">
                 <div>
-                    <img [fxShow]="order.doc_customer != null" width="200" [src]="order.doc_customer" />
+                    <img [fxShow]="order.doc_customer != null" width="200" [src]="order.doc_customer" alt="foto dengan pelanggan" />
                 </div>
                 <div>
-                    <img [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" />
+                    <img [fxShow]="order.doc_house != null" width="200" [src]="order.doc_house" alt="foto rumah pelanggan" />
                 </div>
             </div>
             <div fxFlexAlign="end" *ngIf="order.customer != null">

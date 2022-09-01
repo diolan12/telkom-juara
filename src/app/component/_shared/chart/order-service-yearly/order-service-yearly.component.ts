@@ -63,13 +63,15 @@ export class OrderServiceYearlyComponent implements AfterViewInit {
       let services: string[] = []
       let count: number[] = []
       orders.forEach((order: Order) => {
-        let local = this.datetimeService.parse(order.created_at)
-        if (this.today.getFullYear() === local.getFullYear()) {
-          if (!services.includes(order.service.name)) {
-            services.push(order.service.name)
-            count.push(1)
-          } else {
-            count[services.indexOf(order.service.name)] += 1
+        if (order.service != null) {
+          let local = this.datetimeService.parse(order.created_at)
+          if (this.today.getFullYear() === local.getFullYear()) {
+            if (!services.includes(order.service.name)) {
+              services.push(order.service.name)
+              count.push(1)
+            } else {
+              count[services.indexOf(order.service.name)] += 1
+            }
           }
         }
       })

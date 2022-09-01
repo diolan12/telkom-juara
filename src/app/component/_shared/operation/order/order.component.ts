@@ -66,7 +66,13 @@ export class OrderComponent implements OnInit, AfterViewInit {
       // field = this.user.id
     }
     await this.orderService.get<Array<Order>>(null, control, field).then((orders: Array<Order>) => {
-      this.dataSource.data = orders;
+      let tempOrders: Order[] = [];
+      orders.forEach((order: Order)=>{
+        if (order.service != null) {
+          tempOrders.push(order)
+        }
+      })
+      this.dataSource.data = tempOrders;
     }).catch((error) => {
       this.toastr.error(error.message, 'Error memuat data order');
     })
