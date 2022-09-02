@@ -62,19 +62,15 @@ export class AttendanceComponent implements OnInit {
     })
     await this.attendanceService.get(this.account?.id).then(attendances => {
       attendances.map(attendance => {
-        console.log(attendance.created_at)
-        // let utc = new Date(new Date(Date.parse(attendance.created_at)).toISOString())
-        let local = new Date(attendance.created_at)//this.datetimeService.UTCStringtoLocal(attendance.created_at)
+        let local = new Date(attendance.created_at)
         this.attendances.push(local)
-        // console.log(utc.toISOString())
-        console.log(local.toString())
         if (local.getDate() == this.dateTime.getDate() && local.getMonth() == this.dateTime.getMonth() && local.getFullYear() == this.dateTime.getFullYear()) {
           this.isAttend = true
+          return
         }
       })
     })
     this.render()
-    console.log(this.attendances)
   }
   
   render() {
