@@ -91,6 +91,8 @@ export class OrderComponent implements OnInit, AfterViewInit {
             this.createOrder(data);
           }
         }
+      } else {
+        this.toastr.error("input form tidak valid", 'Error membuat order');
       }
       this.init();
     });
