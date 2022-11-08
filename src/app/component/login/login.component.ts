@@ -47,7 +47,11 @@ export class LoginComponent implements OnInit {
 			this.toastr.success('Welcome', 'Login Success');
 			this.navigate('/dashboard')
 		}).catch((err) => {
-			this.toastr.error(err.message, 'Login Error');
+			if (err.status == 401) {
+				this.toastr.error(err.error.content, 'Login Error');
+			} else {
+				this.toastr.error(err, 'Login Error');
+			}
 		}).finally(() => {
 			this.isLoading = false;
 		});
