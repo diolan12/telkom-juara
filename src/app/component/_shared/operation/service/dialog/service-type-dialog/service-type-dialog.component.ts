@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceType, ServiceTypeDto } from 'src/app/_data/model/service-type';
 import { ServiceTypeService } from 'src/app/_data/repository/service-type/service-type.service';
