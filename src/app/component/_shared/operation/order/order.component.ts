@@ -1,6 +1,6 @@
 import { AfterViewInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +20,7 @@ import { OrderDialogComponent } from './dialog/order-dialog/order-dialog.compone
 export class OrderComponent implements OnInit, AfterViewInit {
 
   status: string | null = null;
-  orderFilter: FormGroup;
+  orderFilter: UntypedFormGroup;
 
   user: Account | null = null;
 
@@ -31,7 +31,7 @@ export class OrderComponent implements OnInit, AfterViewInit {
   constructor(
     private authService: AuthService,
     public orderService: OrderService,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     public dialog: MatDialog,
     private toastr: ToastrService
   ) {

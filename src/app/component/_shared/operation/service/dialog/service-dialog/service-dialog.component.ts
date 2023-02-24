@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Service, ServiceDto } from 'src/app/_data/model/service';
@@ -16,7 +16,7 @@ export class ServiceDialogComponent {
 
 
   // Service form group
-  serviceFormGroup: FormGroup;
+  serviceFormGroup: UntypedFormGroup;
 
   types: Array<ServiceType> = [];
 
@@ -26,7 +26,7 @@ export class ServiceDialogComponent {
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<ServiceDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ServiceDialogData,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
     console.log(data);
     this.types = data.serviceTypes;

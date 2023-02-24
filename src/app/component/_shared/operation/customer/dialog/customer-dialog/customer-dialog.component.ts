@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Customer, CustomerDto } from 'src/app/_data/model/customer';
@@ -13,14 +13,14 @@ import { CustomerService } from 'src/app/_data/repository/customer/customer.serv
 export class CustomerDialogComponent {
 
   // customer form group
-  customerFormGroup: FormGroup;
+  customerFormGroup: UntypedFormGroup;
 
   constructor(
     private customerService: CustomerService,
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<CustomerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Customer,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
     if (data == null) {
       this.customerFormGroup = this.formBuilder.group(CustomerDto.postValidator);

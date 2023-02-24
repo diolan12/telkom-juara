@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, UntypedFormControl, FormGroupDirective, NgForm, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 
 // account model
@@ -65,7 +65,7 @@ export interface AccountDTO {
 
 // a password error state matcher
 export class PasswordErrorStateMatcher implements ErrorStateMatcher {
-    isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    isErrorState(control: UntypedFormControl | null, form: FormGroupDirective | NgForm | null): boolean {
         const invalidCtrl = !!(control?.invalid && control?.parent?.dirty);
         const invalidParent = !!(control?.parent?.invalid && control?.parent?.dirty);
 

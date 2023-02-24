@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceType, ServiceTypeDto } from 'src/app/_data/model/service-type';
@@ -13,14 +13,14 @@ import { ServiceTypeService } from 'src/app/_data/repository/service-type/servic
 export class ServiceTypeDialogComponent {
 
   // ServiceType form group
-  serviceTypeFormGroup: FormGroup;
+  serviceTypeFormGroup: UntypedFormGroup;
 
   constructor(
     private serviceTypeService: ServiceTypeService,
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<ServiceTypeDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ServiceType,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
     if (data == null) {
       this.serviceTypeFormGroup = this.formBuilder.group(ServiceTypeDto.postValidator);

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Account, AccountDTO, PasswordErrorStateMatcher } from 'src/app/_data/model/account';
@@ -18,7 +18,7 @@ export class AccountDialogComponent {
 
   togglePassword = true;
   // account form group
-  accountFormGroup: FormGroup;
+  accountFormGroup: UntypedFormGroup;
   passwordMatcher = new PasswordErrorStateMatcher();
 
   roles: Array<Role> = [
@@ -33,7 +33,7 @@ export class AccountDialogComponent {
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<AccountDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Account,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) {
     authService.account().then(account => {
       this.account = account;

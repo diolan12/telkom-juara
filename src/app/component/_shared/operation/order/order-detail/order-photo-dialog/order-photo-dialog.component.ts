@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, FormControl, UntypedFormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,7 +14,7 @@ import { OrderPhotoService } from 'src/app/_data/repository/order-photo/order-ph
 export class OrderPhotoDialogComponent implements OnInit {
 
   orderUniqueID: string = '';
-  orderPhotoFormGroup: FormGroup;
+  orderPhotoFormGroup: UntypedFormGroup;
 
   constructor(
     private router: Router,
@@ -22,7 +22,7 @@ export class OrderPhotoDialogComponent implements OnInit {
     private toastr: ToastrService,
     public dialogRef: MatDialogRef<OrderPhotoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: OrderPhoto,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
     ) { 
       if (data.description == null) {
         this.orderPhotoFormGroup = this.formBuilder.group(OrderPhotoDTO.postValidator(data))

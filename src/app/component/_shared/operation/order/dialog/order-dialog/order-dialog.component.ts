@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Account } from 'src/app/_data/model/account';
@@ -25,12 +25,12 @@ export class OrderDialogComponent {
   status = 'pending'
 
   customers: Array<Customer> = [];
-  customerFormControl = new FormControl('customer');
+  customerFormControl = new UntypedFormControl('customer');
   filteredCustomers: Observable<Array<Customer>>;
   selectedCustomer: Customer | null = null;
 
   services: Array<Service> = [];
-  serviceFormControl = new FormControl('service');
+  serviceFormControl = new UntypedFormControl('service');
   filteredServices: Observable<Array<Service>>;
   selectedService: Service | null = null;
 

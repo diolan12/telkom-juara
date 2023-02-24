@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -17,14 +17,14 @@ export class LoginComponent implements OnInit {
 
 	isLoading = false;
 
-	authForm: FormGroup;
+	authForm: UntypedFormGroup;
 
 	constructor(
 		private zone: NgZone,
 		private toastr: ToastrService,
 		private authService: AuthService,
 		private router: Router,
-		private formBuilder: FormBuilder
+		private formBuilder: UntypedFormBuilder
 	) {
 		this.authForm = this.formBuilder.group(LoginDTO.validator)
 
