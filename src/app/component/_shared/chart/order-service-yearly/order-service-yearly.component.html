@@ -1,4 +1,10 @@
-<div nz-col nzSpan="6">
-    <h4> Trending Persentase Layanan Tahun {{today.getFullYear()}} </h4>
-    <div echarts [options]="yearlyPieChart" [merge]="updateYearlyPie" [loading]="isLoading" theme="macarons"></div>
-</div>
+<mat-card-header>
+    <mat-card-title>
+        <h4>Trending Persentase Layanan Tahun {{today.getFullYear()}}</h4>
+    </mat-card-title>
+</mat-card-header>
+<mat-card-content>
+    <div nz-col nzSpan="6">
+        <div echarts [options]="yearlyPieChart" [merge]="updateYearlyPie" [loading]="isLoading" theme="macarons"></div>
+    </div>
+</mat-card-content>

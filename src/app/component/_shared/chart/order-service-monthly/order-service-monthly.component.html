@@ -1,4 +1,11 @@
-<div nz-col nzSpan="6">
-    <h4> Trending Persentase Layanan Bulan {{datetimeService.getMonthName(today.getMonth())}} </h4>
-    <div id="chart2" echarts [options]="monthlyChart" [merge]="updateMonthlyPie" [loading]="isLoading" theme="macarons"></div>
-</div>
+<mat-card-header>
+    <mat-card-title>
+        <h4>Trending Persentase Layanan Bulan {{datetimeService.getMonthName(today.getMonth())}}</h4>
+    </mat-card-title>
+</mat-card-header>
+<mat-card-content>
+    <div nz-col nzSpan="6">
+        <div id="chart2" echarts [options]="monthlyChart" [merge]="updateMonthlyPie" [loading]="isLoading"
+            theme="macarons"></div>
+    </div>
+</mat-card-content>

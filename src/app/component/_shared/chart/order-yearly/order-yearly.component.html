@@ -1,4 +1,11 @@
-<div nz-col nzSpan="12">
-    <h4> Grafik Order Tahun {{today.getFullYear()}} </h4>
-    <div #yearly id="chart1" echarts [options]="yearlyChart" [merge]="updateYearly" [loading]="isLoading" class="demo-chart" theme="macarons"></div>
-</div>
+<mat-card-header>
+    <mat-card-title>
+        <h4>Grafik Order Tahun {{today.getFullYear()}}</h4>
+    </mat-card-title>
+</mat-card-header>
+<mat-card-content>
+    <div nz-col nzSpan="12">
+        <div #yearly id="chart1" echarts [options]="yearlyChart" [merge]="updateYearly" [loading]="isLoading"
+            class="demo-chart" theme="macarons"></div>
+    </div>
+</mat-card-content>
