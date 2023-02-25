@@ -4,7 +4,7 @@
             <img src="{{background}}" alt="Profile Background">
         </div>
         <div>
-            <img *ngIf="account" class="profile" src="{{account.photo}}" alt="Profile Picture">
+            <img *ngIf="account" class="profile" src="{{account.photo}}" alt="{{account.photo}}">
         </div>
         <div class="content" *ngIf="account">
             <span>{{account.name}}</span>
@@ -14,16 +14,16 @@
     <div *ngIf="account.role === 0">
         <h3 matSubheader>Administrator</h3>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/admin/home" matLine>Beranda</a>
+            <a matListItemTitle routerLink="/dashboard/admin/home" matLine>Beranda</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/admin/order" matLine>Order</a>
+            <a matListItemTitle routerLink="/dashboard/admin/order" matLine>Order</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/admin/customer" matLine>Pelanggan</a>
+            <a matListItemTitle routerLink="/dashboard/admin/customer" matLine>Pelanggan</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/admin/account" matLine>Akun</a>
+            <a matListItemTitle routerLink="/dashboard/admin/account" matLine>Akun</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
             <a matListItemTitle routerLink="/dashboard/admin/service" matLine>Layanan</a>
@@ -32,41 +32,41 @@
         <mat-divider></mat-divider>
         <h3 matSubheader>Tools</h3>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/admin/setting" matLine>Setelan</a>
+            <a matListItemTitle routerLink="/dashboard/admin/setting" matLine>Setelan</a>
         </mat-list-item>
     </div>
     <div *ngIf="account.role === 1">
         <div matSubheader>Petugas Kantor</div>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/office/home" matLine>Beranda</a>
+            <a matListItemTitle routerLink="/dashboard/office/home" matLine>Beranda</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/office/order" matLine>Order</a>
+            <a matListItemTitle routerLink="/dashboard/office/order" matLine>Order</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/office/customer" matLine>Pelanggan</a>
+            <a matListItemTitle routerLink="/dashboard/office/customer" matLine>Pelanggan</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/office/attendance" matLine>Absensi</a>
+            <a matListItemTitle routerLink="/dashboard/office/attendance" matLine>Absensi</a>
         </mat-list-item>
         <div matSubheader>Setelan</div>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/office/service" matLine>Layanan</a>
+            <a matListItemTitle routerLink="/dashboard/office/service" matLine>Layanan</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/office/field" matLine>Petugas</a>
+            <a matListItemTitle routerLink="/dashboard/office/field" matLine>Petugas</a>
         </mat-list-item>
     </div>
     <div *ngIf="account.role === 2">
         <div matSubheader>Petugas Lapangan</div>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/field/home" matLine>Beranda</a>
+            <a matListItemTitle routerLink="/dashboard/field/home" matLine>Beranda</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/field/order" matLine>Order</a>
+            <a matListItemTitle routerLink="/dashboard/field/order" matLine>Order</a>
         </mat-list-item>
         <mat-list-item routerLinkActive="active">
-            <a routerLink="/dashboard/field/attendance" matLine>Absensi</a>
+            <a matListItemTitle routerLink="/dashboard/field/attendance" matLine>Absensi</a>
         </mat-list-item>
     </div>
 
