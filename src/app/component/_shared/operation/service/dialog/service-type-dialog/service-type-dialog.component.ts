@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ServiceType, ServiceTypeDto } from 'src/app/_data/model/service-type';
 import { ServiceTypeService } from 'src/app/_data/repository/service-type/service-type.service';
@@ -41,7 +41,7 @@ export class ServiceTypeDialogComponent {
       })
     }
   }
-  
+
   update() {
     if (this.serviceTypeFormGroup.invalid) {
       this.toastr.error('Input tidak valid', 'Error memperbarui jenis layanan');
@@ -54,7 +54,7 @@ export class ServiceTypeDialogComponent {
       })
     }
   }
-  
+
   delete() {
     this.serviceTypeService.delete(this.data.id).then((response) => {
       this.toastr.success('Jenis layanan ' + this.data.name + ' dihapus', 'Sukses menghapus jenis layanan');

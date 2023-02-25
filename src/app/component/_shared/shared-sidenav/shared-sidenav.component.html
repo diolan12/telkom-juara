@@ -1,4 +1,4 @@
-<mat-nav-list>
+<mat-nav-list role="navigation" *ngIf="account">
     <div class="profile-card-container">
         <div class="background">
             <img src="{{background}}" alt="Profile Background">
@@ -11,67 +11,63 @@
             <p>{{account.email}}</p>
         </div>
     </div>
+    <div *ngIf="account.role === 0">
+        <h3 matSubheader>Administrator</h3>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/admin/home" matLine>Beranda</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/admin/order" matLine>Order</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/admin/customer" matLine>Pelanggan</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/admin/account" matLine>Akun</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a matListItemTitle routerLink="/dashboard/admin/service" matLine>Layanan</a>
+        </mat-list-item>
 
-    <div *ngIf="account">
-        <div *ngIf="account.role === 0">
-            <div matSubheader>Administrator</div>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/admin/home" matLine>Beranda</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/admin/order" matLine>Order</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/admin/customer" matLine>Pelanggan</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/admin/account" matLine>Akun</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/admin/service" matLine>Layanan</a>
-            </mat-list-item>
-
-            <mat-divider></mat-divider>
-            <div matSubheader>Tools</div>
-            <mat-list-item routerLinkActive="active">
-                <mat-icon matLinkIcon>settings</mat-icon>
-                <a routerLink="/dashboard/admin/setting" matLine>Setelan</a>
-            </mat-list-item>
-        </div>
-        <div *ngIf="account.role === 1">
-            <div matSubheader>Petugas Kantor</div>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/office/home" matLine>Beranda</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/office/order" matLine>Order</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/office/customer" matLine>Pelanggan</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/office/attendance" matLine>Absensi</a>
-            </mat-list-item>
-            <div matSubheader>Setelan</div>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/office/service" matLine>Layanan</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/office/field" matLine>Petugas</a>
-            </mat-list-item>
-        </div>
-        <div *ngIf="account.role === 2">
-            <div matSubheader>Petugas Lapangan</div>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/field/home" matLine>Beranda</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/field/order" matLine>Order</a>
-            </mat-list-item>
-            <mat-list-item routerLinkActive="active">
-                <a routerLink="/dashboard/field/attendance" matLine>Absensi</a>
-            </mat-list-item>
-        </div>
+        <mat-divider></mat-divider>
+        <h3 matSubheader>Tools</h3>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/admin/setting" matLine>Setelan</a>
+        </mat-list-item>
+    </div>
+    <div *ngIf="account.role === 1">
+        <div matSubheader>Petugas Kantor</div>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/office/home" matLine>Beranda</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/office/order" matLine>Order</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/office/customer" matLine>Pelanggan</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/office/attendance" matLine>Absensi</a>
+        </mat-list-item>
+        <div matSubheader>Setelan</div>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/office/service" matLine>Layanan</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/office/field" matLine>Petugas</a>
+        </mat-list-item>
+    </div>
+    <div *ngIf="account.role === 2">
+        <div matSubheader>Petugas Lapangan</div>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/field/home" matLine>Beranda</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/field/order" matLine>Order</a>
+        </mat-list-item>
+        <mat-list-item routerLinkActive="active">
+            <a routerLink="/dashboard/field/attendance" matLine>Absensi</a>
+        </mat-list-item>
     </div>
 
 </mat-nav-list>

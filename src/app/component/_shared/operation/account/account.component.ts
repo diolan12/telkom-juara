@@ -1,7 +1,7 @@
 import { Component, AfterViewInit, ViewChild } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTableDataSource } from '@angular/material/table';
 import { Account } from 'src/app/_data/model/account';
 import { AccountService } from 'src/app/_data/repository/account/account.service';
 import { AuthService } from 'src/app/_data/service/auth.service';

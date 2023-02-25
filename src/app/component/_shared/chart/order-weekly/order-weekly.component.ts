@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import { Account } from 'src/app/_data/model/account';
 import { Order } from 'src/app/_data/model/order';

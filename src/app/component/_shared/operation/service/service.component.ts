@@ -1,8 +1,8 @@
 import { AfterViewInit, ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { MatLegacyDialog as MatDialog } from '@angular/material/legacy-dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
-import { MatLegacyTable as MatTable, MatLegacyTableDataSource as MatTableDataSource } from '@angular/material/legacy-table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Service } from 'src/app/_data/model/service';
 import { ServiceType } from 'src/app/_data/model/service-type';
 import { ServiceTypeService } from 'src/app/_data/repository/service-type/service-type.service';
@@ -80,11 +80,11 @@ export class ServiceComponent implements AfterViewInit {
     const serviceTypeDialogRef = this.dialog.open(ServiceDialogComponent, {
       width: environment.modalWidth,
       data: {
-        serviceTypes:this.serviceTypeDataSource.data, 
+        serviceTypes: this.serviceTypeDataSource.data,
         service: null
       }
     })
-    serviceTypeDialogRef.afterClosed().subscribe(()=>{
+    serviceTypeDialogRef.afterClosed().subscribe(() => {
       this.getServices();
     })
   }
@@ -93,7 +93,7 @@ export class ServiceComponent implements AfterViewInit {
     const serviceTypeDialogRef = this.dialog.open(ServiceTypeDialogComponent, {
       width: environment.modalWidth
     })
-    serviceTypeDialogRef.afterClosed().subscribe(()=>{
+    serviceTypeDialogRef.afterClosed().subscribe(() => {
       this.getServiceTypes();
     })
   }
@@ -102,11 +102,11 @@ export class ServiceComponent implements AfterViewInit {
     const serviceTypeDialogRef = this.dialog.open(ServiceDialogComponent, {
       width: environment.modalWidth,
       data: {
-        serviceTypes:this.serviceTypeDataSource.data, 
+        serviceTypes: this.serviceTypeDataSource.data,
         service: service
       }
     })
-    serviceTypeDialogRef.afterClosed().subscribe(()=>{
+    serviceTypeDialogRef.afterClosed().subscribe(() => {
       this.getServices();
     })
   }
@@ -116,7 +116,7 @@ export class ServiceComponent implements AfterViewInit {
       width: environment.modalWidth,
       data: serviceType
     })
-    serviceTypeDialogRef.afterClosed().subscribe(()=>{
+    serviceTypeDialogRef.afterClosed().subscribe(() => {
       this.getServiceTypes();
     })
   }

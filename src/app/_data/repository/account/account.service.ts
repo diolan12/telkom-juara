@@ -83,7 +83,7 @@ export class AccountService {
     switch (role) {
       case 0: return 'Administrator';
       case 1: return 'Petugas Kantor';
-      case 2: return 'Petugas Lapangan';
+      case 2: return 'Teknisi';
     }
     return ''
   }

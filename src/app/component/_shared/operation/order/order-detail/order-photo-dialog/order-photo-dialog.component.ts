@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, FormControl, UntypedFormGroup } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OrderPhoto, OrderPhotoDTO } from 'src/app/_data/model/order-photo';
@@ -23,13 +23,13 @@ export class OrderPhotoDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<OrderPhotoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: OrderPhoto,
     private formBuilder: UntypedFormBuilder
-    ) { 
-      if (data.description == null) {
-        this.orderPhotoFormGroup = this.formBuilder.group(OrderPhotoDTO.postValidator(data))
-      } else {
-        this.orderPhotoFormGroup = this.formBuilder.group(OrderPhotoDTO.putValidator(data))
-      }
+  ) {
+    if (data.description == null) {
+      this.orderPhotoFormGroup = this.formBuilder.group(OrderPhotoDTO.postValidator(data))
+    } else {
+      this.orderPhotoFormGroup = this.formBuilder.group(OrderPhotoDTO.putValidator(data))
     }
+  }
 
   ngOnInit(): void {
     this.orderUniqueID = this.router.url.split('/')[4]

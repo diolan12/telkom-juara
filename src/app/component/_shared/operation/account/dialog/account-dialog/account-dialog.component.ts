@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
-import { MatLegacyDialogRef as MatDialogRef, MAT_LEGACY_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/legacy-dialog';
+import { MatDialogRef,  MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Account, AccountDTO, PasswordErrorStateMatcher } from 'src/app/_data/model/account';
 import { Role } from 'src/app/_data/model/role';
@@ -24,7 +24,7 @@ export class AccountDialogComponent {
   roles: Array<Role> = [
     { value: 0, text: 'Administrator' },
     { value: 1, text: 'Petugas Kantor' },
-    { value: 2, text: 'Petugas Lapangan' }
+    { value: 2, text: 'Teknisi' }
   ];
 
   constructor(
@@ -41,12 +41,12 @@ export class AccountDialogComponent {
         this.roles = [
           { value: 0, text: 'Administrator' },
           { value: 1, text: 'Petugas Kantor' },
-          { value: 2, text: 'Petugas Lapangan' }
+          { value: 2, text: 'Teknisi' }
         ]
       } else {
         this.roles = [
           { value: 1, text: 'Petugas Kantor' },
-          { value: 2, text: 'Petugas Lapangan' }
+          { value: 2, text: 'Teknisi' }
         ]
       }
     })
