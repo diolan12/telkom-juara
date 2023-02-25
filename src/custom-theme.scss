@@ -30,4 +30,4 @@ $telkom-juara-theme: mat.define-dark-theme(( color: ( primary: $telkom-juara-pri
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($telkom-juara-theme);
-@include mat.core-theme($telkom-juara-theme);
+// @include mat.core-theme($telkom-juara-theme);
